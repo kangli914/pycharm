@@ -6,20 +6,20 @@ if __name__ == "__main__":
     for line in requestLogFile:
         # fusion reactor log uses space as delimiter
         fieldsList = line.strip().split(' ')
-        ''' field mapping according to log format specs http://docs.intergral.com/pages/viewpage.action?pageId=32738148
+        ''' field mapping is according to log format specs on page http://docs.intergral.com/pages/viewpage.action?pageId=32738148
         # Field#1       - Field#2       - Field#3       - ... - Field#7        - ... - Field#10
         # Date          - Time          - Date/Time(ms) - ... - Request Status - ... - Client IP Address
         # 2016-07-25      13:59:59.688    1469469599688         EXECUTING              142.76.18.97
         '''
         reqStatusFields=fieldsList[6]
-        if reqStatusFields != 'EXECUTING':
-            continue
+        #if reqStatusFields != 'EXECUTING':
+        #    continue
         dateField=fieldsList[0]
         timeField=fieldsList[1]
         mstimeField=fieldsList[2]
         clientIPField=fieldsList[9]
 
-        # key: yyyy-mm-dd-hh (as fusion reactor file is logging hourly)
+        # key: yyyy-mm-dd-hh (as fusion reactor file is logging hourly base)
         # value: a set (distinct) of client IP in hourly interval
         #  and value ('2016-07-25-13', set(['142.76.154.23', '142.76.7.219', '142.76.115.99']))
         key_ipsHashmap = dateField + "-" + timeField.split(':')[0]
