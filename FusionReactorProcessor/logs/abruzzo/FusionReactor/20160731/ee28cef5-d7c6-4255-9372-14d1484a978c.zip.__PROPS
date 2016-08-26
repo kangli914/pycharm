@@ -1,0 +1,16 @@
+#Stored by #storeProperties for ee28cef5-d7c6-4255-9372-14d1484a978c.zip
+#Sun Jul 31 14:00:00 EDT 2016
+source=SunnyCare.CF11.2.1
+custom.fac.history.0.text=SunnyCare.CF11.2.1_,_FA Log Scheduler_,_[FusionReactor Scheduler Task] Archive created.
+custom.fac.history.1.dts=1469988000323
+created=1469988000145
+custom.fac.history.0.dts=1469988000322
+custom.fac.history.1.text=SunnyCare.CF11.2.1_,_FA Log Scheduler_,_WARNING\: Archive is marked for transmission but the FusionAnalytics Connector is inactive.
+created_string=Sun Jul 31 14\:00\:00 EDT 2016
+comment=Log Archive Scheduler
+custom.fac.history.count=2
+custom.fac.lc.mode=standalone
+purgeinhibit=false
+custom.fac.archive.exception=false
+custom.fac.fram.mode=0
+sourcefile=E\:\\FusionReactor\\instance\\SunnyCare.CF11.2.1\\scheduler\\tx-20160731140000145.zip
