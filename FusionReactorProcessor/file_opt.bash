@@ -3,7 +3,7 @@
 tmpdir="tmp/fr-logrotator-plugin"
 rm $tmpdir/request.log
 
-for f in logs/abruzzo/FusionReactor/20160724/*.zip
+for f in logs/abruzzo/FusionReactor/2016*/*.zip
 do
 	echo "Processing $f file..."
 	unzip $f fr-logrotator-plugin/request.log -d tmp/
