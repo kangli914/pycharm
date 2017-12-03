@@ -1,5 +1,10 @@
 from pygrok import Grok
 
+class groker4durid:
+    define __init__(self, )
+
+
+'''
 pat_JOB_START = '%{LOGLEVEL:level} %{TIMESTAMP_ISO8601:timestamp} %{WORD:component} %{NUMBER:process_num:int} %{NUMBER:thread_num:int} start load EOD_20170701_NA_19'
 pat_DataFabric_END = '%{LOGLEVEL:level} %{TIMESTAMP_ISO8601:timestamp} %{WORD:component} %{NUMBER:process_num:int} %{NUMBER:thread_num:int} Files loaded in %{TIME:time}'
 pat_DataLakeCMLA_END = '%{LOGLEVEL:level} %{TIMESTAMP_ISO8601:timestamp} %{WORD:component} %{NUMBER:process_num:int} %{NUMBER:thread_num:int} All Files Delivered To cmla : %{TIME:time}'
@@ -15,7 +20,7 @@ pat_list = [pat_JOB_START, pat_DataFabric_END, pat_DataLakeCMLA_END, pat_DataLak
 # grok2 = Grok(pat_DataFabric_END)
 
 with open("druidlog") as f:
-    # grok = Grok(Pat_JOB_END)
+
     while not 'EOD_20170701_NA_19' in next(f):
         pass
     for line in f:
@@ -29,6 +34,8 @@ with open("druidlog") as f:
     # EOF is reached
     else:
         print "ERROR: No job found"
+        
+    '''
 
     '''
     lines = f.readlines()[9710:]
