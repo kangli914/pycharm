@@ -10,36 +10,42 @@ class Groker4Duridlog:
     def grok_log(self):
         with open(self.file) as f:
 
-            # Skip and not do any processing until found job id
-            while not 'EOD_20170701_NA_19' in next(f):
+            # Skip and not do any processing until found the interested job id to start from
+            while not 'EOD_20170701_NA_11' in next(f):
                 pass
 
+            # Found the interest job id to process
             for line in f:
+
+                # go through event list from the top of events
                 event = self.events.pop(0)
                 grok = Grok(event)
                 m = grok.match(line)
                 if m is not None:
-                    #print event
-                    #print m
+                    print event
+                    print m['timestamp']
                     print len(self.events)
-                    #self.print_grok_pattern
-                    print self.events
 
-                    # Found the last event of Job and exit
+                    # print m
+                    #print self.events
+                    #self.print_grok_pattern
+                    # print self.events
+
+                    # Found the last event of job and exit
                     if not self.events:
                         print "INFO: Job found and complete"
                         break
                 else:
                     self.events.insert(0, event)
 
-            # EOF is reached AND Job not finished
+            # EOF is reached and there's pending job end event left in the event list. hence job is not finished
             else:
-                print "ERROR: Job not finished"
+                print "ERROR: Job event not finished"
                 #self.print_grok_pattern  # faulty line job could be on last one but empty
-                print self.events
+                print "event: %s is not found" % (self.events[0])
                 '''
                 if len(self.events) != 0:
-                    print "ERROR: Job not finished"
+                    print "ERROR: Job  not finished"
                     self.print_grok_pattern
                 else:
                     print "INFO: Job found and complete"
@@ -50,7 +56,7 @@ class Groker4Duridlog:
 
 
 if __name__ == "__main__":
-    pat_JOB_START = '%{LOGLEVEL:level} %{TIMESTAMP_ISO8601:timestamp} %{WORD:component} %{NUMBER:process_num:int} %{NUMBER:thread_num:int} start load EOD_20170701_NA_19'
+    pat_JOB_START = '%{LOGLEVEL:level} %{TIMESTAMP_ISO8601:timestamp} %{WORD:component} %{NUMBER:process_num:int} %{NUMBER:thread_num:int} start load EOD_20170701_NA_11'
     pat_DataFabric_END = '%{LOGLEVEL:level} %{TIMESTAMP_ISO8601:timestamp} %{WORD:component} %{NUMBER:process_num:int} %{NUMBER:thread_num:int} Files loaded in %{TIME:time}'
     pat_DataLakeCMLA_END = '%{LOGLEVEL:level} %{TIMESTAMP_ISO8601:timestamp} %{WORD:component} %{NUMBER:process_num:int} %{NUMBER:thread_num:int} All Files Delivered To cmla : %{TIME:time}'
     pat_DataLakeRISKIT_END = '%{LOGLEVEL:level} %{TIMESTAMP_ISO8601:timestamp} %{WORD:component} %{NUMBER:process_num:int} %{NUMBER:thread_num:int} All Files Delivered To risk_it : %{TIME:time}'
@@ -61,12 +67,12 @@ if __name__ == "__main__":
     pat_list = [pat_JOB_START, pat_DataFabric_END, pat_DataLakeCMLA_END, pat_DataLakeRISKIT_END, pat_DataLakeEIM_END,
                 pat_ETL_END, Pat_JOB_END]
 
-    grok = Groker4Duridlog(pat_list, "druidlog1")
+    grok = Groker4Duridlog(pat_list, "druidlog")
     #grok.print_grok_pattern()
     grok.grok_log()
 
 '''
-pat_JOB_START = '%{LOGLEVEL:level} %{TIMESTAMP_ISO8601:timestamp} %{WORD:component} %{NUMBER:process_num:int} %{NUMBER:thread_num:int} start load EOD_20170701_NA_19'
+pat_JOB_START = '%{LOGLEVEL:level} %{TIMESTAMP_ISO8601:timestamp} %{WORD:component} %{NUMBER:process_num:int} %{NUMBER:thread_num:int} start load EOD_20170701_NA_11'
 pat_DataFabric_END = '%{LOGLEVEL:level} %{TIMESTAMP_ISO8601:timestamp} %{WORD:component} %{NUMBER:process_num:int} %{NUMBER:thread_num:int} Files loaded in %{TIME:time}'
 pat_DataLakeCMLA_END = '%{LOGLEVEL:level} %{TIMESTAMP_ISO8601:timestamp} %{WORD:component} %{NUMBER:process_num:int} %{NUMBER:thread_num:int} All Files Delivered To cmla : %{TIME:time}'
 pat_DataLakeRISKIT_END = '%{LOGLEVEL:level} %{TIMESTAMP_ISO8601:timestamp} %{WORD:component} %{NUMBER:process_num:int} %{NUMBER:thread_num:int} All Files Delivered To risk_it : %{TIME:time}'
