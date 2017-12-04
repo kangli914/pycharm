@@ -1,5 +1,5 @@
 from pygrok import Grok
-
+# http://docs.python-requests.org/en/master/user/quickstart/
 
 class Groker4Duridlog:
 
