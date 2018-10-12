@@ -118,7 +118,7 @@ Python 3.7.0
 ```
 
 ## Note
-* ** You should never put project files in virtual enviroment. Vitual enviroment is only meant to sepearte out the packages, dependencies and verions you are going to use from projects to projects. ***
+* You should never put project files in virtual enviroment. Vitual enviroment is only meant to sepearte out the packages, dependencies and verions you are going to use from projects to projects
 
 ## Reference
 
