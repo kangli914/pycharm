@@ -4,7 +4,7 @@ Different applications can then use different virtual environments.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions is based on windows
 
 ### Current
 
@@ -32,16 +32,23 @@ PS C:\Users\perfeng\python_env> pip install virtualenv
 Collecting virtualenv
 Successfully installed virtualenv-16.0.0
 
+PS C:\Users\perfeng\python_env> pip list
+Package    Version
+---------- -------
+pip        10.0.1
+setuptools 39.0.1
+virtualenv 16.0.0
+
 # virtualenv -p allows you to specify the Python interpreter to use. The default is the interpreter that virtualenv was installed with (c:\program files\python\python37\python.exe)
 C:\Users\perfeng\python_env>virtualenv -p "C:\Program Files\Python\Python27\python.exe" python27_demo
+
 ---
 Option 2) running the venv module as a script with the directory path:
-
 & 'C:\Program Files\Python\Python36\python.exe' -m venv python36_demo_option2
 
 ```
 
-List out contents of python27_demo virtual environment
+List out contents of python27_demo virtual environment after v2.7 environment gets created
 
 ```
 Directory: C:\Users\perfeng\python_env\python27_demo
@@ -55,59 +62,67 @@ d-----       10/12/2018  10:31 AM                tcl
 -a----       10/12/2018  10:32 AM             59 pip-selfcheck.json
 ```
 
-End with an example of getting some data out of the system or using it for a little demo
+## Activate/deactivate the environment (working in isolations)
 
-## Running the tests
+Activate previous created python v2.7.15 environment
 
-Explain how to run the automated tests for this system
+### activate
 
-### Break down into end to end tests
+Windows: virtual-environment\Scripts\activate.bat
+Linux: source virtual-environment/Scripts/activate
 
-Explain what these tests test and why
-
+once you have activate the virtual-environment, you will see the environment name prefix like '(python27_demo)'
 ```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
+PS C:\Users\perfeng\python_env> .\python27_demo\Scripts\activate
+(python27_demo) PS C:\Users\perfeng\python_env>
 ```
 
-## Deployment
+### check python version
 
-Add additional notes about how to deploy this on a live system
+They are all in v2.7
 
-## Built With
+```
+(python27_demo) PS C:\Users\perfeng\python_env> python -V
+Python 2.7.15
+(python27_demo) PS C:\Users\perfeng\python_env> pip -V
+pip 18.1 from c:\users\perfeng\python_env\python27_demo\lib\site-packages\pip (python 2.7)
+```
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+### pip list 
+Note - since you are in python 27 virtual environment, there is no previous installed 'virtualenv 16.0.0' in default enviroment(v3.7.0)
+```
+(python27_demo) PS C:\Users\perfeng\python_env> pip list
+Package    Version
+---------- -------
+pip        18.1
+setuptools 40.4.3
+wheel      0.32.1
 
-## Contributing
+V.S. (In default v3.7.0)
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+PS C:\Users\perfeng\python_env> pip list
+Package    Version
+---------- -------
+pip        10.0.1
+setuptools 39.0.1
+virtualenv 16.0.0
 
-## Versioning
+```
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+### deactivate
+To get out of current virtual enviroment
+```
+(python27_demo) PS C:\Users\perfeng\python_env> deactivate
+PS C:\Users\perfeng\python_env> python -V
+Python 3.7.0
+```
 
-## Authors
+## Note
+** You should never put project files in virtual enviroment. Vitual enviroment is only meant to sepearte out the packages, dependencies and verions you are going to use from projects to projects. **
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+## Reference
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* [Virtual Environments and Packages](https://docs.python.org/3.7/tutorial/venv.html#creating-virtual-environments) - Python official tutorial
+* [Youtube](https://www.youtube.com/watch?v=N5vscPTWKOk) - Python Tutorial: virtualenv and why you should use virtual environments
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
 
