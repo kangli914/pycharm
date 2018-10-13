@@ -119,10 +119,10 @@ Python 3.7.0
 
 ## IDE (Pycharm)
 Create virtual enviroment in IDE
-![alt text](jpg/ScreenHunter 148.png)
-![alt text](jpg/ScreenHunter 150.png)
-![alt text](jpg/ScreenHunter 152.png)
-![alt text](jpg/ScreenHunter 151.png)
+![alt text](./jpg/ScreenHunter 148.png)
+![alt text](./jpg/ScreenHunter 150.png)
+![alt text](./jpg/ScreenHunter 152.png)
+![alt text](./jpg/ScreenHunter 151.png)
 
 ## Note
 * You should never put project files in virtual enviroment. Vitual enviroment is only meant to sepearte out the packages, dependencies and verions you are going to use from projects to projects
