@@ -1,5 +1,5 @@
 # Virtual Environments
-To solve module dependency for hosting multi python applications that need different versions of module. The solution for this problem is to create a virtual environment, a self-contained directory tree that contains a Python installation for a particular version of Python, plus a number of additional packages.
+Virtual Env is a way to seperate different python enviroment for different projects.To solve module dependency for hosting multi python applications that need different versions of module. The solution for this problem is to create a virtual environment, a self-contained directory tree that contains a Python installation for a particular version of Python, plus a number of additional packages.
 Different applications can then use different virtual environments.
 
 ## Getting Started
