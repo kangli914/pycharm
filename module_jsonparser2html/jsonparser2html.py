@@ -99,7 +99,7 @@ def generate_html(FLOW, INGEST_TIME, ACITION_BEGIN_TIME, ACITION_SUCCESS_TIME):
     html = html.html()
 
     head = html.head
-    head.title('DMF Performance Metrics')
+    head.title('Performance Metrics')
     head.meta(content='text/html; charset=utf-8')
     head.link(rel='stylesheet', href='main.css', type='text/css')
 
@@ -142,48 +142,6 @@ def generate_html(FLOW, INGEST_TIME, ACITION_BEGIN_TIME, ACITION_SUCCESS_TIME):
     with open('performance.html', 'w') as f:
         f.writelines(html)
 
-
-'''
-if __name__ == '__main__':
-
-    FLOW = str((sys.argv[1]))
-
-
-    with open('json\\sample.json','r') as f:
-        data = json.load(f)
-        parser = JsonParser(data)
-
-        # # print(data)
-        # data['results']['dmf']['ingest'][0]['REQUEST '][0]
-        # data['results']['dmf']['update'][0]['ODS_BPSA_US_ALLOCATIONS_ACTION']['__EXECUTE_ACTION']['ACTION_SUCCEEDED'][0]
-
-        JOB_NAME = data['job']['provider_job_id']
-
-        for ingest in data['results']['dmf']['ingest']:
-            try:
-                INGEST_TIME = ingest['REQUEST '][0]
-                # print(ingest['REQUEST '][0])
-            except:
-                print("no Request")
-
-        # there could be more action(s) in update block e.g. ['results']['dmf']['update'] is a list
-        for action in data['results']['dmf']['update']:
-            # currently at individual action block
-            if len(action) < 1:
-                print("no Action")
-            else:
-                for key in action:
-                    try:
-                        ACITION_SUCCESS_TIME = action[key]['__EXECUTE_ACTION']['ACTION_SUCCEEDED'][0]
-                        ACITION_BEGIN_TIME = action[key]['__EXECUTE_ACTION']['ACTION_BEGIN'][0]
-                        # print(action[key]['__EXECUTE_ACTION']['ACTION_SUCCEEDED'][0])
-                    except:
-                        print("no Action begin or success")
-
-    #print(parser.data)
-
-    generate_html(FLOW, INGEST_TIME,ACITION_BEGIN_TIME,ACITION_SUCCESS_TIME)
-'''
 
 if __name__ == '__main__':
     tag = str((sys.argv[1]))
