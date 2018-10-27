@@ -146,8 +146,8 @@ class JobParser:
         html = HTML()
         html = html.html()
 
+        # table style - have to hard code instead of putting .css since attachment with css, style doesn't seem to work
         style_code = "table { border-collapse: collapse; } table th { border: 1px solid #e3e3e3; text-align: center; background-color: #3a6070; color: #FFF; padding: 4px 20px 4px 8px;} table td { border: 1px solid #e3e3e3; padding: 4px 8px;} table tr:nth-child(odd) td { background-color: #e7edf0;}"
-
         html.style(style_code)
 
         head = html.head
@@ -157,18 +157,20 @@ class JobParser:
 
         table = html.body.table()
 
+        # first table row header
         t_row1 = table.tr
         t_row1.th('Application Portfolio - ' + self.get_application_tag())
         t_row1.th('INGEST REQUEST')
         t_row1.th('INGEST REPLY', colspan='2')
 
+        # 2nd table row header
         t_row2 = table.tr
         t_row2.th('Job Name')
-        t_row2.th('Request Time [UTC]')
+        t_row2.th('Request Time hh:mm:ss [UTC]')
+        t_row2.th('Received Time hh:mm:ss [UTC]')
+        t_row2.th('Reply Time hh:mm:ss [UTC]')
 
-        t_row2.th('Received Time [UTC]')
-        t_row2.th('Reply Time [UTC]')
-
+        # 3rd table row data
         t_row3 = table.tr
         t_row3.td("JOB_NAME")
 
@@ -177,13 +179,14 @@ class JobParser:
         dt_reply_reply = dateutil.parser.parse(self.get_element_dictionary('replyTimeSent'))
 
         # Ingest time from client - convert it (usually based on Eastern time to DMF timezone time (utc) and then chop the date prefix
-        t_row3.td(dt_request.astimezone(dt_reply_received.tzinfo).strftime('%H:%M:%S.%f'))
-        t_row3.td(dt_reply_received.strftime('%H:%M:%S.%f'))
-        t_row3.td(dt_reply_reply.strftime('%H:%M:%S.%f'))
+        t_row3.td(dt_request.astimezone(dt_reply_received.tzinfo).strftime('%H:%M:%S.%f')[:-3])
+        t_row3.td(dt_reply_received.strftime('%H:%M:%S.%f')[:-3])
+        t_row3.td(dt_reply_reply.strftime('%H:%M:%S.%f')[:-3])
 
         dt_action_complete = None
 
         # A workflow can have multi-actions so table header also need to consider dynamicallly
+        # so dynamically populate table data accordingly
         for i in range(self.get_element_dictionary('actionCount')):
             # print self.get_element_dictionary('actionName_{}'.format(i))
             action_name = self.get_element_dictionary('actionName_{}'.format(i))
@@ -191,29 +194,32 @@ class JobParser:
             tasks_cnt = len(tasks)
             for j in range(tasks_cnt):
                 task = tasks[j].keys()[0]
+
+                # getting 'zones' from task
                 t_row1.th('{} ({}->{})'.format(str(task), tasks[j][task][1], tasks[j][task][2]), colspan='3')
 
-                t_row2.th('Begin [UTC]')
-                t_row2.th('Succeed [UTC]')
-                t_row2.th('Processing Time')
+                t_row2.th('Begin hh:mm:ss [UTC]')
+                t_row2.th('Succeed hh:mm:ss [UTC]')
+                t_row2.th('Processing Time hh:mm:ss')
 
+                # getting 'timestamp' from task
                 dt_begin = dateutil.parser.parse(tasks[j][task][3])
                 dt_complete = dateutil.parser.parse(tasks[j][task][4])
-                t_row3.td(dt_begin.strftime('%H:%M:%S.%f'))
-                t_row3.td(dt_complete.strftime('%H:%M:%S.%f'))
+                t_row3.td(dt_begin.strftime('%H:%M:%S.%f')[:-3])
+                t_row3.td(dt_complete.strftime('%H:%M:%S.%f')[:-3])
 
                 # amazing!!! - timedelta can do the difference by observing the time zone difference!
                 # dt_1: 2018 - 10 - 03T18:55:31.955000 - 04:00
                 # dt_3: 2018 - 10 - 03T22:59:16.886432 + 00:00
-                t_row3.td('{} {}'.format(str(dt_complete - dt_begin), "| [" + str((dt_complete - dt_begin).seconds) + "] secs"))
+                t_row3.td('{} {}'.format(str(dt_complete - dt_begin)[:-3], "| [" + str((dt_complete - dt_begin).seconds) + "] secs"))
 
                 if str(task) == '__EXECUTE_ACTION':
                     dt_action_complete = dt_complete
 
         t_row1.th('END TO END')
-        t_row2.th('Total Processing Time')
+        t_row2.th('Total Processing Time hh:mm:ss')
 
-        t_row3.td('{} {}'.format(str(dt_action_complete - dt_request), "| [" + str((dt_action_complete - dt_request).seconds) + "] secs"))
+        t_row3.td('{} {}'.format(str(dt_action_complete - dt_request)[:-3], "| [" + str((dt_action_complete - dt_request).seconds) + "] secs"))
 
 
         '''
