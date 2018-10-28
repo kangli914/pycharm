@@ -143,19 +143,20 @@ class JobParser:
 
     def generate_html(self, header=True):
 
-        html = HTML()
-        html = html.html()
+        # html = HTML()
+        # html = html.html()
+        #
+        # # table style - have to hard code instead of putting .css since attachment with css, style doesn't seem to work
+        # style_code = "table { border-collapse: collapse; } table th { border: 1px solid #e3e3e3; text-align: center; background-color: #3a6070; color: #FFF; padding: 4px 20px 4px 8px;} table td { border: 1px solid #e3e3e3; padding: 4px 20px 4px 8px;} table tr { background-color: #e7edf0;}"
+        # html.style(style_code)
+        #
+        # head = html.head
+        # head.title('Performance Reports')
+        # head.meta(content='text/html; charset=utf-8')
+        # head.link(rel='stylesheet', href='main-1.css', type='text/css')
 
-        # table style - have to hard code instead of putting .css since attachment with css, style doesn't seem to work
-        style_code = "table { border-collapse: collapse; } table th { border: 1px solid #e3e3e3; text-align: center; background-color: #3a6070; color: #FFF; padding: 4px 20px 4px 8px;} table td { border: 1px solid #e3e3e3; padding: 4px 20px 4px 8px;} table tr { background-color: #e7edf0;}"
-        html.style(style_code)
+        #table = html.body.table()
 
-        head = html.head
-        head.title('Performance Reports')
-        head.meta(content='text/html; charset=utf-8')
-        head.link(rel='stylesheet', href='main-1.css', type='text/css')
-
-        table = html.body.table()
         t_row1 = None
         t_row2 = None
         t_row3 = None
@@ -228,8 +229,8 @@ class JobParser:
 
         t_row3.td('{} {}'.format(str(dt_action_complete - dt_request)[:-3], "| [" + str((dt_action_complete - dt_request).seconds) + "] secs"))
 
-        with open('performance.html', 'a+') as f:
-            f.writelines(html)
+        # with open('performance.html', 'a+') as f:
+        #     f.writelines(html)
 
 
 if __name__ == '__main__':
@@ -250,6 +251,20 @@ if __name__ == '__main__':
 
     print(JobParser.totalJobCount)
 
+    html = HTML()
+    html = html.html()
+
+    # table style - have to hard code instead of putting .css since attachment with css, style doesn't seem to work
+    style_code = "table { border-collapse: collapse; } table th { border: 1px solid #e3e3e3; text-align: center; background-color: #3a6070; color: #FFF; padding: 4px 20px 4px 8px;} table td { border: 1px solid #e3e3e3; padding: 4px 20px 4px 8px;} table tr:nth-child(even) { background-color: #e7edf0;}"
+    html.style(style_code)
+
+    head = html.head
+    head.title('Performance Reports')
+    head.meta(content='text/html; charset=utf-8')
+    head.link(rel='stylesheet', href='main-1.css', type='text/css')
+
+    table = html.body.table()
+
     input_dir = ".\\json"
     for file in os.listdir('.\\json'):
         print file
@@ -262,6 +277,9 @@ if __name__ == '__main__':
             parser.generate_html(header=False)
         else:
             parser.generate_html(header=True)
+
+    with open('performance.html', 'a+') as f:
+        f.writelines(html)
 
     print(JobParser.get_job_count())
 
