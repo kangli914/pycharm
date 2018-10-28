@@ -9,11 +9,13 @@ class JobParser:
     # track # of jobs
     totalJobCount = 0
 
-    def __init__(self, data, tag_name):
+    def __init__(self, data, tag_name, job_name):
         # raw data reading from file in json format
         self.data = data
         # tag is application portfolio name
         self.tag = tag_name
+        # job name
+        self.name = job_name
         # store the result after parsing the data (json)
         self.jobDictionary = {}
         JobParser.totalJobCount += 1
@@ -21,6 +23,10 @@ class JobParser:
     @classmethod
     def get_job_count(cls):
         return cls.totalJobCount
+
+    # get job name
+    def get_job_name(self):
+        return self.name
 
     # get application name
     def get_application_tag(self):
@@ -95,7 +101,7 @@ class JobParser:
 
                 try:
                     action_name = self.get_job_dictionary()[action_index]
-                    print(task_set[action_name].keys())
+                    # print(task_set[action_name].keys())
 
                     '''
                     # set a pair of {a action name, a list of task names included} as follows
@@ -177,7 +183,7 @@ class JobParser:
 
         # 3rd table row data
         t_row3 = table.tr
-        t_row3.td("JOB_NAME_1")
+        t_row3.td(self.get_job_name())
 
         dt_request = dateutil.parser.parse(self.get_element_dictionary('ingestTime'))
         dt_reply_received = dateutil.parser.parse(self.get_element_dictionary('replyTimeAccept'))
@@ -234,18 +240,6 @@ class JobParser:
 
 
 if __name__ == '__main__':
-    '''
-    tag = str((sys.argv[1]))
-
-    print(JobParser.totalJobCount)
-
-    with open('json\\sample1.json', 'r') as f:
-        parser = JobParser(json.load(f), tag)
-        parser.parse()
-
-    print(JobParser.get_job_count())
-    parser.generate_html()
-    '''
 
     tag = str((sys.argv[1]))
 
@@ -255,7 +249,7 @@ if __name__ == '__main__':
     html = html.html()
 
     # table style - have to hard code instead of putting .css since attachment with css, style doesn't seem to work
-    style_code = "table { border-collapse: collapse; } table th { border: 1px solid #e3e3e3; text-align: center; background-color: #3a6070; color: #FFF; padding: 4px 20px 4px 8px;} table td { border: 1px solid #e3e3e3; padding: 4px 20px 4px 8px;} table tr:nth-child(even) { background-color: #e7edf0;}"
+    style_code = "table { border-collapse: collapse; } table th { border: 1px solid #e3e3e3; text-align: center; background-color: #3a6070; color: #FFF; padding: 4px 20px 4px 8px;} table td { border: 1px solid #e3e3e3; padding: 4px 20px 4px 8px;} table tr:nth-child(even) { background-color: #e7edf0;} table td:last-child { color: #a52a2a; } "
     html.style(style_code)
 
     head = html.head
@@ -266,19 +260,21 @@ if __name__ == '__main__':
     table = html.body.table()
 
     input_dir = ".\\json"
-    for file in os.listdir('.\\json'):
-        print file
+    for file in os.listdir(input_dir):
+        # print file
+        name = file.split("_")[3][:-5]
+
         with open(input_dir + "\\" + file, 'r') as f:
-            parser = JobParser(json.load(f), tag)
+            parser = JobParser(json.load(f), tag, name)
             parser.parse()
 
         # no header is needed after 1st job
-        if (JobParser.get_job_count() > 1):
+        if JobParser.get_job_count() > 1:
             parser.generate_html(header=False)
         else:
             parser.generate_html(header=True)
 
-    with open('performance.html', 'a+') as f:
+    with open(tag + '-performance.html', 'w+') as f:
         f.writelines(html)
 
     print(JobParser.get_job_count())
