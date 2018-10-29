@@ -262,7 +262,7 @@ if __name__ == '__main__':
     input_dir = ".\\json"
     for file in os.listdir(input_dir):
         # print file
-        name = file.split("_")[3][:-5]
+        name = file.split("_")[3]
 
         with open(input_dir + "\\" + file, 'r') as f:
             parser = JobParser(json.load(f), tag, name)
