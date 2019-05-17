@@ -1,6 +1,4 @@
-# Project Title
-
-Python Node:
+# Python notes:
 
 * Operators:
 1. Comparison operators: '==' & '!=' compare value. Identity Operators: 'is' & 'is not' compare object
