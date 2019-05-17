@@ -1,88 +1,38 @@
 # Project Title
 
-One Paragraph of project description goes here
+Python Node:
 
-## Getting Started
+* Operators:
+1. Comparison operators: '==' & '!=' compare value. Identity Operators: 'is' & 'is not' compare object
+2. Logical Operators:  'and' & 'or' & 'not' return python Boolean 'True' or 'False'
+3. Membership Operators: 'in' & 'not in': Evaluates to 'True' if it finds a variable in the specified sequence and 'False' otherwis
+4. note: not such thing 'A is in'
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+* Python Data type: Numbers, String, List, Tuple, Dictionary
 
-### Prerequisites
+* Python String: list --> https://www.programiz.com/python-programming/methods/string
+1. substring:
+	- string[start:end]: Get all characters from index start to end-1
+	- string[:end]: Get all characters from the beginning of the string to end-1
+	- string[start:]: Get all characters from index start to the end of the string
+	- string[start:end:step]: Get all characters from start to end-1 discounting every step character
+   
+   refer: https://guide.freecodecamp.org/python/is-there-a-way-to-substring-a-string-in-python/
 
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
-
+2. useful functions:
+	Remove:
+	- .strip([chars]): if char not provided, the method removes any whitespace from the beginning or the end; can pass character. 
+					   if char is passed, it will search all the char of the set one by one form left and right side of the target string.
+					   If a char in the string s isn't in the set than *no further* checking is done form that side and stop from that side
+					   searching will be continue from the other side till similar thing is happen form that side. 
+					   if char in string s is found in set than that char is removed and continue
+	- .lstrip([chars]): removes characters from the left based on the argument (a string specifying the set of characters to be removed).
+	
+	
+	- .lower(), .upper(), .islower(), .isupper()
+	- .replace("H", "J"):  replaces a string with another string
+	- .split(","): plits the string into substrings if it finds instances of the separator
+	
+   refer: https://www.w3schools.com/python/python_strings.asp
+		  https://www.programiz.com/python-programming/methods/string
+		  https://stackoverflow.com/questions/13783934/what-does-s-strip-do-exactly [.strip()]
