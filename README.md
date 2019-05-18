@@ -11,17 +11,23 @@
 	>> print("abc:{}".format("cde"))
 	abc:cde
 	```
-- Python variables do not require explicit declaration to reserve memory location. The declaration happens automatically when you assign a value to a variable. The equal sign (=) is used to assign values to variables
--
+- Python variables do not require explicit declaration to reserve memory location. Declaration of variables is not required in Python
+  The declaration happens automatically when you assign a value to a variable. The equal sign (=) is used to assign values to variables
+
+- Python Data structure
 	1. List is a collection which is ordered and changeable. Allows duplicate members. []
-	2. Tuple is a collection which is ordered and unchangeable. Allows duplicate members.
-	3. Set is a collection which is unordered and unindexed. No duplicate members.
+	2. Tuple is a collection which is ordered and unchangeable. Allows duplicate members. ()
+	3. Set is a collection which is unordered and unindexed. No duplicate members. {}
 	4. Dictionary is a collection which is unordered, changeable and indexed. No duplicate members.
 	
 ## Operators:
 1. Comparison operators: '==' & '!=' compare value. Identity Operators: 'is' & 'is not' compare object
 2. Logical Operators:  'and' & 'or' & 'not' return python Boolean 'True' or 'False'
 3. Membership Operators: 'in' & 'not in': Evaluates to 'True' if it finds a variable in the specified sequence and 'False' otherwis
+   sometimes, this is used in for-loops:
+	```
+	for x in list: (still condsidered as 'Membership' some sort)
+	```
 4. note: not such thing 'A is in'
 
 ## String
@@ -30,8 +36,9 @@
 	- string[start:end]: Get all characters from index start to end-1 (Note - exclude 'end')
 	- string[:end]: Get all characters from the beginning of the string to end-1
 	- string[start:]: Get all characters from index start to the end of the string
-	- string[start:end:step]: Get all characters from start to end-1 discounting every step character
+	- string[start : end : step]: Get all characters from start to end-1 discounting every step character
    
+   NOTE - substring wont change original string
    refer: https://guide.freecodecamp.org/python/is-there-a-way-to-substring-a-string-in-python/
 
 2. 	assert: [return Boolean]
@@ -126,16 +133,26 @@
 	>>> x = slice(-1, -4, -1)
 	>>> b[x]
 	'noh'
+	```
 	
 	use for reverse pring string:
+	```
+	Option 1): using slice()
 	>>> b='Python'
 	>>> slice(-1,-1-len(b),-1)
 	slice(-1, -7, -1)
 	>>> x=slice(-1,-1-len(b),-1)
 	>>> b[x]
 	'nohtyP'
+
+	Option 2): using substring
+	>>> print(b[-1::-1])
+	'nohtyP'
 	
-	```
+	Option 3): for loops
+	
+	
+	
 	ref: https://www.programiz.com/python-programming/methods/built-in/slice
 	
 5. convert:
@@ -145,3 +162,15 @@
    refer: https://www.w3schools.com/python/python_strings.asp
 		  https://www.programiz.com/python-programming/methods/string
 		  https://stackoverflow.com/questions/13783934/what-does-s-strip-do-exactly [.strip()]
+		  
+## List
+methods modify original list:
+1. Add item: list.append(x), list.insert(i, x)
+2. Remove item:  list.remove(x) [only remove first matching item not all],   list.pop([i])
+3. Order: sort(), reverse() 
+4. Clone: copy(). note: x=[a,b,c], x=y both x,y refer to the same list
+5. Find/Search: index(sub[, start[, end]])
+7. Count: .count(x)
+6. use as:
+	Stack: 	[last-in, first-out]: 	.append(x), .pop()
+	Queues: [first-in, first-out]:  .append(x), .pop(0)
