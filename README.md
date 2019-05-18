@@ -22,6 +22,10 @@
 	
 ## Operators:
 1. Comparison operators: '==' & '!=' compare value. Identity Operators: 'is' & 'is not' compare object
+	rule is to choose between == and is based on what kind of check you want. 
+	If you care about the strings being equal (that is, having the same contents) then you should always use ==. 
+	If you care about whether any two Python names refer to the same object instance, you should use is. 
+	https://stackoverflow.com/questions/1504717/why-does-comparing-strings-using-either-or-is-sometimes-produce-a-differe
 2. Logical Operators:  'and' & 'or' & 'not' return python Boolean 'True' or 'False'
 3. Membership Operators: 'in' & 'not in': Evaluates to 'True' if it finds a variable in the specified sequence and 'False' otherwis
    sometimes, this is used in for-loops:

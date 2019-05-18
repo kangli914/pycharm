@@ -186,3 +186,9 @@ def find_diffitems1():
 
 print(find_diffitems1())
 
+a="abc"
+b="abcd"
+if a is b:
+    print("equal")
+else:
+    print("not equal")
