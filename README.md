@@ -174,3 +174,5 @@ methods modify original list:
 6. use as:
 	Stack: 	[last-in, first-out]: 	.append(x), .pop()
 	Queues: [first-in, first-out]:  .append(x), .pop(0)
+
+execise code: https://github.com/kangli914/pycharm/blob/master/dummy/list_dummy.py
