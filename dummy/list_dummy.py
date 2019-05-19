@@ -192,3 +192,23 @@ if a is b:
     print("equal")
 else:
     print("not equal")
+
+list_a = ["apple", "banana", "cherry"]
+for idx in range(len(a)):
+    print(idx, a[idx])
+
+for idx in range(0, len(list_a), 2):
+    print(idx, list_a[idx])
+
+for idx in range(-1, -1-len(list_a), -1):
+    print(idx, list_a[idx])
+
+b = 'Python'
+for idx in b:
+    print(idx)
+
+b = 'Python'
+a = ''
+for idx in range(-1, -1-len(b), -1):
+    a += b[idx]
+print(a)

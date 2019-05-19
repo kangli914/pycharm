@@ -34,6 +34,42 @@
 	```
 4. note: not such thing 'A is in'
 
+## range([start], stop[, step])
+1. Python for loop does NOT require an indexing variable(e.g. option 2) to set beforehand. so if need index, range() function will does the job (option 1):
+	```
+	OPTION 1)
+	b='Python'
+	for idx in range(len(b)):
+		print(idx, b[idx])
+	0 P
+	1 y
+	2 t
+	3 h
+	4 o
+	5 n
+	```
+	above more like java style for loop with (int idx=0; idx < len(b); idx++)...
+	VS.
+	use build in to access element directly without index need
+	```
+	OPTION 2)
+	b = 'Python'
+		for idx in b:
+		print(idx)
+	P
+	y
+	t
+	h
+	o
+	n
+	```
+	
+2. range([start], stop[, step]) function returns a sequence of numbers.
+	- start:starting from 0 by default, 
+	- step: increments by 1 (by default), 
+	- stop: at a specified number.but not including this number.
+	can use negtive number to reverse - look at Option 4) in String section below
+
 ## String
 * Python String: list --> https://www.programiz.com/python-programming/methods/string
 1. substring: [return string]
@@ -141,7 +177,7 @@
 	
 	use for reverse pring string:
 	```
-	Option 1): using slice()
+	Option 1): using slice() - note: can use not only string but other collections like list and etc.
 	>>> b='Python'
 	>>> slice(-1,-1-len(b),-1)
 	slice(-1, -7, -1)
@@ -149,14 +185,29 @@
 	>>> b[x]
 	'nohtyP'
 
-	Option 2): using substring
+	Option 2): using `substring` to reverse
 	>>> print(b[-1::-1])
 	'nohtyP'
 	
-	Option 3): for loops
+	Option 3): for loops using explicit idx (e.g. without range())
+	>>> b='Python'
+	>>> idx=0
+	>>> a=''
+	>>> for ch in b:
+	...     a+=b[-1-idx]  || a+=b[len(b)-1-idx]
+	...     idx=idx+1
+	...
+	>>> print(a)
+	nohtyP
 	
-	
-	
+	Option 4): for loops with range() (simpler than Option 2. note range 'end' not include the end indx)
+	>>> b='Python'
+	>>> a=''
+	>>> for idx in range(-1, -1-len(b), -1):
+	>>> 	a+=b[idx]
+	>>> print (a)
+	nohtyP
+	```
 	ref: https://www.programiz.com/python-programming/methods/built-in/slice
 	
 5. convert:
@@ -166,7 +217,7 @@
    refer: https://www.w3schools.com/python/python_strings.asp
 		  https://www.programiz.com/python-programming/methods/string
 		  https://stackoverflow.com/questions/13783934/what-does-s-strip-do-exactly [.strip()]
-		  
+
 ## List
 methods modify original list:
 1. Add item: list.append(x), list.insert(i, x)
