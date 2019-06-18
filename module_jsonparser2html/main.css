@@ -12,9 +12,9 @@ table th {
 
 table td {
     border: 1px solid #e3e3e3;
-    padding: 4px 8px;
+    padding: 4px 20px 4px 8px;
 }
 
-table tr:nth-child(odd) td {
+table tr:nth-child(even) {
     background-color: #e7edf0;
 }

@@ -186,6 +186,8 @@ def find_diffitems1():
 
 print(find_diffitems1())
 
+
+########################################################
 a="abc"
 b="abcd"
 if a is b:
@@ -212,3 +214,80 @@ a = ''
 for idx in range(-1, -1-len(b), -1):
     a += b[idx]
 print(a)
+
+
+'''
+    [13,7,2,12,16] find the kth largest elememnt
+    1) start empty list A
+    2) in list T iterate and compare of 2 and push to A
+    3) return kth in element A
+'''
+
+O = [13,7,8,12,16]
+for i in range(len(O)):
+    for j in range(i+1, len(O)):
+        print(i, j)
+        if O[i] > O[j]:
+            tmp = O[i]
+            O[i] = O[j]
+            O[j] = tmp
+    print(O)
+
+
+'''
+[13,7,8,12,16]
+i=0, j=1,2,3,4:   [7,13,8,12,16]  [7,13,8,12,16]  [7,13,8,12,16]   [7,13,8,12,16]
+i=1, j=2,3,4      [7,8,13,12,16]  [7,8,13,12,16]  [7,8,13,12,16]
+i=2, j=3,4:       [7,8,12,13,16]  [7,8,12,13,16]
+i=3, j=4:         [7,8,12,13,16] 
+i=4, j=4:   
+'''
+
+a="this is string"
+print(a.strip("thn"))
+
+slice(' ')
+
+
+for i in range(4,4):
+    print(i)
+
+for i in range(100):
+    if i%3 == 0:
+        if i%5 == 0:
+            print("FizzBuzz")
+        else:
+            print("Fizz")
+    elif i%5 == 0:
+        if i%3 == 0:
+            print("FizzBuzz")
+        else:
+            print("Buzz")
+    else:
+        print(i)
+
+for i in range(4,4):
+    print(i)
+
+
+O = [9,7,8,12,11]
+print(min(O))
+
+i=0
+min=0
+max=0
+for j in range(i+1, len(O)):
+    if O[i] > O[j]:
+        max = O[i]
+    else:
+        max = O[j]
+
+
+
+
+print("max:", max, "min:", min)
+
+
+
+
+
