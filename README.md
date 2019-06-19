@@ -310,10 +310,18 @@ print(time.asctime(time.localtime(1560973263)), type(time.asctime(time.localtime
 Wed Jun 19 19:41:03 2019 <class 'str'>
 Wed Jun 19 15:41:03 2019 <class 'str'>
 ```
+**so Convrting time from epoch to str in both UTC and Local:**
+1. use gmtime(epoch), localtime(epoch) to convert epoch to 'struct_time' object
+2. then use ascttime(t) convert 'struct time' to string
+
+or
+
+Converting 'local' time only from epoch to str directly without going through 'struct_time' using 'time.ctime()' below:
+
 
 *time.ctime(epoch_secs):*
 
-Purpose was similar to 'time.localtime': epoch to time but 'str' directly instead of 'struct_time'
+Purpose was similar to 'time.localtime': epoch to time but 'str' directly instead of via 'struct_time'
 ```
 print("time.ctime():", time.ctime(1560973263), "type:", type(time.ctime(1560973263)))
 time.ctime(): Wed Jun 19 15:41:03 2019 type: <class 'str'>
