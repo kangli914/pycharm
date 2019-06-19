@@ -247,11 +247,13 @@ print(os.getcwd())
 ``` C:\workspace\_github\pycharm\dummy```
 
 print(os.path.dirname(input_dir))
+
 print(os.path.basename(input_dir))
+
 ``` Z:\Workspaces\GenericDataLake\apache-jmeter-4.0\results```
 ``` N_2019-05-17_08-33```
 
-print(os.path.join(os.path.dirname(input_dir), os.path.basename(input_dir)))
+print(os.path.join(os.path.dirname(input_dir),os.path.basename(input_dir)))
 ``` Z:\Workspaces\GenericDataLake\apache-jmeter-4.0\results\N_2019-05-17_08-33```
 
 print(input_dir.rsplit("\\", 1)[1])
@@ -260,5 +262,5 @@ print(input_dir.rsplit("\\", 1)[1])
 file = "dummy.txt"
 root, ext = os.path.splitext(file)
 print(root, ext)
-``` dummy         .txt```
+``` dummy         .txt
 
