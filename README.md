@@ -236,6 +236,8 @@ execise code: https://github.com/kangli914/pycharm/blob/master/dummy/list_dummy.
 ## File Path
 import os
 
+## OS.Path
+
 input_dir = "Z:\\Workspaces\\GenericDataLake\\apache-jmeter-4.0\\results\\N_2019-05-17_08-33"
 print(os.path.normpath(input_dir)) 
 ```Z:\Workspaces\GenericDataLake\apache-jmeter-4.0\results\N_2019-05-17_08-33```
@@ -251,6 +253,7 @@ print(os.path.dirname(input_dir))
 print(os.path.basename(input_dir))
 
 ``` Z:\Workspaces\GenericDataLake\apache-jmeter-4.0\results```
+
 ``` N_2019-05-17_08-33```
 
 print(os.path.join(os.path.dirname(input_dir),os.path.basename(input_dir)))
@@ -259,8 +262,16 @@ print(os.path.join(os.path.dirname(input_dir),os.path.basename(input_dir)))
 print(input_dir.rsplit("\\", 1)[1])
 ``` N_2019-05-17_08-33```
 
+
+``` split file and extention: e.g. dummy && .txt ```
 file = "dummy.txt"
 root, ext = os.path.splitext(file)
 print(root, ext)
-``` dummy         .txt
 
+``` to walkthrought a directory ```
+for root, dirs, files in os.walk("C:\\workspace\\_github"):
+    for file in files:
+        print("file name:", os.path.join(root, file))
+    for dir in dirs:
+        print("dir name:", os.path.join(root, dir))
+		
