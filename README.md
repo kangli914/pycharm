@@ -274,4 +274,28 @@ for root, dirs, files in os.walk("C:\\workspace\\_github"):
         print("file name:", os.path.join(root, file))
     for dir in dirs:
         print("dir name:", os.path.join(root, dir))
-		
+	
+
+## Time
+time.time():
+```
+print("time.time() in seconds:", time.time(), "type:", type(time.time()))
+time.time() in seconds: 1560964870.9869883 type: <class 'float'>
+```
+Representation betwen time (local, UTC) and epoch:
+
+1. time.gmtime([epoch_secs]): from 'seconds since the epoch' (if not specify time()) to 'struct_time in UTC'
+2. time.localtime([epoch_secs]): from 'seconds since the epoch' (if not specify time()) to 'struct_time in local time'
+3. time.calendar.timegm(): from 'struct_time in UTC' to 'seconds since the epoch'
+4. time.mktime(): from 'struct_time in local time' to 'seconds since the epoch'
+```
+Local time: Wed Jun 19 14:47:18 2019
+time.gmtime(): time.struct_time(tm_year=2019, tm_mon=6, tm_mday=19, tm_hour=18, tm_min=47, tm_sec=18, tm_wday=2, tm_yday=170, tm_isdst=0)
+time.localtime(): time.struct_time(tm_year=2019, tm_mon=6, tm_mday=19, tm_hour=14, tm_min=47, tm_sec=18, tm_wday=2, tm_yday=170, tm_isdst=1)
+
+
+
+
+
+
+	
