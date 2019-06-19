@@ -301,6 +301,8 @@ time.time() in seconds: 1560964870.9869883 type: <class 'float'>
 	time.gmtime().tm_year: 2019
 	https://www.programiz.com/python-programming/time
 	```
+20190619T19:41:03-0500 = 1560973263
+
 *time.asctime([t]):*
 
 Convert a tuple or struct_time representing a time as returned by gmtime() or localtime() to a string
@@ -310,9 +312,9 @@ print(time.asctime(time.localtime(1560973263)), type(time.asctime(time.localtime
 Wed Jun 19 19:41:03 2019 <class 'str'>
 Wed Jun 19 15:41:03 2019 <class 'str'>
 ```
-**so Convrting time from epoch to str in both UTC and Local:**
+**Convrting time from epoch to str in both UTC and Local:**
 1. use gmtime(epoch), localtime(epoch) to convert epoch to 'struct_time' object
-2. then use ascttime(t) convert 'struct time' to string
+2. then use ascttime(t) convert 'struct time' to string or use strftime(format[, t]) with specified format
 
 or
 
@@ -327,6 +329,32 @@ print("time.ctime():", time.ctime(1560973263), "type:", type(time.ctime(15609732
 time.ctime(): Wed Jun 19 15:41:03 2019 type: <class 'str'>
 ```
 
+*time.strftime(format[, t]):*
+
+Convert a tuple or struct_time representing a time as returned by gmtime() or localtime() to a string as specified by the format argument.
+```
+struct = time.gmtime(1560973263)
+print(time.strftime("%Y%m%dT%H:%M:%S%z", struct))
+20190619T19:41:03-0500
+```
+
+**Convrting time in str to epoch:**
+1. use time.strptime(format[, t]) to parse string into 'struct_time' object
+2. then use time.calendar.timegm(t) or time.mktime(t) to convert 'struct_time' to epoch
+
+*time.strptime()*
+
+parses a string representing time and returns struct_time.
+```
+time_string = "19:41:03,19 June, 2019"
+struct = time.strptime(time_string, "%H:%M:%S,%d %B, %Y")
+print(struct)
+print(calendar.timegm(struct))  
+
+ 
+time.struct_time(tm_year=2019, tm_mon=6, tm_mday=19, tm_hour=19, tm_min=41, tm_sec=3, tm_wday=2, tm_yday=170, tm_isdst=-1)
+1560973263
+```
 
 
 
