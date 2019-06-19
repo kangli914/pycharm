@@ -277,22 +277,47 @@ for root, dirs, files in os.walk("C:\\workspace\\_github"):
 	
 
 ## Time
-time.time():
+*time.time():*
 ```
 print("time.time() in seconds:", time.time(), "type:", type(time.time()))
 time.time() in seconds: 1560964870.9869883 type: <class 'float'>
 ```
-Representation betwen time (local, UTC) and epoch:
+*Representation betwen time (local, UTC) and epoch:*
 
 1. time.gmtime([epoch_secs]): from 'seconds since the epoch' (if not specify time()) to 'struct_time in UTC'
 2. time.localtime([epoch_secs]): from 'seconds since the epoch' (if not specify time()) to 'struct_time in local time'
-3. time.calendar.timegm(): from 'struct_time in UTC' to 'seconds since the epoch'
-4. time.mktime(): from 'struct_time in local time' to 'seconds since the epoch'
-```
-Local time: Wed Jun 19 14:47:18 2019
-time.gmtime(): time.struct_time(tm_year=2019, tm_mon=6, tm_mday=19, tm_hour=18, tm_min=47, tm_sec=18, tm_wday=2, tm_yday=170, tm_isdst=0)
-time.localtime(): time.struct_time(tm_year=2019, tm_mon=6, tm_mday=19, tm_hour=14, tm_min=47, tm_sec=18, tm_wday=2, tm_yday=170, tm_isdst=1)
+3. time.calendar.timegm(t): from 'struct_time t in UTC' to 'seconds since the epoch' (inverse function of time.gmtime)
+4. time.mktime(t): from 'struct_time t in local time' to 'seconds since the epoch' ( inverse function of localtime())
+	```
+	Local time: Wed Jun 19 14:47:18 2019
+	print("time.gmtime():", time.gmtime())
+	print("time.localtime():", time.localtime())
 
+	time.gmtime(): time.struct_time(tm_year=2019, tm_mon=6, tm_mday=19, tm_hour=18, tm_min=47, tm_sec=18, tm_wday=2, tm_yday=170, tm_isdst=0)
+	time.localtime(): time.struct_time(tm_year=2019, tm_mon=6, tm_mday=19, tm_hour=14, tm_min=47, tm_sec=18, tm_wday=2, tm_yday=170, tm_isdst=1)
+
+	# once in 'struct_time' it access element by .tm_year
+	print("time.gmtime().tm_year:", time.gmtime().tm_year)
+	time.gmtime().tm_year: 2019
+	https://www.programiz.com/python-programming/time
+	```
+*time.asctime([t]):*
+
+Convert a tuple or struct_time representing a time as returned by gmtime() or localtime() to a string
+```
+print(time.asctime(time.gmtime(1560973263)), type(time.asctime(time.gmtime(1560973263))))
+print(time.asctime(time.localtime(1560973263)), type(time.asctime(time.localtime(1560973263))))
+Wed Jun 19 19:41:03 2019 <class 'str'>
+Wed Jun 19 15:41:03 2019 <class 'str'>
+```
+
+*time.ctime(epoch_secs):*
+
+Purpose was similar to 'time.localtime': epoch to time but 'str' directly instead of 'struct_time'
+```
+print("time.ctime():", time.ctime(1560973263), "type:", type(time.ctime(1560973263)))
+time.ctime(): Wed Jun 19 15:41:03 2019 type: <class 'str'>
+```
 
 
 
