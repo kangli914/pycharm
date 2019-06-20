@@ -268,13 +268,14 @@ file = "dummy.txt"
 root, ext = os.path.splitext(file)
 print(root, ext)
 
-``` to walkthrought a directory ```
+to walkthrought a directory:
+```
 for root, dirs, files in os.walk("C:\\workspace\\_github"):
     for file in files:
         print("file name:", os.path.join(root, file))
     for dir in dirs:
         print("dir name:", os.path.join(root, dir))
-	
+```		
 
 ## Time
 *time.time():*
@@ -356,7 +357,10 @@ time.struct_time(tm_year=2019, tm_mon=6, tm_mday=19, tm_hour=19, tm_min=41, tm_s
 1560973263
 ```
 
-
-
-
-	
+Convert time in str to ISO string format using 'struct_time' as middle tir:
+```
+date_string='2019-05-17_08-33'
+time_struct = time.strptime(date_string, '%Y-%m-%d_%H-%M')
+print(time.strftime('%Y-%m-%dT%H:%M:%S%z', time_struct))
+2019-05-17T08:33:00-0400
+```
