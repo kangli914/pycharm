@@ -17,7 +17,7 @@
 - Python Data structure
 	1. List is a collection which is ordered and changeable. Allows duplicate members. []
 	2. Tuple is a collection which is ordered and unchangeable. Allows duplicate members. ()
-	3. Set is a collection which is unordered and unindexed. No duplicate members. {}
+	3. Set is a collection which is unordered and unindexed. No duplicate members. \{}
 	4. Dictionary is a collection which is unordered, changeable and indexed. No duplicate members.
 	
 ## Operators:
@@ -248,25 +248,68 @@ print(os.path.abspath(input_dir))
 print(os.getcwd()) 
 ``` C:\workspace\_github\pycharm\dummy```
 
-print(os.path.dirname(input_dir))
+Break file path by directory and file name:
 
-print(os.path.basename(input_dir))
+There are 2 ways: (achieve the same goal)
 
-``` Z:\Workspaces\GenericDataLake\apache-jmeter-4.0\results```
+1 - using os.path.split(FILE)
 
-``` N_2019-05-17_08-33```
+	```
+	file = "Z:\\Workspaces\\GenericDataLake\\apache-jmeter-4.0\\results\\N_2019-05-17_08-33.txt"
+	filename, ext = os.path.split(dummyfile)
+	print("filedir: ", filename, '\n', "filename:", ext)
+	output:
+	filedir:  Z:\Workspaces\GenericDataLake\apache-jmeter-4.0\results 
+	filename: N_2019-05-17_08-33.txt
+	```
+2 - using os.path.dirname(FILE) & os.path.basename(FILE)
 
-print(os.path.join(os.path.dirname(input_dir),os.path.basename(input_dir)))
-``` Z:\Workspaces\GenericDataLake\apache-jmeter-4.0\results\N_2019-05-17_08-33```
+	```
+	file = "Z:\\Workspaces\\GenericDataLake\\apache-jmeter-4.0\\results\\N_2019-05-17_08-33.txt"
+	print("filedir: ", os.path.dirname(file), '\n', "filename:", os.path.basename(file))
+	output:
+	filedir:  Z:\Workspaces\GenericDataLake\apache-jmeter-4.0\results 
+	filename: N_2019-05-17_08-33.txt
+	```
+os.path.normpath(path)
+
+Normalize a pathname by 1) collapsing redundant separators and up-level references so that A//B, A/B/, A/./B and A/foo/../B all become A/B. 
+2) On Windows, it converts forward(/ - linux) slashes to backward slashes (\ - windows)
+```
+file = "Z://Workspaces//GenericDataLake\\apache-jmeter-4.0\\results\\N_2019-05-17_08-33.txt"
+print(os.path.normpath(file))
+output:
+Z:\Workspaces\GenericDataLake\apache-jmeter-4.0\results\N_2019-05-17_08-33.txt
+```
+
+os.path.normcase(path)
+
+Normalize the case of a pathname. 1) On Windows, convert all characters in the pathname to lowercase, and 2) also convert forward slashes (/ - linux) to backward slashes (\ - windows)
+```
+file = "Z://Workspaces//GenericDataLake\\apache-jmeter-4.0\\results\\N_2019-05-17_08-33.txt"
+print(os.path.normcase(file))
+output:
+z:\\workspaces\\genericdatalake\apache-jmeter-4.0\results\n_2019-05-17_08-33.txt
+```
 
 print(input_dir.rsplit("\\", 1)[1])
 ``` N_2019-05-17_08-33```
 
 
-``` split file and extention: e.g. dummy && .txt ```
+split file and extention: e.g. dummy && .txt
+```
 file = "dummy.txt"
 root, ext = os.path.splitext(file)
 print(root, ext)
+
+in case file has long path:
+
+dummyfile = "Z:\\Workspaces\\GenericDataLake\\apache-jmeter-4.0\\results\\N_2019-05-17_08-33.txt"
+filename, ext = os.path.splitext(os.path.basename(dummyfile))
+print("filename: ", filename, '\n', "file ext:", ext)
+filename:  N_2019-05-17_08-33 
+file ext: .txt
+```
 
 to walkthrought a directory:
 ```
