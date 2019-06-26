@@ -133,13 +133,15 @@
 			>>> a = 'Milk, Chicken, Bread'
 			>>> left=a.split(', ', 1)[0]
 			>>> right=a.split(', ', 1)[1]
-			>>> print(left, right)
-			Milk Chicken, Bread
 			>>> print(left)
 			Milk
 			>>> print(right)
 			Chicken, Bread
+			>>> print(left, right)
+			Milk Chicken, Bread
+			new string: Milk(as left) Chicken, Bread(as right)
 		```
+	- note: there's NO Left split as split as working as split from 'left'
 	- .rsplit([separator [, maxsplit]]): plits string from the Right, at the specified separator and returns a list of strings.
 	- .splitlines() : The splitlines() method splits the string at line breaks and returns a list of lines in the string.
 	
@@ -231,6 +233,59 @@ methods modify original list:
 	Queues: [first-in, first-out]:  .append(x), .pop(0)
 
 execise code: https://github.com/kangli914/pycharm/blob/master/dummy/list_dummy.py
+
+
+## Read Write File
+
+https://www.pythonforbeginners.com/files/reading-and-writing-files-in-python
+
+f = open("FILE", "r")
+
+ Mode	| Description
+--- | ---
+'r'	| This is the default mode. It Opens file for reading. 
+'w' | This Mode Opens file for writing. If file does not exist, it creates a new file.If file exists it truncates the file. 
+'x'	| Creates a new file. If file already exists, the operation fails.
+'a'	| Open file in append mode. If file does not exist, it creates a new file.
+'t'	| This is the default mode. It opens in text mode.
+'b'	| This opens in binary mode.
+'+'	| This will open a file for reading and writing (updating)
+
+read line by line:
+```
+1) directly working file object - Looping over a file object
+file='readme.txt'
+with open(file) as f_read:
+    for line in f_read:
+        print(line, end='')
+
+2) using readlines() which returns array of lines - Looping over readlines()
+file='readme.txt'
+with open(file) as f_read:
+	for line in f_read.readlines():
+		print(line, end='')
+both output:
+a1
+b2
+c3
+```
+Read in file and write the content to antoher file
+```
+rfile='readme.txt'
+wfile="writeout.txt"
+with open(rfile) as f_read, open(wfile, 'w') as f_write:
+# f_read.readlines() returned a list of lines
+    for line in reversed(f_read.readlines()):
+        f_write.write(line)
+output:
+c3
+b2
+a1
+```
+
+## Read Write CSV File
+https://realpython.com/python-csv/
+
 
 
 ## File Path
