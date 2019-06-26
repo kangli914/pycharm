@@ -1,4 +1,4 @@
-# Python notes:
+ # Python notes:
 
 ## General:
 - Python Data type: Numbers, String, List, Tuple, Set, Dictionary
