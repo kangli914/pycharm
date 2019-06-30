@@ -154,3 +154,55 @@ with open(file2write, 'w', newline='') as f:
         today_date = today_row[0]
         daily_return = today_row[-1] - yesterday_row[-1]
         writer.writerow([today_date, daily_return])
+
+###
+# using custom Dialect instead of defaulting 'excel'
+# https://www.geeksforgeeks.org/working-csv-files-python/
+'''
+In csv modules, an optional dialect parameter can be given which is used to define a set of parameters specific to a particular CSV format. 
+By default, csv module uses excel dialect which makes them compatible with excel spreadsheets. 
+You can define your own dialect using register_dialect method.
+'''
+###
+
+'''
+input csv: to read 
+Note -
+1) special char '|' will be double quoted  in output since our delimiter is '|'
+2) there will be a 'tab' in the new line in output
+
+Date,Open,High,Low,Close,Volume,Adj Close
+6/29/2019,|576.11258,584.512631,576.002598,582.162619,1284100,582.162619
+6/28/2019,585.002622,587.342658,584.002627,586.862643,978600,586.862643
+'''
+
+csv.register_dialect(
+    'mydialect',
+    delimiter = '|',
+    quotechar = '"',
+    doublequote = True,
+    skipinitialspace = True,
+    lineterminator = '\t\r\n',
+    quoting = csv.QUOTE_MINIMAL
+)
+
+with open('dummy_marketdata.csv', 'r', newline='') as fr, open('writout_2.csv', 'w', newline='') as fw:
+    reader = csv.reader(fr)
+    writer = csv.writer(fw, dialect='mydialect')
+
+    header = next(reader)
+    writer.writerow(header)
+
+    rows = [line for line in reader]
+    writer.writerows(rows)
+
+'''
+output:
+1) special char '|' will be double quoted  in output since our delimiter is '|'
+2) there will be a 'tab' in the new line
+
+Date|Open|High|Low|Close|Volume|Adj Close	
+6/29/2019|"|576.11258"|584.512631|576.002598|582.162619|1284100|582.162619	
+6/28/2019|585.002622|587.342658|584.002627|586.862643|978600|586.862643	
+'''
+
