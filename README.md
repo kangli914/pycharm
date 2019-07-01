@@ -222,7 +222,7 @@
 
 ## List
 methods modify original list:
-1. Add item: list.append(x), list.insert(i, x)
+1. Add item: list.append(x), list.insert(i, x). it can also be used to append a list: e.g. the list to append is consider to be one item. so it's better you start with empty list and add one sets at a time
 2. Remove item:  list.remove(x) [only remove first matching item not all],   list.pop([i])
 3. Order: sort(), reverse() 
 4. Clone: copy(). note: x=[a,b,c], x=y both x,y refer to the same list
@@ -354,12 +354,15 @@ https://realpython.com/python-csv/
 
 # Python CSV module:
 
-CSV Reader:
+### CSV Reader:
 
 rfile='dummy_marketdata.csv'
-# note: open file with newline='' keyword argument and passed in an empty string:
-# this is because depending on your system, strings may end with a new line carriage return or both,
-# this technique will ensure the csv module will work correctly across all platforms
+
+note: 
+
+open file with newline='' keyword argument and passed in an empty string:
+this is because depending on your system, strings may end with a new line carriage return or both,
+this technique will ensure the csv module will work correctly across all platforms
 ```
 file = open(rfile, 'r', newline='')
 reader = csv.reader(file)
@@ -387,7 +390,7 @@ output:
 dateset with 1st column as date string: ['Date', '6/28/2019', '6/29/2019']
 '''
 
-CSV Writer:
+### CSV Writer:
 ```
 file = open(rfile, 'r', newline='')
 reader = csv.reader(file)
@@ -426,6 +429,10 @@ date,return
 2019-06-29 00:00:00,-4.700024000000099
 
 
+### Using dialec
+https://realpython.com/python-csv/
+
+
 Using custom Dialect instead of defaulting 'excel'
 https://www.geeksforgeeks.org/working-csv-files-python/
 
@@ -443,7 +450,15 @@ Note -
 Date,Open,High,Low,Close,Volume,Adj Close
 6/29/2019,|576.11258,584.512631,576.002598,582.162619,1284100,582.162619
 6/28/2019,585.002622,587.342658,584.002627,586.862643,978600,586.862643
+
+
+
+* delimiter: specifies the character used to separate each field. The default is the comma (',').
+
+ * quotechar: specifies the character used to surround fields that contain the delimiter character. The default is a double quote (' " ').
+* escapechar: specifies the character used to escape the delimiter character, in case quotes aren’t used. The default is no escape character.
 ```
+
 csv.register_dialect(
     'mydialect',
     delimiter = '|',
@@ -472,6 +487,47 @@ output:
 Date|Open|High|Low|Close|Volume|Adj Close	
 6/29/2019|"|576.11258"|584.512631|576.002598|582.162619|1284100|582.162619	
 6/28/2019|585.002622|587.342658|584.002627|586.862643|978600|586.862643	
+
+
+
+### DictReader
+
+Read and write data to/from CSV in dictionary form using the DictReader and DictWriter classes
+```
+with open('readme.txt','r', newline='') as f:
+  data = csv.DictReader(f)
+  for row in data:
+        print(row)
+        print(row['date joined'] + str(row.get(None)))
+```
+output of 'row': is an Ordered Dictionary: 
+
+
+	OrderedDict([('name', 'john smith'), ('address', '1132 Anywhere Lane Hoboken NJ'), ('date joined', ' 0730'), (None, ['Jan 4'])])
+
+	0730['Jan 4']
+
+	0816['March 2']
+	
+### DictWriter
+```
+with open('writeout_3.csv', 'w', newline='') as csvfile:
+    fieldnames = ['first_name', 'last_name']
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+    writer.writeheader()
+    writer.writerow({'first_name': 'Baked', 'last_name': 'Beans'})
+    writer.writerow({'first_name': 'Lovely', 'last_name': 'Spam'})
+    writer.writerow({'first_name': 'Wonderful', 'last_name': 'Spam'})
+
+output:
+				first_name,last_name
+				Baked,Beans
+				Lovely,Spam
+				Wonderful,Spam
+
+
+
 
 
 ## File Path

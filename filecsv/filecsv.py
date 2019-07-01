@@ -176,6 +176,11 @@ Date,Open,High,Low,Close,Volume,Adj Close
 6/28/2019,585.002622,587.342658,584.002627,586.862643,978600,586.862643
 '''
 
+'''
+delimiter specifies the character used to separate each field. The default is the comma (',').
+quotechar specifies the character used to surround fields that contain the delimiter character. The default is a double quote (' " ').
+escapechar specifies the character used to escape the delimiter character, in case quotes aren’t used. The default is no escape character.
+'''
 csv.register_dialect(
     'mydialect',
     delimiter = '|',
@@ -206,3 +211,43 @@ Date|Open|High|Low|Close|Volume|Adj Close
 6/28/2019|585.002622|587.342658|584.002627|586.862643|978600|586.862643	
 '''
 
+
+
+with open('readme.txt','r', newline='') as f:
+  data = csv.DictReader(f)
+  for row in data:
+        print(row)
+        print(row['date joined'] + str(row.get(None)))
+'''
+output of 'row': is an Ordered Dictionary: 
+OrderedDict([('name', 'john smith'), ('address', '1132 Anywhere Lane Hoboken NJ'), ('date joined', ' 0730'), (None, ['Jan 4'])])
+
+0730['Jan 4']
+0816['March 2']
+'''
+
+with open('writeout_3.csv', 'w', newline='') as csvfile:
+    fieldnames = ['first_name', 'last_name']
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+    writer.writeheader()
+    writer.writerow({'first_name': 'Baked', 'last_name': 'Beans'})
+    writer.writerow({'first_name': 'Lovely', 'last_name': 'Spam'})
+    writer.writerow({'first_name': 'Wonderful', 'last_name': 'Spam'})
+
+
+
+csv.register_dialect(
+    'custom_dialect',
+    delimiter = ',',
+    quotechar = '|',
+    doublequote = True,
+    skipinitialspace = True,
+    lineterminator = '\t\r\n',
+    quoting = csv.QUOTE_MINIMAL
+)
+
+with open('readme.txt','r', newline='') as f:
+  data = csv.DictReader(f, dialect='custom_dialect')
+  for row in data:
+        print(row['address'])
