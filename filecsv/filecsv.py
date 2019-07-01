@@ -217,7 +217,7 @@ with open('readme.txt','r', newline='') as f:
   data = csv.DictReader(f)
   for row in data:
         print(row)
-        print(row['date joined'] + str(row.get(None)))
+        #print(row['date joined'] + str(row.get(None)))
 '''
 output of 'row': is an Ordered Dictionary: 
 OrderedDict([('name', 'john smith'), ('address', '1132 Anywhere Lane Hoboken NJ'), ('date joined', ' 0730'), (None, ['Jan 4'])])
@@ -240,7 +240,7 @@ with open('writeout_3.csv', 'w', newline='') as csvfile:
 csv.register_dialect(
     'custom_dialect',
     delimiter = ',',
-    quotechar = '|',
+    quotechar = '"',
     doublequote = True,
     skipinitialspace = True,
     lineterminator = '\t\r\n',
@@ -248,6 +248,11 @@ csv.register_dialect(
 )
 
 with open('readme.txt','r', newline='') as f:
+  data = csv.DictReader(f, dialect=csv)
+  for row in data:
+        print("csv row:", row)
+
+with open('readme.txt','r', newline='') as f:
   data = csv.DictReader(f, dialect='custom_dialect')
   for row in data:
-        print(row['address'])
+        print("custom dialect row:", row)

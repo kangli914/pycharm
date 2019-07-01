@@ -390,6 +390,43 @@ output:
 dateset with 1st column as date string: ['Date', '6/28/2019', '6/29/2019']
 '''
 
+### CSV Reader with custom dialect defined:
+
+
+input:
+	"AAA", "BBB", "Test, Test", "CCC"
+	"111", "222, 333", "XXX", "YYY, ZZZ"
+
+```
+csv.register_dialect(
+    'custom_dialect',
+    delimiter = ',',
+    quotechar = '"',
+    doublequote = True,
+    skipinitialspace = True,
+    lineterminator = '\t\r\n',
+    quoting = csv.QUOTE_MINIMAL
+)
+
+with open('readme.txt','r', newline='') as f:
+  data = csv.DictReader(f, dialect=csv)
+  for row in data:
+        print("csv row:", row)
+```
+output:
+	csv row: OrderedDict([('AAA', '111'), (' "BBB"', ' "222'), (' "Test', ' 333"'), (' Test"', ' "XXX"'), (' "CCC"', ' "YYY'), (None, [' ZZZ"'])])
+
+
+```
+with open('readme.txt','r', newline='') as f:
+  data = csv.DictReader(f, dialect='custom_dialect')
+  for row in data:
+        print("custom dialect row:", row)
+```
+output:
+	custom dialect row: OrderedDict([('AAA', '111'), ('BBB', '222, 333'), ('Test, Test', 'XXX'), ('CCC', 'YYY, ZZZ')])
+
+
 ### CSV Writer:
 ```
 file = open(rfile, 'r', newline='')
