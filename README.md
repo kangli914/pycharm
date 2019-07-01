@@ -392,10 +392,18 @@ dateset with 1st column as date string: ['Date', '6/28/2019', '6/29/2019']
 
 ### CSV Reader with custom dialect defined:
 
+https://realpython.com/python-csv/
+
 
 input:
 	"AAA", "BBB", "Test, Test", "CCC"
 	"111", "222, 333", "XXX", "YYY, ZZZ"
+
+
+* If quoting is set to csv.QUOTE_MINIMAL, then .writerow() will quote fields only if they contain the delimiter or the quotechar. This is the default case.
+* If quoting is set to csv.QUOTE_ALL, then .writerow() will quote all fields.
+* If quoting is set to csv.QUOTE_NONNUMERIC, then .writerow() will quote all fields containing text data and convert all numeric fields to the float data type.
+* If quoting is set to csv.QUOTE_NONE, then .writerow() will escape delimiters instead of quoting them. In this case, you also must provide a value for the escapechar optional parameter.
 
 ```
 csv.register_dialect(
