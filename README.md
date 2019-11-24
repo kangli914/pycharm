@@ -34,6 +34,35 @@
 	```
 4. note: not such thing 'A is in'
 
+## Arguments:
+There are two type of arguments:
+
+1. positional arguments:
+an argument has a postion. that is not a keyword argument. Positional arguments can appear at the *beginning* of an argument list and/or be passed as elements of an iterable preceded by *. For example:
+```
+complex(3, 5)
+complex(*(3, 5))
+```
+2. keyword argument: an argument preceded by an identifier (e.g. name=) in a function call or passed as a value in a dictionary preceded by **. For exmaple:
+```
+complex(real=3, imag=5)
+complex(**{'real': 3, 'imag': 5})
+```
+rule:
+- Arbitrary positional arguments ( *args )
+- Arbitrary keyword arguments ( **kwargs )
+- In Python2, you are not allowed to put keyword arugumnets before positional arguments. 
+so it has to be like below: withPositionalArgs(3, ae=9,*(3, 5), **{'real': 3, 'imag': 5}) 
+** The positional arguments must come first
+** The keyword arguments
+** then *args, (positional) 
+** then **kwargs (keyword)
+- In Python3, the order has been relaxed. (For example, *args can come before a keyword argument in the function definition.).
+https://stackoverflow.com/questions/12332195/using-default-arguments-before-positional-arguments . e.g 
+``
+def withPositionalArgs(*args, ae=9):
+```
+
 ## range([start], stop[, step])
 1. Python for loop does NOT require an indexing variable(e.g. option 2) to set beforehand. so if need index, range() function will does the job (option 1):
 	```
@@ -571,9 +600,7 @@ output:
 				Lovely,Spam
 				Wonderful,Spam
 
-
-
-
+```
 
 ## File Path
 import os
