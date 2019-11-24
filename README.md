@@ -52,7 +52,8 @@ rule:
 - Arbitrary positional arguments ( *args )
 - Arbitrary keyword arguments ( **kwargs )
 - In Python2, you are not allowed to put keyword arugumnets before positional arguments. 
-so it has to be like below: withPositionalArgs(3, ae=9,*(3, 5), **{'real': 3, 'imag': 5}) 
+
+So it has to be like below: withPositionalArgs(3, ae=9,*(3, 5), **{'real': 3, 'imag': 5}) 
 - The positional arguments must come first
 - The keyword arguments
 - then *args, (positional) 
