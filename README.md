@@ -31,9 +31,13 @@
   True
   >>> bool(-1)
   True
+
+  # zero, None(object) and empty string are False
   >>> bool(0)
   False
   >>> bool(None)
+  Flase
+  >>> bool('')
   Flase
   ```  
 
