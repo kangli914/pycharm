@@ -1,5 +1,6 @@
 # 'dog' is python file named dog.py and 'Dog' is the class name
 from dog import Dog
+from method import Person
 
 class GoldenDog(Dog):
     """
@@ -39,3 +40,5 @@ if __name__ == "__main__":
 
 
     print(dog_child.__getattribute__("name"))
+
+    Person.print_info()
