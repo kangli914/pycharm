@@ -1,4 +1,4 @@
-# 'dog' is python file 'Dog' is the class name
+# 'dog' is python file named dog.py and 'Dog' is the class name
 from dog import Dog
 
 class GoldenDog(Dog):
@@ -36,3 +36,6 @@ if __name__ == "__main__":
         print(dog_child.speak())
     if Dog.__subclasscheck__(GoldenDog):
         print(dog_child.speak())
+
+
+    print(dog_child.__getattribute__("name"))

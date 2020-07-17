@@ -1,11 +1,21 @@
 class Car:
     """Simple Car object"""
 
-    # Use attributes(properties) and methods(behaviors to define the properties and behaviors of an object
-    # Class attribute: attributes that have the same value for all class instances
+
+    # 2 types of variables:
+    # - class attribute( = class variable = static variable)
+    # - instance attribute( = instance variable)
+    #
+    # 3 types of method:
+    # - instance method (e.g. access through self)
+    # - class method (use Class name and keyword and decorator @classmethod to access class variable)
+    # - static method(use Class name to call and has nothing to do with class variable or static variable, decorator @staticmethod , no need self or cls)
+    #
+    # Use attributes(properties/data) and methods(behaviors) to define the properties and behaviors of an object
+    # Class attribute/class variable/static variable: attributes that have the same value for all class instances
     made = "Made in Canada"
 
-    # Instance attributes: attributes created in .__init__() are called instance attributes
+    # Instance attributes/instance variable: attributes created in .__init__() are called instance attributes
     def __init__(self, color, mileage):
         """initilize the car.
         
