@@ -1,6 +1,7 @@
 class Car:
     """Simple Car object"""
 
+    # Use attributes(properties) and methods(behaviors to define the properties and behaviors of an object
     # Class attribute: attributes that have the same value for all class instances
     made = "Made in Canada"
 
@@ -15,7 +16,7 @@ class Car:
         self.color = color
         self.mileage = mileage
 
-    # without this __str__ calling print will return object memory address instead of string
+    # methods: without this __str__ calling print will return object memory address instead of string
     # <__main__.Car object at 0x7f1754d8e390>
     def __str__(self):
         return f"the {self.color} car has {self.mileage}."
