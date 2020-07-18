@@ -1,0 +1,44 @@
+### there is a python module/file called "dog.py" which contains "Dog" class 
+(.venv37) perfeng:~/repo/personal/pycharm/oop ^master $ ll
+total 32
+drwxrwxr-x 3 perfeng perfeng 4096 Jul 18 15:57 ./
+drwxrwxr-x 9 perfeng perfeng 4096 Jul 16 11:13 ../
+-rw-rw-r-- 1 perfeng perfeng 2658 Jul 17 15:08 car.py
+-rw-rw-r-- 1 perfeng perfeng  425 Jul 17 10:23 dog.py
+-rw-rw-r-- 1 perfeng perfeng 1278 Jul 18 13:25 golden_dog.py
+-rw-rw-r-- 1 perfeng perfeng 1355 Jul 17 15:02 method.py
+-rw-rw-r-- 1 perfeng perfeng    0 Jul 18 15:58 poly
+-rw-rw-r-- 1 perfeng perfeng 2230 Jul 18 14:10 poly.py
+drwxrwxr-x 2 perfeng perfeng 4096 Jul 18 16:10 __pycache__/
+
+### get into Python3 so that can import the dog.py module
+(.venv37) perfeng:~/repo/personal/pycharm/oop ^master $ python
+Python 3.7.8 (default, Jun 29 2020, 04:26:04) 
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+
+### option 1) import module named dog.py (in this case a file named without .py extension)
+>>> import dog
+###since imported like module (not Dog class), it will need to call dog.Dog in order to use Dog class in dog module
+>>> d = dog.Dog("frank", 2)
+>>> dir(d)
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'age', 'name', 'speak', 'species']
+>>> d.__str__()
+'frank is 2 years old'
+
+### option 2) import class directly from module
+### here you can not see or call Dog class doesn't exist 
+>>> d = Dog("leo", 6)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'Dog' is not defined
+
+### import from dog.py (e.g. module file w/o extension .py) and then Class Dog
+>>> from dog import Dog
+### here you can call Dog class without involving module like in option 1)
+>>> d = Dog("leo", 6)
+### dir returns a list of all the members in the specified object
+>>> dir(d)
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', 'age', 'name', 'speak', 'species']
+>>> d.__getattribute__("name")
+'leo'
