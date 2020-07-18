@@ -1,6 +1,6 @@
 class Person:
     """use to demostrate the differences of instance method, class method and static method
-    # 3 types of method:
+    # 3 types of method: (method e.g. set behaviors)
     # - instance method (e.g. access through self through creating a object)
     # - class method (use Class name and keyword and decorator @classmethod to access class variable)
     # - static method(use Class name to call and has nothing to do with class variable or static variable, decorator @staticmethod , no need self or cls)
@@ -10,7 +10,7 @@ class Person:
     """
 
     # class variable
-    count = 0
+    count = 0                       # class variable shared by all instances need to be initialized
 
     def __init__(self, first, last):
         self.first = first

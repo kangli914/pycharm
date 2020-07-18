@@ -8,6 +8,7 @@ class GoldenDog(Dog):
     Give the sound argument of GoldenRetriever.speak() a default value of "Bark".
     """
 
+    # keyword arguments for default
     def speak(self, sound="Bark"):
         #return f"{self.name} sounds {sound}"
         return super().speak(sound)

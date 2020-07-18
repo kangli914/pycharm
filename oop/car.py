@@ -2,7 +2,7 @@ class Car:
     """Simple Car object"""
 
 
-    # 2 types of variables:
+    # 2 types of variables: (attributes are the variables that blong to a class hold the data)
     # - class attribute( = class variable = static variable)
     # - instance attribute( = instance variable)
     #
