@@ -38,6 +38,7 @@ class Square(Shape):
 ##  TypeError: Can't instantiate abstract class Shape with abstract methods area
 
 square = Square(5)
+## The following error will occur if subclass didn't implement super class abstract method
 ## whever subclass which inherites the an abstract class, subclass class have to implement those abstract methords in the subclass
 ## this way you enforce sub class to implement those abstract method otherwise it will generate the error
 ## error: 
