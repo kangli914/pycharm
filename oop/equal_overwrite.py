@@ -45,3 +45,7 @@ if (d6 == d12):
     print(f"object d6 type is equal to d12 type") 
 else:
     print(f"object d6 type is Not equal to d12 type") 
+
+
+# another example:
+# https://stackoverflow.com/questions/1504717/why-does-comparing-strings-using-either-or-is-sometimes-produce-a-differe
