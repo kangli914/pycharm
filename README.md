@@ -59,6 +59,10 @@
 
  1. List is a collection which is ordered and changeable. Allows duplicate members. []
  2. Tuple is a collection which is ordered and unchangeable. Allows duplicate members. ()
+
+ note:
+ Tuple is generally used when you want to pass a dataset which you don't want to other subfunction to modify or you are not sure if sub-function will/will not modify so you want to enfore the rule of no change to the dataset
+
  3. Set is a collection which is unordered and unindexed. No duplicate members. \{}
  4. Dictionary is a collection which is unordered, changeable and indexed. No duplicate members.
 
