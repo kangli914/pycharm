@@ -944,10 +944,55 @@ time.struct_time(tm_year=2019, tm_mon=6, tm_mday=19, tm_hour=19, tm_min=41, tm_s
 
 Convert time in str to ISO string format using 'struct_time' as middle tir:
 
-```
 
 date_string='2019-05-17_08-33'
 time_struct = time.strptime(date_string, '%Y-%m-%d_%H-%M')
 print(time.strftime('%Y-%m-%dT%H:%M:%S%z', time_struct))
 2019-05-17T08:33:00-0400
 ```
+
+## Iterable, Iterator, Generator
+
+### Concept
+
+* <https://www.programiz.com/python-programming/iterator>
+* <https://www.geeksforgeeks.org/python-difference-iterable-iterator/>
+
+1 Iterable:
+
+- Iterable vs Iterator:
+
+  Iterable is an object which one can iterate over
+
+  Iterator is an object which is used to iterate over an iterable object
+
+- An object is called iterable if we can get an iterator from it. Most built-in containers in Python like: list, tuple, string, file and etc. are iterables.
+- The iter() function (which in turn calls the ____iter__()__ method) returns an iterator from them.
+
+2 Iterator:
+
+- Iterator in Python is simply an object that can be iterated upon. An object which will return data, one element at a time.
+
+- Technically speaking, a Python iterator object must implement two special methods, __iter__() and __next__(), collectively called the iterator protocol. The iter() function (which in turn calls the____iter__()__ method) returns an iterator from them.
+
+- Iterators are everywhere in Python. They are elegantly implemented within for loops, comprehensions, __generators__ etc. but are hidden in plain sight.
+
+3 Generator:
+
+- Generator is an Iterator. A generator is built by calling a function that has one or more __yield__ expressions
+
+- Generator are ordinary functions defined using yield instead of return. When called, a generator function returns a __generator__ object, which is a kind of __iterator__ - it has a next() method. When you call next(), the next value yielded by the generator function is
+
+- Generator vs Return:
+
+  Like the return statement, the yield statement commands the function to send back a value to the caller
+
+  Unlike  the resturn statement, the yeild statement does nto actually terminate teh functions's exedcution.  Rather, execution is termporatily halted until the generator is resumed by the caller, at which point it pick4es up where it left off
+
+- Memory efficient:
+  
+  A genertor fucntion doesn't execute right away. instead it executes until it is told to yield a value, and then it continues execution until told to do so again
+
+  Generators may represent infinite sequences. there is no explicit requirement that a generator terminate at all.
+
+  It is simply the responsibility of the code iterating over the generators to break out of the sequence when appropriate(e.g. break statement)
