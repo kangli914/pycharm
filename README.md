@@ -962,7 +962,7 @@ print(time.strftime('%Y-%m-%dT%H:%M:%S%z', time_struct))
 
 - Iterable vs Iterator:
 
-  Iterable is an object which one can iterate over
+  Iterable is an object which one can iterate over. An iterable object can be put inside a for loop or list comprehension.
 
   Iterator is an object which is used to iterate over an iterable object
 
