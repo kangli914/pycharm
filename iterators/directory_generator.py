@@ -18,10 +18,12 @@ Any file that cannot be opened, for whatever reason, is ignored.
             #1
             # for line in open(full_filename):
             #     yield line
+            
             #2
             with open(full_filename) as f:
                 for line in f:
                     yield line
+            
             #3
             # with open(full_filename) as f:
             #     for line in f.readlines():
@@ -30,5 +32,12 @@ Any file that cannot be opened, for whatever reason, is ignored.
         except OSError:
             pass
 
-for one_line in all_lines('/etc/'):
-    print(one_line, end='')
+
+# for one_line in all_lines('/etc/'):
+#     print(one_line, end='')
+
+r = all_lines('/etc/')
+print(next(r), end='')
+print(next(r), end='')
+print(next(r), end='')
+print(next(r), end='')
