@@ -323,8 +323,6 @@ def withPositionalArgs(*args, ae=9):
  >>> print (a)
  nohtyP
 
- ```
-
  ref: <https://www.programiz.com/python-programming/methods/built-in/slice>
 
 5. convert:
@@ -369,25 +367,26 @@ f = open("FILE", "r")
 
 read line by line:
 
+1) directly working file object - Looping over a file object
+
+```
+file='readme.txt'
+with open(file) as f_read:
+      for line in f_read:
+          # end='' will eliminate the newline feed in printout
+          print(line, end='')
 ```
 
-1) directly working file object - Looping over a file object
-file='readme.txt'
-with open(file) as f_read:
-    for line in f_read:
-
-# end='' will eliminate the newline feed in printout
-
-        print(line, end='')
-
 2) using readlines() which returns array of lines - Looping over readlines()
+
+```
 file='readme.txt'
 with open(file) as f_read:
+    # readlines() returns a 'list' type
+    for line in f_read.readlines():
+    print(line, end='')
+```
 
-# readlines() returns a 'list' type
-
- for line in f_read.readlines():
-  print(line, end='')
 both output: (each line is a string
 a1
 b2
