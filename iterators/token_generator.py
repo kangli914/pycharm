@@ -32,7 +32,7 @@ class User():
         return base64.b64encode((auth_str).encode()).decode()
 
 
-def token_generator(file):
+def generate_tokens(file):
     with open(file) as f:
         for line in f:
             name, password = line.strip().split(",")
@@ -41,6 +41,16 @@ def token_generator(file):
 
 
 if __name__ == "__main__":
-    with open("token.csv", "a") as f:
-        line = token_generator("users.csv")
-        f.writelines(line)
+    with open("token.csv", "w") as f:
+
+        ## option 1)
+        # line = generate_tokens("users.csv")
+        # f.writelines(line)
+
+        ## option 2) manual iterate the generator by calling the next
+        token = generate_tokens("users.csv")
+        f.writelines(token)
+        print(next(token), end="")
+        f.writelines(token)
+        print(next(token), end="")
+        f.writelines(token)
