@@ -77,4 +77,3 @@ class TokenFileGenerator():
 if __name__ == "__main__":
     TokenFileGenerator.set_max_token(4)
     TokenFileGenerator.write_tokens()
- 
