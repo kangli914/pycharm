@@ -1,5 +1,5 @@
 class Enumerate():
-    """ EX #46
+    """ EX #46 - iterator example
 
     https://github.com/reuven/python-workout/blob/master/ch10-iterators/e46_myenumerate.py
     
@@ -41,6 +41,11 @@ class Enumerate():
 enumerate = Enumerate('abc', index=0)
 for index, letter in enumerate:
     print(f"index: {index}; letter: {letter}") 
+
+
+enumerate = Enumerate('abcde', index=0)
+for item in enumerate:
+    print(item) 
 
 # The hasattr() method returns true if an object has the given named attribute and false if it does no
 assert hasattr(enumerate, '__iter__')
