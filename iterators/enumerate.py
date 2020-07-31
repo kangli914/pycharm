@@ -12,6 +12,8 @@ class Enumerate():
     usage:
     for index, letter in enumerate('abc'):
         print(f'{index}: {letter}')
+
+    another good youtube exmaple: https://www.youtube.com/watch?v=BC77x_GLmxo&list=PL1A2CSdiySGLPTXm0cTxlGYbReGqTcGRA&index=5
     """
 
     def __init__(self, data, index=0):

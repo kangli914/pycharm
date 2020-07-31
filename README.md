@@ -954,6 +954,7 @@ print(time.strftime('%Y-%m-%dT%H:%M:%S%z', time_struct))
 
 ### Concept
 
+* quick good overview: <https://www.youtube.com/watch?v=BC77x_GLmxo&list=PL1A2CSdiySGLPTXm0cTxlGYbReGqTcGRA&index=5>
 * <https://www.programiz.com/python-programming/iterator>
 * <https://www.geeksforgeeks.org/python-difference-iterable-iterator/>
 
@@ -982,6 +983,12 @@ print(time.strftime('%Y-%m-%dT%H:%M:%S%z', time_struct))
 
 - Generator are ordinary functions defined using yield instead of return. When called, a generator function returns a __generator__ object, which is a kind of __iterator__ - it has a next() method. When you call next(), the next value yielded by the generator function is
 
+- Gnerator is another way of creating iterators. __It uses a function rather than a separate class__
+
+- Generates the backgroup code for the iter() and next() methods
+
+- Uses a special statement called yeild which saves the state of the generator and set a resume point for when next() is called again.
+
 - Generator vs Return:
 
   Like the return statement, the yield statement commands the function to send back a value to the caller
@@ -995,5 +1002,3 @@ print(time.strftime('%Y-%m-%dT%H:%M:%S%z', time_struct))
   Generators may represent infinite sequences. there is no explicit requirement that a generator terminate at all.
 
   It is simply the responsibility of the code iterating over the generators to break out of the sequence when appropriate(e.g. break statement)
-
-TEST
