@@ -1006,3 +1006,93 @@ print(time.strftime('%Y-%m-%dT%H:%M:%S%z', time_struct))
   **test commit
   ** test commit2
   ** test commit3
+
+## Decorators
+
+### Concept
+
+#### First-Class Function
+
+__function__ in python is treated as first-class citizens called first class object or called first class function. A first-class citizen in a programming language is an entity which supports all the operations generally available to other entities. these operations typically includes
+
+basically, First-class fucntion allows us to treat function as objects.
+
+- assign function to a variable
+- pass function as the arguments
+- return the fucntion as the result of other functions
+
+exmaples:
+
+- assign function to a variable:
+
+```
+""" here it treats varaible f as square() function so we can use f as if using square()
+def square(x):
+  return x * x
+
+f = square
+
+print (f(5))
+
+```
+
+- passing a function (e.g. square() ) as arguments:
+
+```
+
+def square(x):
+    return x * x
+
+
+def new_container(func, list):
+    """take function as arguments"""
+    new_list = []
+    for item in list:
+        new_list.append(func(item))
+    return new_list
+
+new_square = new_container(square, [1, 2, 3, 4])
+print(new_square)
+
+## output: [1, 4, 9, 16]
+```
+
+- return the fucntion as the result of other functions
+
+Note:
+
+return log_message is no `()` so it wont get executed when it was defined
+
+here it is important to think log_hi() is a function and whenever it refers log_hi function it is same as = log_message() of the innner function  and because log_message() in the inner function doesn't take any argument so as log_hi()
+
+when calling line log_hi w/o `()` the function will not executed
+
+return the __same__ name of the functions
+
+```
+def logger(msg):
+
+  def log_message():
+    print('Log:', msg)
+
+    return log_message
+
+log_hi = logger("Hi")
+log_hi()
+
+```
+
+#### High-Order Function
+
+A function accepts other fucntions as arguments or returns fucntions as the result of other functions
+
+#### Closure
+
+Closure is an inner function that remembers and has access to variables(free variables) in the local scope in which it was created.
+even after the outer fucntion has finished executing.
+
+for example:
+
+the inner fucntion log_hi() still remembers and has access to the msg variables when logger was created even after the outer fucntion log_hi = logger("Hi") has finished executing @ line `log_hi = logger("Hi")` which really just mke log_hi eqaul to log_message w/o really executing.
+
+<https://www.youtube.com/watch?v=swU3c34d2NQ>

@@ -1,0 +1,3 @@
+INFO:root:Running supper_add with arguments (1, 2, 3, 4, 5, 6, 7, 8, 9)
+INFO:root:Running add with arguments (1, 2, 3)
+INFO:root:Running supper_add with arguments (1, 2, 3, 4, 5, 6, 7, 8, 9)
