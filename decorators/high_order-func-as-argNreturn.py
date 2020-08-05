@@ -23,6 +23,9 @@ def sub(x, y):
 
 def function_logger(out_func):
 
+    # here out_func will be "rememberred" by the log_func even after it  finished
+    # This is the concept of a closure
+
     # '*args' means it takes in any number of (positional) arguments to this function
     # here **kwargs doesn't do anything
     def log_func(*args, **kwargs):
@@ -32,8 +35,13 @@ def function_logger(out_func):
     return log_func
 
 # remember when pass in function, you don't want passing function to be executed so try without ()
+# at this point, we simply just created a new function called add_logger, which is equally to log_func and we haven't called or executed the new function at this monment
 add_logger = function_logger(add) 
+
 add_logger(1, 2, 3)
+
+
+
 
 supperadd_logger = function_logger(supper_add)
 supperadd_logger(1, 2, 3, 4, 5, 6, 7, 8, 9)
