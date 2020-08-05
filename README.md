@@ -1088,11 +1088,59 @@ A function accepts other fucntions as arguments or returns fucntions as the resu
 
 #### Closure
 
-Closure is an inner function that remembers and has access to variables(free variables) in the local scope in which it was created.
+Closure is an inner function that remembers and has access to variables(e.g. call free variables) in the local scope in which it was created.
 even after the outer fucntion has finished executing.
+
+CLosure allows us to take advantage of first-class functions, and return an inner function that remembers and has access to variables local to the scope in which they were created(e.g. usually from out_function that was passed in)
 
 for example:
 
 the inner fucntion log_hi() still remembers and has access to the msg variables when logger was created even after the outer fucntion log_hi = logger("Hi") has finished executing @ line `log_hi = logger("Hi")` which really just mke log_hi eqaul to log_message w/o really executing.
 
 <https://www.youtube.com/watch?v=swU3c34d2NQ>
+
+#### Decorators works togehter with High-order function & closure
+
+A decorator is just a function that takes another function as an argument, adds some kind of functionality, and then returns another function. All of this is without altering the source code of the original function that you passed in.
+
+The idea here is that we have a __high-order fucntion x__ which takes a function y and it (e.g. funciton x) performs some operations before calling that function y.
+
+and then you take this modified function x (e.g. think of a pathced one on top of function y), and you save it __as the same name as__ the original function.
+
+when you call the original fucntion eseentially, you are calling this patched version of the function (since it's the __same name__)
+
+__Terms__:
+
+Patching function: is esentially decorating fucntion.
+
+Function annotation: taking a function and you are annotating it so that it's modified at __runtime__ through some dynamic behavior.
+
+```
+def quicker_fibonacci(func):
+    """
+    high order function version of fibonacci:
+    if it's in cache, return cached value,
+    else not in cache, then call original fib for calcs value
+    """
+
+    cached = {}
+
+    def wrapper(n):
+        if n not in cached:
+            cached[n] = func(n)
+
+        return cached[n]
+
+    return wrapper
+
+@quicker_fibonacci
+def fib(n):
+    """basic fibonacci version - most inefficient"""
+    if n <= 1:
+        return n
+
+    else:
+        return fib(n-2) + fib(n-1)
+
+fib(40)  # same as fib = quicker_fibonacci(fib) then fib(40)
+```
