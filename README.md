@@ -1013,6 +1013,8 @@ print(time.strftime('%Y-%m-%dT%H:%M:%S%z', time_struct))
 
 #### First-Class Function
 
+<https://www.youtube.com/watch?v=kr0mpwqttM0>
+
 __function__ in python is treated as first-class citizens called first class object or called first class function. A first-class citizen in a programming language is an entity which supports all the operations generally available to other entities. these operations typically includes
 
 basically, First-class fucntion allows us to treat function as objects.
@@ -1088,6 +1090,8 @@ A function accepts other fucntions as arguments or returns fucntions as the resu
 
 #### Closure
 
+<https://www.youtube.com/watch?v=swU3c34d2NQ&t=5s>
+
 Closure is an inner function that remembers and has access to variables(e.g. call free variables) in the local scope in which it was created.
 even after the outer fucntion has finished executing.
 
@@ -1100,6 +1104,10 @@ the inner fucntion log_hi() still remembers and has access to the msg variables 
 <https://www.youtube.com/watch?v=swU3c34d2NQ>
 
 #### Decorators works togehter with High-order function & closure
+
+#### Decorators
+
+<https://www.youtube.com/watch?v=FsAPt_9Bf3U>
 
 A decorator is just a function that takes another function as an argument, adds some kind of functionality, and then returns another function. All of this is without altering the source code of the original function that you passed in.
 
