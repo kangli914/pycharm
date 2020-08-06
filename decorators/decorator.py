@@ -9,6 +9,10 @@ def logger_decorator(orig_func):
     logging.basicConfig(filename="{}.log".format(orig_func.__name__), level=logging.INFO)
 
     @wraps(orig_func)
+    # wrapper(*args, **kwargs) and orig_func(*args, **kwargs):
+    # we need to be able to pass any number of positional or keyward arguments to our wrapper function
+    # and have it executed our original function with those arguments
+    # otherwise you will most likely get "warpper function takes 0 positional/keyward arguments but 2 were given"
     def wrapper(*args, **kwargs):
         logging.info("Ran with args: {}, and kwargs: {}".format(args, kwargs))
        
