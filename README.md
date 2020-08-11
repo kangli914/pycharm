@@ -1086,7 +1086,9 @@ log_hi()
 
 #### High-Order Function
 
-A function accepts other fucntions as arguments or returns fucntions as the result of other functions
+A function accepts other fucntions as arguments or returns fucntions as the result of other functions.
+
+This concept related to the 3rd point in Python First-Class fucnction: e.g. return the fucntion as the result of other functions
 
 #### Closure
 
@@ -1105,7 +1107,7 @@ the inner fucntion log_hi() still remembers and has access to the msg variables 
 
 #### Decorators works togehter with High-order function & closure
 
-#### Decorators
+#### Decorators Concept
 
 <https://www.youtube.com/watch?v=FsAPt_9Bf3U>
 
@@ -1152,3 +1154,17 @@ def fib(n):
 
 fib(40)  # same as fib = quicker_fibonacci(fib) then fib(40)
 ```
+
+note - when you call the original fucntion eseentially, you are calling this patched version of the function (since it's the __same name__)
+
+```
+fib(40)  # same as fib = quicker_fibonacci(fib) then fib(40)
+```
+
+## Context Manager
+
+### Concept
+
+THe context manager idea is to create a ___context___ that requires some setup before starting and some cleanup at the end.
+
+Context Manager uses _Decorators_, _Generator_  concepts together (e.g. relationship)
