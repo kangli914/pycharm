@@ -1167,4 +1167,4 @@ fib(40)  # same as fib = quicker_fibonacci(fib) then fib(40)
 
 THe context manager idea is to create a ___context___ that requires some setup before starting and some cleanup at the end.
 
-Context Manager uses _Decorators_, _Generator_  concepts together (e.g. relationship)
+Context Manager uses _Decorators_, _Generator_  concepts together (e.g. relationship - see timer_decorator_cibtext-manger.py)
