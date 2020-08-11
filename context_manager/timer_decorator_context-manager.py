@@ -13,13 +13,19 @@ def timer_contextmanager():
     """a context manager function: timer decorator for any function"""
     import time
 
-    t1 = time.time()
+    # t1 = time.time()
+    # t1 = int(round(time.time() * 1000))
+    t1 = int((time.time() * 1000))
     yield
-    t2 = time.time() - t1
+    # t2 = time.time() - t1
+    # t2 = int(round(time.time() * 1000)) - t1
+    t2 = int((time.time() * 1000)) - t1
     print("ran in : {} secs".format(t2))
 
 def original_dummy_func(name, age):
+    import time
     print("original_dummy function ran with arguments ({}, {})".format(name, age))
+    time.sleep(0.5)
 
 
 with timer_contextmanager():
