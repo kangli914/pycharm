@@ -1,0 +1,14 @@
+ERROR:root:find not found: [Errno 2] No such file or directory: 'null.txt'
+INFO:root:Time requried for null.txt was 0.00020456314086914062
+ERROR:root:find not found: [Errno 2] No such file or directory: 'null.txt'
+INFO:root:Time requried for null.txt was 24.923177242279053
+ERROR:root:file not found: [Errno 2] No such file or directory: 'exception.txt'
+INFO:root:Time requried for exception.txt was 0.0007178783416748047
+INFO:root:Time requried for exception.log was 3.552436828613281e-05
+INFO:root:Time requried for exception.log was 2.9325485229492188e-05
+ERROR:root:file not found: [Errno 2] No such file or directory: 'null.log'
+INFO:root:Time requried for null.log was 0.00031876564025878906
+ERROR:root:file not found: [Errno 2] No such file or directory: 'null.log'
+INFO:root:Time requried for null.log was 0.00017595291137695312
+ERROR:root:file not found: [Errno 2] No such file or directory: 'null.log'
+INFO:root:Time requried for null.log was 0.00025177001953125
