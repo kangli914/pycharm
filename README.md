@@ -65,6 +65,7 @@
 
  3. Set is a collection which is unordered and unindexed. No duplicate members. \{}
  4. Dictionary is a collection which is unordered, changeable and indexed. No duplicate members.
+ 5. Pthon sequences: strings, lists and tuple
 
 ## Operators
 
