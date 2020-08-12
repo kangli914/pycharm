@@ -1,4 +1,6 @@
 .venv37
 *vscode
 */__pycache__/
-course
+course.ipynb_checkpoints/
+*.ipynb
+jupyter.sh
