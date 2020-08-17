@@ -9,6 +9,8 @@ Its two elements will be the argument's first and last elements.
 """
     # access by index would not preserve the seq type e.g.
     # return seq[0] + seq[-1]
+
+    # however, slicing preserve the original type
     return seq[:1] + seq[-1:]
 
 # return seq[0] + seq[-1] will give 6 from below code
