@@ -44,13 +44,15 @@ if __name__ == "__main__":
     with open("token.csv", "w") as f:
 
         ## option 1)
-        # line = generate_tokens("users.csv")
-        # f.writelines(line)
+        lines = generate_tokens("users.csv")
+        f.writelines(lines)
+        # for line in lines:
+        #     f.writelines(line)
 
         ## option 2) manual iterate the generator by calling the next
-        token = generate_tokens("users.csv")
-        f.writelines(token)
-        print(next(token), end="")
-        f.writelines(token)
-        print(next(token), end="")
-        f.writelines(token)
+        # token = generate_tokens("users.csv")
+        # f.writelines(token)
+        # print(next(token), end="")
+        # f.writelines(token)
+        # print(next(token), end="")
+        # f.writelines(token)
