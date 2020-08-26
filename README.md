@@ -958,6 +958,7 @@ print(time.strftime('%Y-%m-%dT%H:%M:%S%z', time_struct))
 * quick good overview: <https://www.youtube.com/watch?v=BC77x_GLmxo&list=PL1A2CSdiySGLPTXm0cTxlGYbReGqTcGRA&index=5>
 * <https://www.programiz.com/python-programming/iterator>
 * <https://www.geeksforgeeks.org/python-difference-iterable-iterator/>
+* Sequences (strings, lists, and tuples) are the most common form of iterables,
 
 1 Iterable:
 
