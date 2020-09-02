@@ -1,5 +1,5 @@
 class Enumerate():
-    """ EX #46 - iterator example
+    """ EX #46 - iterator example of workout
 
     https://github.com/reuven/python-workout/blob/master/ch10-iterators/e46_myenumerate.py
     
