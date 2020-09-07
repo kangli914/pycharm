@@ -388,11 +388,12 @@ with open(file) as f_read:
     print(line, end='')
 ```
 
-both output: (each line is a string
+both output: (each line is a string)
+
+```
 a1
 b2
 c3
-
 ```
 
 Read in file and write the content to another file
@@ -402,21 +403,21 @@ Read in file and write the content to another file
 rfile='readme.txt'
 wfile="writeout.txt"
 with open(rfile, 'r', newline='') as f_read, open(wfile, 'w', newline='') as f_write:
-
-# f_read.readlines() returned a list of lines
-
+    # f_read.readlines() returned a list of lines
     for line in reversed(f_read.readlines()):
         f_write.write(line)
+```
+
 output:
+
+```
 c3
 b2
 a1
 
 ```
 
-'''
 There are two ways to turn A file into A `list` of lines
-'''
 
 ```
 
@@ -944,11 +945,11 @@ time.struct_time(tm_year=2019, tm_mon=6, tm_mday=19, tm_hour=19, tm_min=41, tm_s
 
 Convert time in str to ISO string format using 'struct_time' as middle tir:
 
-
 date_string='2019-05-17_08-33'
 time_struct = time.strptime(date_string, '%Y-%m-%d_%H-%M')
 print(time.strftime('%Y-%m-%dT%H:%M:%S%z', time_struct))
 2019-05-17T08:33:00-0400
+
 ```
 
 ## Iterable, Iterator, Generator
@@ -1030,6 +1031,7 @@ exmaples:
 - assign function to a variable:
 
 ```
+
 """ here it treats varaible f as square() function so we can use f as if using square()
 def square(x):
   return x * x
@@ -1047,7 +1049,6 @@ print (f(5))
 def square(x):
     return x * x
 
-
 def new_container(func, list):
     """take function as arguments"""
     new_list = []
@@ -1059,6 +1060,7 @@ new_square = new_container(square, [1, 2, 3, 4])
 print(new_square)
 
 ## output: [1, 4, 9, 16]
+
 ```
 
 - return the fucntion as the result of other functions
@@ -1074,6 +1076,7 @@ when calling line log_hi w/o `()` the function will not executed
 return the __same__ name of the functions
 
 ```
+
 def logger(msg):
 
   def log_message():
@@ -1128,6 +1131,7 @@ Patching function: is esentially decorating fucntion.
 Function annotation: taking a function and you are annotating it so that it's modified at __runtime__ through some dynamic behavior.
 
 ```
+
 def quicker_fibonacci(func):
     """
     high order function version of fibonacci:
@@ -1155,12 +1159,15 @@ def fib(n):
         return fib(n-2) + fib(n-1)
 
 fib(40)  # same as fib = quicker_fibonacci(fib) then fib(40)
+
 ```
 
 note - when you call the original fucntion eseentially, you are calling this patched version of the function (since it's the __same name__)
 
 ```
+
 fib(40)  # same as fib = quicker_fibonacci(fib) then fib(40)
+
 ```
 
 ## Context Manager
