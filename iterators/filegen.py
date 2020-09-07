@@ -15,7 +15,10 @@ def all_lines(path):
                     yield line
         except FileNotFoundError as e:
             print(f"file {fname} not found: {e}")
-
+        except:
+            print (f"some went wrong")
+            raise
+        
 for line in all_lines("tmp"):
     print(line, end="")
 
