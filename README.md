@@ -414,13 +414,11 @@ output:
 c3
 b2
 a1
-
 ```
 
 There are two ways to turn A file into A `list` of lines
 
 ```
-
 with open(rfile) as f_reader:
     dataset = [line for line in f_reader]
     print("type of dataset:", type(dataset))
@@ -435,7 +433,6 @@ with open(rfile) as f_reader:
 
 ```
 
-'''
 output: note that
 
 1) each line is treated as string(*) - e.g. each row is a string
@@ -493,12 +490,12 @@ Problem imposed when using *without* Python CSV module:
 2) although above code convert each row = a list of elements but all of elements type are still strings
 Hence, using Python CSV module - NEXT
 
-## Read Write CSV File
+# Python CSV module
+
+### Read Write CSV File
 
 <https://www.youtube.com/watch?v=q5uM4VKywbA>
 <https://realpython.com/python-csv/>
-
-# Python CSV module
 
 ### CSV Reader
 
