@@ -49,8 +49,8 @@ if __name__ == "__main__":
     for index in range(3):
         logging.info("Main    : create and start Thread-%d", index+1)
         t = threading.Thread(target=thread_function, args=(index+1,))
-        threads.append(t)
         t.start()
+        threads.append(t)
 
     for thread in threads:
         logging.info("Main    : before joining %s", thread.getName())
