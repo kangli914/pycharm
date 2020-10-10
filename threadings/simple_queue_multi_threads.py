@@ -3,6 +3,8 @@ import time
 from queue import Queue
 from threading import Thread
 
+# reference: https://www.troyfawkes.com/learn-python-multithreading-queues-basics/
+
 format = "[%(asctime)s]: [%(levelname)s]: %(message)s"
 logging.basicConfig(format=format, level=logging.INFO, datefmt="%Y-%m-%d %H:%M:%S")
 
