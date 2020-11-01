@@ -362,11 +362,58 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
 
 ### notes
 
-- 3 ways to create dictionary
+- 3 ways to create dictionary:
+  
+  *
 
 - Only python3.7(+) added the key preservation of order. ie. list(d) on a dictionary returns a list of all the keys used in the dictionary, in insertion order.
 
-- Iterating Over a Dictionary
+- Iterating Over a Dictionary:
+
+  * Traverses the __keys__ of the dictionary using a dictionary as an iterator:
+
+  ```
+  d = {'a': 1, 'b': 2, 'c':3}
+  for key in d:
+  print(key, d[key])
+  # c 3
+  # b 2
+  # a 1
+  ```
+
+  * Using keys(), values() and items() to iterate dictionaly keys, value and (key, value) pair. note - python2,  keys(), values() and items() returns a list type vs. python3 return like _dict_items_ for items() instead of list type
+
+  ```
+  for key, value in d.items():
+    print(key, value)
+  # c 3
+  # b 2
+  # a 1
+  ```
+
+  * Restriction on Dictionary key type: immutable, and hence hashable. So Digits, Boolean type and Tuples type can be used as the key. List can not be used as key as it can not be hashable
+
+  ```
+  foo = {2.78: 'bbb', True: 'ccc'}
+  >>> d = {(1, 1): 'a', (1, 2): 'b', (2, 1): 'c', (2, 2): 'd'}
+  >>>
+  >>> d[(1,1)]
+  'a'
+  >>> d[(2,1)]
+  'c'
+  ```
+
+  Python’s built-in hash() function returns the hash value for an object which is hashable, and raises an exception for an object which isn’t
+
+  ```
+  >>> hash('foo')
+  11132615637596761
+
+  >>> hash([1, 2, 3])
+  Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+  TypeError: unhashable type: 'list'
+  ```
 
 ## Read Write File
 
@@ -389,29 +436,35 @@ read line by line:
 1) directly working file object - Looping over a file object
 
 ```
+
 file='readme.txt'
 with open(file) as f_read:
       for line in f_read:
           # end='' will eliminate the newline feed in printout
           print(line, end='')
+
 ```
 
 2) using readlines() which returns array of lines - Looping over readlines()
 
 ```
+
 file='readme.txt'
 with open(file) as f_read:
     # readlines() returns a 'list' type
     for line in f_read.readlines():
     print(line, end='')
+
 ```
 
 both output: (each line is a string)
 
 ```
+
 a1
 b2
 c3
+
 ```
 
 Read in file and write the content to another file
@@ -424,19 +477,23 @@ with open(rfile, 'r', newline='') as f_read, open(wfile, 'w', newline='') as f_w
     # f_read.readlines() returned a list of lines
     for line in reversed(f_read.readlines()):
         f_write.write(line)
+
 ```
 
 output:
 
 ```
+
 c3
 b2
 a1
+
 ```
 
 There are two ways to turn A file into A `list` of lines
 
 ```
+
 with open(rfile) as f_reader:
     dataset = [line for line in f_reader]
     print("type of dataset:", type(dataset))
@@ -961,10 +1018,12 @@ time.struct_time(tm_year=2019, tm_mon=6, tm_mday=19, tm_hour=19, tm_min=41, tm_s
 Convert time in str to ISO string format using 'struct_time' as middle tir:
 
 ```
+
 date_string='2019-05-17_08-33'
 time_struct = time.strptime(date_string, '%Y-%m-%d_%H-%M')
 print(time.strftime('%Y-%m-%dT%H:%M:%S%z', time_struct))
 2019-05-17T08:33:00-0400
+
 ```
 
 ## Iterable, Iterator, Generator
