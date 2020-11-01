@@ -350,6 +350,24 @@ methods modify original list:
 
 execise code: <https://github.com/kangli914/pycharm/blob/master/dummy/list_dummy.py>
 
+## Dictionalry
+
+Dictionary is a collection which is unordered, changeable and indexed. No duplicate members.
+
+### references
+
+- <https://realpython.com/python-dicts/>
+- <https://docs.python.org/3/tutorial/datastructures.html>
+- <https://docs.python.org/3/library/collections.html#collections.defaultdict>
+
+### notes
+
+- 3 ways to create dictionary
+
+- Only python3.7(+) added the key preservation of order. ie. list(d) on a dictionary returns a list of all the keys used in the dictionary, in insertion order.
+
+- Iterating Over a Dictionary
+
 ## Read Write File
 
 <https://www.pythonforbeginners.com/files/reading-and-writing-files-in-python>
@@ -942,11 +960,11 @@ time.struct_time(tm_year=2019, tm_mon=6, tm_mday=19, tm_hour=19, tm_min=41, tm_s
 
 Convert time in str to ISO string format using 'struct_time' as middle tir:
 
+```
 date_string='2019-05-17_08-33'
 time_struct = time.strptime(date_string, '%Y-%m-%d_%H-%M')
 print(time.strftime('%Y-%m-%dT%H:%M:%S%z', time_struct))
 2019-05-17T08:33:00-0400
-
 ```
 
 ## Iterable, Iterator, Generator
