@@ -362,9 +362,60 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
 
 ### notes
 
-- 3 ways to create dictionary:
+- 4 ways to create dictionary:
   
-  *
+  1. Define dictionary by enclosing a comma-separated list of key-value pairs in curly braces {} style:
+
+  ```
+    my_dict={"a":1, "b"2}
+  ```
+
+  2. Construct a dictionary with the _built-in dict()_ function with a list of tuples
+
+  ```
+  my_dict_1=dict(
+    [
+      ("a",1),
+      ("b", 2)
+    ]
+  )
+
+  # We can also create a dictionary using a list of two-items tuples
+  list_tuple = [('eggs', 5), ('milk', 2)]
+  d = dict(list_tuple)
+  ```
+
+  3. Construct a dictionary with the _built-in dict()_ function with keyword arguments
+
+  ```
+  my_dict_2=dict(a=1,b=2,c="abc")
+  print(type(my_dict_2))
+  <class 'dict'>
+
+  my_dict_3=dict("a"=1,"b"=2)
+  File "<stdin>", line 1
+  SyntaxError: keyword can't be an expression
+  ```
+
+  note - in this case, if key is string it does not need to be quoted since it's _keyword argument_
+
+  4. Use _built-in dict().fromkeys(keys, value) function to construct dictionary:
+  The fromkeys() method returns a dictionary with the specified __keys__ and the specified __same__ value (if value not specified then its None for all key by default). e.g. one value for all keys
+
+  ```
+  # note keys are expected an iterable like a tuple below
+  x = ('key1', 'key2', 'key3')
+  y = 0
+  thisdict = dict.fromkeys(x, y)
+  ['key1': 0, 'key2': 0, 'key3': 0]
+  
+  d = dict.fromkeys(("milk", "eggs"))
+  {'milk': None, 'eggs': None}
+  
+  d = dict.fromkeys(("milk", "eggs"), (2, 5))
+  {'milk': (2, 5), 'eggs': (2, 5)}
+
+  ```
 
 - Only python3.7(+) added the key preservation of order. ie. list(d) on a dictionary returns a list of all the keys used in the dictionary, in insertion order.
 
@@ -373,27 +424,46 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
   * Traverses the __keys__ of the dictionary using a dictionary as an iterator:
 
   ```
+
   d = {'a': 1, 'b': 2, 'c':3}
   for key in d:
   print(key, d[key])
-  # c 3
-  # b 2
-  # a 1
+
+# c 3
+
+# b 2
+
+# a 1
+
   ```
 
-  * Using keys(), values() and items() to iterate dictionaly keys, value and (key, value) pair. note - python2,  keys(), values() and items() returns a list type vs. python3 return like _dict_items_ for items() instead of list type
+  * Using keys(), values() and items() to iterate dictionaly keys, value and (key, value) pair.
+  note:
+    - python2,  keys(), values() and items() returns a list type vs. python3 return like _dict_items_ for items() instead of list type
+    - The .items(), .keys(), and .values() methods actually return something called a view object in python3: <class 'dict_keys'>, <class 'dict_values'> and <class 'dict_items'>. A dictionary view object is more or less like a window on the keys and values. For practical purposes, you can think of these methods as returning lists of the dictionary’s keys and values.
+    - d.items() Returns a _list like_ of __tuples__ (key,value) pairs in a dictionary where you can use for loop to iterate the key, value pair
 
   ```
+
+  d = {'a': 10, 'b': 20, 'c': 30}
+  d.items()
+  dict_items([ ('a', 10), ('b', 20), ('c', 30) ])   # a list like tuple but in type of <class 'dict_items'>
+
   for key, value in d.items():
     print(key, value)
-  # c 3
-  # b 2
-  # a 1
+
+# c 3
+
+# b 2
+
+# a 1
+
   ```
 
   * Restriction on Dictionary key type: immutable, and hence hashable. So Digits, Boolean type and Tuples type can be used as the key. List can not be used as key as it can not be hashable
 
   ```
+
   foo = {2.78: 'bbb', True: 'ccc'}
   >>> d = {(1, 1): 'a', (1, 2): 'b', (2, 1): 'c', (2, 2): 'd'}
   >>>
@@ -401,18 +471,20 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
   'a'
   >>> d[(2,1)]
   'c'
+
   ```
 
   Python’s built-in hash() function returns the hash value for an object which is hashable, and raises an exception for an object which isn’t
 
   ```
+
   >>> hash('foo')
   11132615637596761
-
   >>> hash([1, 2, 3])
   Traceback (most recent call last):
     File "<stdin>", line 1, in <module>
   TypeError: unhashable type: 'list'
+
   ```
 
 ## Read Write File
