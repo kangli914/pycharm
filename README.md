@@ -419,22 +419,43 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
 
 - Only python3.7(+) added the key preservation of order. ie. list(d) on a dictionary returns a list of all the keys used in the dictionary, in insertion order.
 
+- Access the value by Key:
+
+  Looking up a value like this with a key that does not exist will raise a KeyError exception, halting execution if uncaught.
+
+  ```
+  a={"a":1, "b":2}
+   a["c"]
+  KeyError: 'c'
+  ```
+
+  If we want to access a value without risking a KeyError, we can use the dictionary _get_ method. By default if the key does not exist, the method will return None. We can pass it a second value to return instead of None in the event of a failed lookup.
+
+  ```
+  a={"a":1, "b":2}
+  print(a.get("c"))
+  None
+
+  value = mydict.get(key, default_value)
+  print(a.get("c", "defaultvalue"))
+  defaultvalue
+
+  v = a.get("d", 1)
+  print(v)
+  1
+  ```
+
 - Iterating Over a Dictionary:
 
   * Traverses the __keys__ of the dictionary using a dictionary as an iterator:
 
   ```
-
   d = {'a': 1, 'b': 2, 'c':3}
   for key in d:
   print(key, d[key])
-
-# c 3
-
-# b 2
-
-# a 1
-
+  # c 3
+  # b 2
+  # a 1
   ```
 
   * Using keys(), values() and items() to iterate dictionaly keys, value and (key, value) pair.
@@ -444,26 +465,20 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
     - d.items() Returns a _list like_ of __tuples__ (key,value) pairs in a dictionary where you can use for loop to iterate the key, value pair
 
   ```
-
   d = {'a': 10, 'b': 20, 'c': 30}
   d.items()
   dict_items([ ('a', 10), ('b', 20), ('c', 30) ])   # a list like tuple but in type of <class 'dict_items'>
 
   for key, value in d.items():
     print(key, value)
-
-# c 3
-
-# b 2
-
-# a 1
-
+    # c 3
+    # b 2
+    # a 1
   ```
 
   * Restriction on Dictionary key type: immutable, and hence hashable. So Digits, Boolean type and Tuples type can be used as the key. List can not be used as key as it can not be hashable
 
   ```
-
   foo = {2.78: 'bbb', True: 'ccc'}
   >>> d = {(1, 1): 'a', (1, 2): 'b', (2, 1): 'c', (2, 2): 'd'}
   >>>
@@ -471,7 +486,6 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
   'a'
   >>> d[(2,1)]
   'c'
-
   ```
 
   Python’s built-in hash() function returns the hash value for an object which is hashable, and raises an exception for an object which isn’t
