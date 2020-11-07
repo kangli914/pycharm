@@ -445,6 +445,25 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
   1
   ```
 
+  Note - that this doesn't add key to dictionary. So if you want to retain that key value pair, you should use setdefault(key, default_value)
+
+  ```
+  a
+  {'a': 1, 'b': 2}
+  >>> a.setdefault("c","abc")
+  'abc'
+  >>> a
+  {'a': 1, 'b': 2, 'c': 'abc'}
+
+  d = {}
+  >>> d
+  {}
+  >>> d.setdefault("a",1)
+  1
+  >>> d
+  {'a': 1}
+  ```
+
 - Iterating Over a Dictionary:
 
   * Traverses the __keys__ of the dictionary using a dictionary as an iterator:
