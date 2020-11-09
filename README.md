@@ -419,9 +419,11 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
 
 - Only python3.7(+) added the key preservation of order. ie. list(d) on a dictionary returns a list of all the keys used in the dictionary, in insertion order.
 
-- Access the value by Key:
+- 3 Access the values by Key: (e.g. getting the values)
 
-  Looking up a value like this with a key that does not exist will raise a KeyError exception, halting execution if uncaught.
+  1. Access the value directly with potention _KeyError_ exception: However, this is the only safe way to __update__ dictionary values given the key exists as later methods get() and setdefault() were used to get the value (not updating the value)
+  
+    Looking up a value like this with a key that does not exist will raise a KeyError exception, halting execution if uncaught.
 
   ```
   a={"a":1, "b":2}
@@ -429,14 +431,20 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
   KeyError: 'c'
   ```
 
-  If we want to access a value without risking a KeyError, we can use the dictionary _get_ method. By default if the key does not exist, the method will return None. We can pass it a second value to return instead of None in the event of a failed lookup.
+  2. Access the value using _get(key, default[option])_ without KeyError with default value.
+  
+  - Use the dictionary _get_ method to access a value without risking a KeyError
+  - By default if the key does not exist and default value is not set (optional), get method will return __None__.
+  - We can pass it a second value to be returned instead of None in the event of a failed lookup.
 
   ```
   a={"a":1, "b":2}
+  # return None (default) if key does not exit and no default value is set
   print(a.get("c"))
   None
 
   value = mydict.get(key, default_value)
+  # returned value when key does not exist and default value is set
   print(a.get("c", "defaultvalue"))
   defaultvalue
 
@@ -445,23 +453,80 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
   1
   ```
 
-  Note - that this doesn't add key to dictionary. So if you want to retain that key value pair, you should use setdefault(key, default_value)
+  Note - differences between get(key, value[optional]) vs setdefault(key, value[optional]):
+
+  get() method doesn't add key to dictionary. So if you want to __retain__ that key value pair, you should use setdefault(key, default_value):
 
   ```
-  a
+  a={'a': 1, 'b': 2}
+  >>> a.get("c", 3)
+  3
+  # here a.get did not add the missing key/value c to the dictioanry a as a still remains the same
+  >>> a
   {'a': 1, 'b': 2}
+  ```
+
+  3. Access the value using setdefault(key, value[optional]) method can also be used to return the value of the item with the specified key. Default value is None if not set.
+      - get() and setdefault() __difference__: when key not exists it will add it to the dictonary comparing using the get().
+
+      - setdefault():
+
+        If the key exists, this parameter has no effect. it returns the value of the item from the dictionary (not from the default one) with the specified key.
+
+        If the key does not exist, it inserts the key with the specified value to the dictionary. (Default value None) and then returns that value.
+
+  ```
+  # key b already eixsts so setdefault() returns the value from the dictonary, the default vlaue has no effect
+  a={'a': 1, 'b': 2}
+  >>> a.setdefault("b",3)
+  2
+
+  # key c does not exist, it inserts the key with the specified value to the dictionary and returns the value
   >>> a.setdefault("c","abc")
   'abc'
   >>> a
   {'a': 1, 'b': 2, 'c': 'abc'}
+  ```
 
-  d = {}
+  4. Update the values:
+  
+  Note on using setdefault(key, value[default None]): this method is meant to use to set the default value for first time. once value was set and add to the dictionary, the following reuse the same method for the same key will not set the value since it will return the value when key already exist:
+
+  ```
+  >>> d={}
   >>> d
   {}
-  >>> d.setdefault("a",1)
-  1
+  # use setdefault() first time it will add it to the dictionary. None was the default if value is not set:
+  >>> x=d.setdefault("a")
+  >>> print(x)
+  None
+  
+  # use setdefault() second time, it will not add it to the dictionary but return the value as key already exists!!!!!!
+  
+  # here both setdefault() and get() failed to set the new values since key already exists in the dictioanry:
+
+  >>> x=d.setdefault("a", "1")
+  >>> print(x)
+  None
+  
+  >>> x=d.get("a", "1")
+  >>> print(x)
+  None
+
   >>> d
-  {'a': 1}
+  {'a': None}
+
+  # use direct key access to update the value
+  >>> d["a"]=2
+  >>> d
+  {'a': 2}
+  # both setdefault() and get() won't update the value since it's already exist in the dictionary.
+  >>> x=d.setdefault("a", "1")
+  >>> print(x)
+  2
+  >>> x=d.get("a", "3")
+  >>> print(x)
+  2
   ```
 
 - Iterating Over a Dictionary:
@@ -469,12 +534,17 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
   * Traverses the __keys__ of the dictionary using a dictionary as an iterator:
 
   ```
+
   d = {'a': 1, 'b': 2, 'c':3}
   for key in d:
   print(key, d[key])
-  # c 3
-  # b 2
-  # a 1
+
+# c 3
+
+# b 2
+
+# a 1
+
   ```
 
   * Using keys(), values() and items() to iterate dictionaly keys, value and (key, value) pair.
@@ -484,6 +554,7 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
     - d.items() Returns a _list like_ of __tuples__ (key,value) pairs in a dictionary where you can use for loop to iterate the key, value pair
 
   ```
+
   d = {'a': 10, 'b': 20, 'c': 30}
   d.items()
   dict_items([ ('a', 10), ('b', 20), ('c', 30) ])   # a list like tuple but in type of <class 'dict_items'>
@@ -493,11 +564,13 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
     # c 3
     # b 2
     # a 1
+
   ```
 
   * Restriction on Dictionary key type: immutable, and hence hashable. So Digits, Boolean type and Tuples type can be used as the key. List can not be used as key as it can not be hashable
 
   ```
+
   foo = {2.78: 'bbb', True: 'ccc'}
   >>> d = {(1, 1): 'a', (1, 2): 'b', (2, 1): 'c', (2, 2): 'd'}
   >>>
@@ -505,6 +578,7 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
   'a'
   >>> d[(2,1)]
   'c'
+
   ```
 
   Python’s built-in hash() function returns the hash value for an object which is hashable, and raises an exception for an object which isn’t
