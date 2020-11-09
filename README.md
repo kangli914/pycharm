@@ -490,7 +490,7 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
 
   4. Update the values:
   
-  Note on using setdefault(key, value[default None]): this method is meant to use to set the default value for first time. once value was set and add to the dictionary, the following reuse the same method for the same key will not set the value since it will return the value when key already exist:
+  Note on using setdefault(key, value[default None]): this method is meant to use to set the default value for first time. once value was set and add to the dictionary, the following reuse the same method for the __same key will not set the value__ since it will return the value when key already exist:
 
   ```
   >>> d={}
