@@ -350,7 +350,7 @@ methods modify original list:
 
 execise code: <https://github.com/kangli914/pycharm/blob/master/dummy/list_dummy.py>
 
-## Dictionalry
+## Dictionary
 
 Dictionary is a collection which is unordered, changeable and indexed. No duplicate members.
 
@@ -538,12 +538,9 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
   d = {'a': 1, 'b': 2, 'c':3}
   for key in d:
   print(key, d[key])
-
-# c 3
-
-# b 2
-
-# a 1
+  # c 3
+  # b 2
+  # a 1
 
   ```
 
