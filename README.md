@@ -1427,3 +1427,46 @@ fib(40)  # same as fib = quicker_fibonacci(fib) then fib(40)
 THe context manager idea is to create a ___context___ that requires some setup before starting and some cleanup at the end.
 
 Context Manager uses _Decorators_, _Generator_  concepts together (e.g. relationship - see timer_decorator_cibtext-manger.py)
+
+## Python Magic Method
+
+```
+>>> class a():
+...     "class a"
+...     def __init__(self):
+...             "init doc"
+...             self.myvar = "abc"
+...
+>>> dir(a)
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__get
+attribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__',
+'__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__',
+ '__subclasshook__', '__weakref__']
+>>> b=a()
+>>> dir(b)
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__get
+attribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__',
+'__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__',
+ '__subclasshook__', '__weakref__', 'myvar']
+>>>
+
+>>> dir(b)
+['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__get
+attribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__',
+'__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__',
+ '__subclasshook__', '__weakref__', 'myvar']
+
+>>> a.__dict__
+mappingproxy({'__module__': '__main__', '__doc__': 'class a', '__init__': <function a.__init__ at 0x7fc
+0b4b96598>, '__dict__': <attribute '__dict__' of 'a' objects>, '__weakref__': <attribute '__weakref__'
+of 'a' objects>})
+>>> b.__dict__
+{'myvar': 'abc'}
+
+>>> a.__doc__
+'class a'
+>>> b.__doc__
+'class a'
+>>>
+
+```
