@@ -591,6 +591,38 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
 
   ```
 
+### defaultdict
+
+Group a sequence of key-value pairs into a dictionary:
+
+Using standard dictionary
+
+```
+>>> s = [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
+>>> d = {}
+>>> for k,v in s:
+...     item = d.get(k)
+...     if item is None:
+...             d[k] = item = []
+...     item.append(v)
+... 
+>>> d
+{'yellow': [1, 3], 'blue': [2, 4], 'red': [1]}
+
+```
+
+Using list as the default_factory:
+
+```
+s = [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
+d = defaultdict(list)
+for k, v in s:
+    d[k].append(v)
+
+sorted(d.items())
+[('blue', [2, 4]), ('red', [1]), ('yellow', [1, 3])]
+```
+
 ## Read Write File
 
 <https://www.pythonforbeginners.com/files/reading-and-writing-files-in-python>
