@@ -622,7 +622,7 @@ sorted(d.items())
 [('blue', [2, 4]), ('red', [1]), ('yellow', [1, 3])]
 ```
 
-Using list as the default_factory:
+Using list as the defaultdict list:
 
 ```
 s = [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
@@ -632,6 +632,20 @@ for k, v in s:
 
 sorted(d.items())
 [('blue', [2, 4]), ('red', [1]), ('yellow', [1, 3])]
+```
+
+Count the number of key occurirences using the defaultdict int:
+
+```
+>>> s
+[('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
+
+>>> d = defaultdict(int)
+>>> for k,v in s:
+...     d[k] += 1
+
+>>> d
+defaultdict(<class 'int'>, {'yellow': 2, 'blue': 2, 'red': 1})
 ```
 
 ## Read Write File
