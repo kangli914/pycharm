@@ -12,7 +12,7 @@ def restaurant():
 
         ## if "order" is an empty string, break out of the loop 
         # if order == "":
-        if not order:               # python conventions
+        if not order:               # python conventions for checking empty string
             print(f"total is {total}")
             break
 
