@@ -17,11 +17,8 @@ def get_rainfall():
             break
 
         else:
-            # rain = city_rainfall.get(city, None)
-            # if not rain:
-
-            rain = input("Entry Rainfall>: ")
-            city_rainfall[city] = rain
+            rain = int(input("Entry Rainfall>: "))
+            city_rainfall[city] = city_rainfall.get(city, 0) + rain
 
 
 get_rainfall()
