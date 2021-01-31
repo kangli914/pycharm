@@ -20,5 +20,8 @@ while True:
     if not date_value:
         print(f"person {name} does not exist in the database")
     else:
+        # today is datetime.date object
         today = date.today()
+
+         # (today - date_value) is 'datetime.timedelta' object
         print(f"{name} was born on {date_value.isoformat()} and is {(today - date_value).days} days old")
