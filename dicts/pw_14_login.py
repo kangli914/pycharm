@@ -18,7 +18,7 @@ while True:
             print(f"user {user} password not match")
 '''
 
-user_list = [("kangli", "kangli"), ("perfeng", "perfeng")]
+user_list = [("kli", "password1"), ("pfeng", "password2")]
 DATABASE = dict(user_list)
 
 while True:
