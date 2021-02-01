@@ -24,7 +24,7 @@
   >>> type(TRUE)
   NameError: name 'TRUE' is not defined
 
-  # Note - anything numbers and string except 0 and None will be True
+  # Note - anything numbers and string except _0_, _None_ and _''_(empty string) will be True
   >>> bool('abc')
   True
   >>> bool(2)
@@ -58,12 +58,12 @@
 - Python Data structure
 
  1. List is a collection which is ordered and changeable. Allows duplicate members. []
- 2. Tuple is a collection which is ordered and unchangeable. Allows duplicate members. ()
+ 2. Tuple is a collection which is ordered and unchangeable. Allows duplicate members. () - think of tuple like turle ()
 
  note:
  Tuple is generally used when you want to pass a dataset which you don't want to other subfunction to modify or you are not sure if sub-function will/will not modify so you want to enfore the rule of no change to the dataset
 
- 3. Set is a collection which is unordered and unindexed. No duplicate members. \{}
+ 3. Set is a collection which is unordered and unindexed. No duplicate/unique members. \{}. think of Set {} like the Dictionary{}  without values as key in dict are unique. Set use to elimite the duplicates.
  4. Dictionary is a collection which is unordered, changeable and indexed. No duplicate members.
  5. Pthon sequences: strings, lists and tuple
 
@@ -201,8 +201,6 @@ def withPositionalArgs(*args, ae=9):
   else:
     print("Doesn't contain substring")
 
- ```
-
 - .startswith(prefix[, start[, end]]) & .endswith(suffix[, start[, end]]): Return True/false to checksif String Starts/ends with the Specified String. params: start & end are optional
 - .counts(sub[, start[, end]]): returns the number of occurrences of a substring in the given string.
 
@@ -239,14 +237,14 @@ def withPositionalArgs(*args, ae=9):
   
   ```
 
-   >>> a = 'Milk, Chicken, Bread'
-   >>> left=a.split[', ', 1](0)
-   >>> right=a.split[', ', 1](1)
-   >>> print(left)
+   a = 'Milk, Chicken, Bread'
+   left=a.split[', ', 1](0)
+   right=a.split[', ', 1](1)
+   print(left)
    Milk
-   >>> print(right)
+   print(right)
    Chicken, Bread
-   >>> print(left, right)
+   print(left, right)
    Milk Chicken, Bread
    new string: Milk(as left) Chicken, Bread(as right)
 
@@ -268,23 +266,23 @@ def withPositionalArgs(*args, ae=9):
 
  ```
 
- >>> b='Python'
- >>> slice(3)
+ b='Python'
+ slice(3)
  slice(None, 3, None)
- >>> type(slice(3))
+ type(slice(3))
  <class 'slice'>
- >>> x=slice(3)
- >>> b[x]
+ x=slice(3)
+ b[x]
  'Pyt'
- >>> b='Python'
- >>> x=slice(1,5,2)
- >>> type(x)
+ b='Python'
+ x=slice(1,5,2)
+ type(x)
  <class 'slice'>
- >>> b[x]
+ b[x]
  'yh'
- >>> b='Python'
- >>> x = slice(-1, -4, -1)
- >>> b[x]
+ b='Python'
+ x = slice(-1, -4, -1)
+ b[x]
  'noh'
 
  ```
@@ -294,37 +292,38 @@ def withPositionalArgs(*args, ae=9):
  ```
 
  Option 1): using slice() - note: can use not only string but other collections like list and etc.
- >>> b='Python'
- >>> slice(-1,-1-len(b),-1)
+ b='Python'
+ slice(-1,-1-len(b),-1)
  slice(-1, -7, -1)
- >>> x=slice(-1,-1-len(b),-1)
- >>> b[x]
+ x=slice(-1,-1-len(b),-1)
+ b[x]
  'nohtyP'
 
  Option 2): using `substring` to reverse
- >>> print(b[-1::-1])
+ print(b[-1::-1])
  'nohtyP'
 
  Option 3): for loops using explicit idx (e.g. without range())
- >>> b='Python'
- >>> idx=0
- >>> a=''
- >>> for ch in b:
+ b='Python'
+ idx=0
+ a=''
+ for ch in b:
  ...     a+=b[-1-idx]  || a+=b[len(b)-1-idx]
  ...     idx=idx+1
  ...
- >>> print(a)
+ print(a)
  nohtyP
 
  Option 4): for loops with range() (simpler than Option 2. note range 'end' not include the end indx)
- >>> b='Python'
- >>> a=''
- >>> for idx in range(-1, -1-len(b), -1):
- >>> a+=b[idx]
- >>> print (a)
+ b='Python'
+ a=''
+ for idx in range(-1, -1-len(b), -1):
+ a+=b[idx]
+ print (a)
  nohtyP
 
  ref: <https://www.programiz.com/python-programming/methods/built-in/slice>
+```
 
 5. convert:
 
@@ -367,12 +366,15 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
   1. Define dictionary by enclosing a comma-separated list of key-value pairs in curly braces {} style:
 
   ```
+
     my_dict={"a":1, "b"2}
+
   ```
 
   2. Construct a dictionary with the _built-in dict()_ function with a list of tuples
 
   ```
+
   my_dict_1=dict(
     [
       ("a",1),
@@ -380,14 +382,17 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
     ]
   )
 
-  # We can also create a dictionary using a list of two-items tuples
+# We can also create a dictionary using a list of two-items tuples
+
   list_tuple = [('eggs', 5), ('milk', 2)]
   d = dict(list_tuple)
+
   ```
 
   3. Construct a dictionary with the _built-in dict()_ function with keyword arguments
 
   ```
+
   my_dict_2=dict(a=1,b=2,c="abc")
   print(type(my_dict_2))
   <class 'dict'>
@@ -395,6 +400,7 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
   my_dict_3=dict("a"=1,"b"=2)
   File "<stdin>", line 1
   SyntaxError: keyword can't be an expression
+
   ```
 
   note - in this case, if key is string it does not need to be quoted since it's _keyword argument_
@@ -403,7 +409,9 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
   The fromkeys() method returns a dictionary with the specified __keys__ and the specified __same__ value (if value not specified then its None for all key by default). e.g. one value for all keys
 
   ```
-  # note keys are expected an iterable like a tuple below
+
+# note keys are expected an iterable like a tuple below
+
   x = ('key1', 'key2', 'key3')
   y = 0
   thisdict = dict.fromkeys(x, y)
@@ -426,9 +434,11 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
     Looking up a value like this with a key that does not exist will raise a KeyError exception, halting execution if uncaught.
 
   ```
+
   a={"a":1, "b":2}
    a["c"]
   KeyError: 'c'
+
   ```
 
   2. Access the value using _get(key, default[option])_ without KeyError with default value.
@@ -438,19 +448,25 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
   - We can pass it a second value to be returned instead of None in the event of a failed lookup.
 
   ```
+
   a={"a":1, "b":2}
-  # return None (default) if key does not exit and no default value is set
+
+# return None (default) if key does not exit and no default value is set
+
   print(a.get("c"))
   None
 
   value = mydict.get(key, default_value)
-  # returned value when key does not exist and default value is set
+
+# returned value when key does not exist and default value is set
+
   print(a.get("c", "defaultvalue"))
   defaultvalue
 
   v = a.get("d", 1)
   print(v)
   1
+
   ```
 
   Note - differences between get(key, value[optional]) vs setdefault(key, value[optional]):
@@ -458,12 +474,16 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
   get() method doesn't add key to dictionary. So if you want to __retain__ that key value pair, you should use setdefault(key, default_value):
 
   ```
+
   a={'a': 1, 'b': 2}
   >>> a.get("c", 3)
   3
-  # here a.get did not add the missing key/value c to the dictioanry a as a still remains the same
+
+# here a.get did not add the missing key/value c to the dictioanry a as a still remains the same
+
   >>> a
   {'a': 1, 'b': 2}
+
   ```
 
   3. Access the value using setdefault(key, value[optional]) method can also be used to return the value of the item with the specified key. Default value is None if not set.
@@ -476,16 +496,20 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
         If the key does not exist, it inserts the key with the specified value to the dictionary. (Default value None) and then returns that value.
 
   ```
-  # key b already eixsts so setdefault() returns the value from the dictonary, the default vlaue has no effect
+
+# key b already eixsts so setdefault() returns the value from the dictonary, the default vlaue has no effect
+
   a={'a': 1, 'b': 2}
   >>> a.setdefault("b",3)
   2
 
-  # key c does not exist, it inserts the key with the specified value to the dictionary and returns the value
+# key c does not exist, it inserts the key with the specified value to the dictionary and returns the value
+
   >>> a.setdefault("c","abc")
   'abc'
   >>> a
   {'a': 1, 'b': 2, 'c': 'abc'}
+
   ```
 
   4. Update the values:
@@ -493,17 +517,20 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
   Note on using setdefault(key, value[default None]): this method is meant to use to set the default value for first time. once value was set and add to the dictionary, the following reuse the same method for the __same key will not set the value__ since it will return the value when key already exist:
 
   ```
+
   >>> d={}
   >>> d
   {}
-  # use setdefault() first time it will add it to the dictionary. None was the default if value is not set:
+
+# use setdefault() first time it will add it to the dictionary. None was the default if value is not set
+
   >>> x=d.setdefault("a")
   >>> print(x)
   None
   
-  # use setdefault() second time, it will not add it to the dictionary but return the value as key already exists!!!!!!
+# use setdefault() second time, it will not add it to the dictionary but return the value as key already exists
   
-  # here both setdefault() and get() failed to set the new values since key already exists in the dictioanry:
+# here both setdefault() and get() failed to set the new values since key already exists in the dictioanry
 
   >>> x=d.setdefault("a", "1")
   >>> print(x)
@@ -516,17 +543,21 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
   >>> d
   {'a': None}
 
-  # use direct key access to update the value
+# use direct key access to update the value
+
   >>> d["a"]=2
   >>> d
   {'a': 2}
-  # both setdefault() and get() won't update the value since it's already exist in the dictionary.
+
+# both setdefault() and get() won't update the value since it's already exist in the dictionary
+
   >>> x=d.setdefault("a", "1")
   >>> print(x)
   2
   >>> x=d.get("a", "3")
   >>> print(x)
   2
+
   ```
 
 - Iterating Over a Dictionary:
@@ -538,9 +569,12 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
   d = {'a': 1, 'b': 2, 'c':3}
   for key in d:
   print(key, d[key])
-  # c 3
-  # b 2
-  # a 1
+
+# c 3
+
+# b 2
+
+# a 1
 
   ```
 
@@ -598,6 +632,7 @@ Group a sequence of key-value pairs into a dictionary:
 Using standard dictionary
 
 ```
+
 >>> s = [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
 >>> d = {}
 >>> for k,v in s:
@@ -605,7 +640,7 @@ Using standard dictionary
 ...     if item is None:
 ...             d[k] = item = []
 ...     item.append(v)
-... 
+...
 >>> d
 {'yellow': [1, 3], 'blue': [2, 4], 'red': [1]}
 
@@ -614,17 +649,20 @@ Using standard dictionary
 Using setdefault()
 
 ```
+
 d = {}
 for k, v in s:
     d.setdefault(k, []).append(v)
 
 sorted(d.items())
 [('blue', [2, 4]), ('red', [1]), ('yellow', [1, 3])]
+
 ```
 
 Using list as the defaultdict list:
 
 ```
+
 s = [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
 d = defaultdict(list)
 for k, v in s:
@@ -632,11 +670,13 @@ for k, v in s:
 
 sorted(d.items())
 [('blue', [2, 4]), ('red', [1]), ('yellow', [1, 3])]
+
 ```
 
 Count the number of key occurirences using the defaultdict int:
 
 ```
+
 >>> s
 [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
 
@@ -646,6 +686,7 @@ Count the number of key occurirences using the defaultdict int:
 
 >>> d
 defaultdict(<class 'int'>, {'yellow': 2, 'blue': 2, 'red': 1})
+
 ```
 
 ## Read Write File
@@ -1488,6 +1529,7 @@ Context Manager uses _Decorators_, _Generator_  concepts together (e.g. relation
 ## Python Magic Method
 
 ```
+
 >>> class a():
 ...     "class a"
 ...     def __init__(self):
