@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-"""Python workout dictionary exercise 15
+"""Python workout dictionary exercise 15.
 
 Dislay the past week temperatures as well as the previous and subsequent dates, if available.
 """

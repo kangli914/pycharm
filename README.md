@@ -59,13 +59,13 @@
 
  1. List is a collection which is ordered and changeable. Allows duplicate members. []
  2. Tuple is a collection which is ordered and unchangeable. Allows duplicate members. () - think of tuple like turle ()
-
- note:
- Tuple is generally used when you want to pass a dataset which you don't want to other subfunction to modify or you are not sure if sub-function will/will not modify so you want to enfore the rule of no change to the dataset
-
- 3. Set is a collection which is unordered and unindexed. No duplicate/unique members. \{}. think of Set {} like the Dictionary{}  without values as key in dict are unique. Set use to elimite the duplicates.
+    note:
+      Tuple is generally used when you want to pass a dataset which you don't want to other subfunction to modify or you are not sure if sub-function will/will not modify so you want to enfore the rule of no change to the dataset
+ 3. Set is a collection which is unordered and unindexed. No duplicate/unique members. \{}. think of Set {} like the Dictionary{}  without values as key in dict are unique.
+    note:
+      Set use to eliminate the duplicates.
  4. Dictionary is a collection which is unordered, changeable and indexed. No duplicate members.
- 5. Pthon sequences: strings, lists and tuple
+ 5. Python sequences: strings, lists and tuple
 
 ## Operators
 
@@ -352,6 +352,15 @@ execise code: <https://github.com/kangli914/pycharm/blob/master/dummy/list_dummy
 ## Dictionary
 
 Dictionary is a collection which is unordered, changeable and indexed. No duplicate members.
+
+### Key notes
+
+- only way to change the __value__ of Dictionary given key is by dict[key]. None of get(key), setdefault(key) will change the value of given key
+
+- the difference btw get(key, [option value]) and setdefault(key, [option value]) is later one will alter the original Dictionary by adding the new key/value
+
+- if key already existed in Dictionary, the value from the get(key, [option value]) and setdefault(key, [option value]) won't do anything as it will just
+return the value by the given key from the Dictionary
 
 ### references
 
