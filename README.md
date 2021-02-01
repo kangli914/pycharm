@@ -624,6 +624,7 @@ Dictionary is a collection which is unordered, changeable and indexed. No duplic
   TypeError: unhashable type: 'list'
 
   ```
+```
 
 ### defaultdict
 
