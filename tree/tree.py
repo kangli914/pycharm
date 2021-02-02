@@ -6,6 +6,12 @@ import uuid
 from graphviz import render
 from treelib import Node, Tree
 
+"""Build a balanced EPCC product tree consists of hierachies, nodes and products.
+
+   docs gotes here...
+"""
+
+
 DEPTH = 2
 WIDTH = 2
 
