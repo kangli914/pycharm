@@ -20,7 +20,10 @@ with open(f"{cwd}/dicts/{file}") as f_reader:
         # print(line, end="")
         status = line.strip().split()[8]
         ip = line.strip().split()[0]
+
+        # append to a List dictionary
         resp_lookup_list[status].append(ip)
+        # append to a Set dictionary
         resp_lookup_set[status].add(ip)
 
 for k, v in resp_lookup_list.items():

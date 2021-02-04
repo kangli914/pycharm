@@ -1,0 +1,3 @@
+Use a dict to track how many words of each
+length are in the file—that is, how many three-letter words, four-letter words,
+five-letter words, and so on. Display your results.
