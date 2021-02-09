@@ -2,7 +2,8 @@
 
 """Diff two dictionaries.
 
-Takes two dicts as arguments. The function returns a new dict that expresses the difference between the two dicts
+Takes two dicts as arguments. The function returns a new dict that expresses the difference between the two dicts.
+Inefficient way to go through the keys from two different dict.
 """
 
 d1 = {"a": 1, "b": 2, "c": 3}
