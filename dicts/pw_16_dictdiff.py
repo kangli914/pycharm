@@ -50,7 +50,26 @@ def dictdiff(first: dict, second: dict):
 
     return output
 
+
+def dictdiff_2(first, second):
+
+    # union of all the keys together with "|"
+    new_keys = first.keys() | second.keys()
+    output = {}
+
+    for key in new_keys:
+        if first.get(key) != second.get(key):
+            output[key] = (first.get(key), second.get(key))
+
+    return output
+
+
 print(dictdiff(d1, d1))
 print(dictdiff(d1, d2))
 print(dictdiff(d3, d4))
 print(dictdiff(d1, d5))
+
+print(dictdiff_2(d1, d1))
+print(dictdiff_2(d1, d2))
+print(dictdiff_2(d3, d4))
+print(dictdiff_2(d1, d5))
