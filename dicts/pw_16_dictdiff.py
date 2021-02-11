@@ -54,6 +54,7 @@ def dictdiff(first: dict, second: dict):
 def dictdiff_2(first, second):
 
     # union of all the keys together with "|"
+    # new_keys type is a set, that is, join dictionary keys() results a set
     new_keys = first.keys() | second.keys()
     output = {}
 

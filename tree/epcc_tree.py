@@ -173,3 +173,22 @@ for node in catalog_tree_1.all_nodes():
 print("------")
 
 # print(nodes)
+
+
+#-------------------
+    # h1 = hierarchy("hierarchy_1")
+    # # h2 = hierarchy("hierarchy_2")
+
+    # show(h1)
+    # # show(h2)
+
+    # print("------")
+
+    # catalog = Tree()
+    # # catalog should be store uuid
+    # catalog.create_node("catalog", "catalog_root")
+    # catalog.paste("catalog_root", h1)
+    # catalog.paste("catalog_root", h2)
+    # show(catalog)
+
+    # draw(catalog)
