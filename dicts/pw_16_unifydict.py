@@ -23,11 +23,14 @@ def merge(*args):
 
     for k in all_keys:
         value = None
+
+        # loop through the dictionary to get values
         for d in args:
             value = d.get(k)
 
-        # if not value:
-        # output[k] = value if value not None
+            # only set return dictionary with key and value when it's not None and means there's new value. 
+            # without `if value`, later value has a none will set the previous value.
+            # (e.g. key exists in previous dictionary but not exists in later dictionary)
             if value:
                 output[k] = value
 
