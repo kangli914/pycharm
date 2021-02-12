@@ -13,6 +13,7 @@ d3 = dict([("b", 5), ("d", 6)])
 
 def merge(*args):
     """Take in a number of dictionaries and combine to one."""
+
     output = dict()
     # join dictionary keys() results a set
     all_keys = set()
@@ -25,11 +26,15 @@ def merge(*args):
         for d in args:
             value = d.get(k)
 
-        # if value:
-        output[k] = value
+        # if not value:
+        # output[k] = value if value not None
+            if value:
+                output[k] = value
 
     return output
 
 
 print(merge(d1, d2))
 print(merge(d3, d2))
+print(merge(d1, d2, d3))
+print(merge(d3, d2, d1))
