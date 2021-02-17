@@ -4,6 +4,8 @@
 
 It takes any number of dicts and returns a dict that reflects the combination of all of them.
 If the same key appears in more than one dict, then the most recently merged dict’s value should appear in the output.
+
+Look for set() references in pw_17_readfile.py.
 """
 
 d1 = {"a": 1}
@@ -19,6 +21,7 @@ def merge(*args):
     all_keys = set()
 
     for d in args:
+        # set union: e.g. all_keys.union()
         all_keys = all_keys | d.keys()
 
     for k in all_keys:
