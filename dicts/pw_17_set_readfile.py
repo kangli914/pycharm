@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-import os
-
 """Set practice: Read through a apache server log file and find out the what were the different IP addresses that tried to access your server.
 
 reference: https://www.programiz.com/python-programming/set
@@ -16,6 +14,8 @@ operation:
 - discard(): leaves a set unchanged if the element is not present in the set.
 - remove(): aise an KeyError error if element is not present in the set.
 """
+
+import os
 
 path = os.getcwd()
 
