@@ -18,3 +18,5 @@ for item in os.listdir(f"{dir_path}/dicts"):
     ext_set.add(os.path.splitext(item)[1])
 
 print(ext_set)
+## output:
+## {'.log', '.py'}
