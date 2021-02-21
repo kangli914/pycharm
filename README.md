@@ -61,7 +61,7 @@
  2. Tuple is a collection which is ordered and unchangeable. Allows duplicate members. () - think of tuple like turle ()
     note:
       Tuple is generally used when you want to pass a dataset which you don't want to other subfunction to modify or you are not sure if sub-function will/will not modify so you want to enfore the rule of no change to the dataset
- 3. Set is a collection which is unordered and unindexed. No duplicate/unique members. \{}. think of Set {} like the Dictionary{}  without values as key in dict are unique.
+ 3. Set is a collection which is unordered and unindexed. No duplicate/unique members. \{}. think of Set {} like the Dictionary{}  without values as key in dict are unique. https://www.programiz.com/python-programming/set
     note:
       Set use to eliminate the duplicates.
  4. Dictionary is a collection which is unordered, changeable and indexed. No duplicate members.
@@ -167,7 +167,7 @@ def withPositionalArgs(*args, ae=9):
 
 ## String
 
-* Python String: list --> <https://www.programiz.com/python-programming/methods/string>
+- Python String: list --> <https://www.programiz.com/python-programming/methods/string>
 
 1. substring: [return string]
 
@@ -908,10 +908,10 @@ input:
  "AAA", "BBB", "Test, Test", "CCC"
  "111", "222, 333", "XXX", "YYY, ZZZ"
 
-* If quoting is set to csv.QUOTE_MINIMAL, then .writerow() will quote fields only if they contain the delimiter or the quotechar. This is the default case.
-* If quoting is set to csv.QUOTE_ALL, then .writerow() will quote all fields.
-* If quoting is set to csv.QUOTE_NONNUMERIC, then .writerow() will quote all fields containing text data and convert all numeric fields to the float data type.
-* If quoting is set to csv.QUOTE_NONE, then .writerow() will escape delimiters instead of quoting them. In this case, you also must provide a value for the escapechar optional parameter.
+- If quoting is set to csv.QUOTE_MINIMAL, then .writerow() will quote fields only if they contain the delimiter or the quotechar. This is the default case.
+- If quoting is set to csv.QUOTE_ALL, then .writerow() will quote all fields.
+- If quoting is set to csv.QUOTE_NONNUMERIC, then .writerow() will quote all fields containing text data and convert all numeric fields to the float data type.
+- If quoting is set to csv.QUOTE_NONE, then .writerow() will escape delimiters instead of quoting them. In this case, you also must provide a value for the escapechar optional parameter.
 
 ```
 
@@ -1010,10 +1010,10 @@ Date,Open,High,Low,Close,Volume,Adj Close
 6/29/2019,|576.11258,584.512631,576.002598,582.162619,1284100,582.162619
 6/28/2019,585.002622,587.342658,584.002627,586.862643,978600,586.862643
 
-* delimiter: specifies the character used to separate each field. The default is the comma (',').
+- delimiter: specifies the character used to separate each field. The default is the comma (',').
 
-* quotechar: specifies the character used to surround fields that contain the delimiter character. The default is a double quote (' " ').
-* escapechar: specifies the character used to escape the delimiter character, in case quotes aren’t used. The default is no escape character.
+- quotechar: specifies the character used to surround fields that contain the delimiter character. The default is a double quote (' " ').
+- escapechar: specifies the character used to escape the delimiter character, in case quotes aren’t used. The default is no escape character.
 
 ```
 
@@ -1314,10 +1314,10 @@ print(time.strftime('%Y-%m-%dT%H:%M:%S%z', time_struct))
 
 ### Concept
 
-* quick good overview: <https://www.youtube.com/watch?v=BC77x_GLmxo&list=PL1A2CSdiySGLPTXm0cTxlGYbReGqTcGRA&index=5>
-* <https://www.programiz.com/python-programming/iterator>
-* <https://www.geeksforgeeks.org/python-difference-iterable-iterator/>
-* Sequences (strings, lists, and tuples) are the most common form of iterables,
+- quick good overview: <https://www.youtube.com/watch?v=BC77x_GLmxo&list=PL1A2CSdiySGLPTXm0cTxlGYbReGqTcGRA&index=5>
+- <https://www.programiz.com/python-programming/iterator>
+- <https://www.geeksforgeeks.org/python-difference-iterable-iterator/>
+- Sequences (strings, lists, and tuples) are the most common form of iterables,
 
 1 Iterable:
 
