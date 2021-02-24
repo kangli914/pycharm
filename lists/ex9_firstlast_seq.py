@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
+
 """Python workout ex9 Write a function, firstlast, that takes a sequence (string, list or tuple) and returns the same type of sequence, but only with two elements — the first and the last from its input."""
 
 
 def first_last(seq):
-     """Given a sequence, returns a two-element sequence.
-The returned sequence will be of the same type as the argument.
-Its two elements will be the argument's first and last elements.
-"""
+    """Given a sequence, returns a two-element sequence.
+    The returned sequence will be of the same type as the argument.
+    Its two elements will be the argument's first and last elements.
+    """
     # access by index would not preserve the seq type e.g.
     # return seq[0] + seq[-1]
 
