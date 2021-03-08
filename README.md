@@ -32,6 +32,7 @@
   >>> bool(-1)
   True
 
+  # In Python, everything is considered “True” in an “if,” except for “None,” “False,” 0, and empty collections.
   # zero, None(object) and empty string are False
   >>> bool(0)
   False
