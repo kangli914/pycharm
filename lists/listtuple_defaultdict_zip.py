@@ -13,7 +13,7 @@ from collections import defaultdict
 a_list = ["a", "b", "c", "c", "d"]
 b_tuple = (1, 2, 3, 3, 3)
 
-# zip()  accepts iterable elements as input and returns an iterable as the output. it aggregates elements from the iterables and returns *iterables* of tuples.
+# zip() accepts iterable elements as input and returns an iterable as the output. it aggregates elements from the iterables and returns *iterables* of tuples.
 # zip() wraps tow or mroe iterators with a lazy generator, The zip generators yeilds *tuples* containing the next value from each iterator
 new_list_tuple = list(zip(a_list, b_tuple))
 print(new_list_tuple)
@@ -34,6 +34,7 @@ for idx, (first, second) in enumerate(new_list_tuple, 1):
 #4: c 3
 #5: d 3
 
+## new_list_tuple = [('a', 1), ('b', 2), ('c', 3), ('c', 3), ('d', 3)]
 
 # below unzip a list of tuples and unpacking the first and second elements from a list of tuples
 new_first_tuple, new_second_tuple, *last = new_list_tuple
@@ -66,3 +67,14 @@ for k, v in new_list_tuple:
 print(d2.items())
 # set automatically elimated the duplicates
 # dict_items([('a', {1}), ('b', {2}), ('c', {3}), ('d', {3})])
+
+
+
+
+# more to think of with zip and why?
+a_list = ["a", "b", "c", "c", "d"]
+print(list(zip(a_list)))
+# [('a',), ('b',), ('c',), ('c',), ('d',)]
+print(list(zip(*a_list)))
+#  *-operator to unpack the arguments out of a list or tuple? according to https://docs.python.org/3.9/tutorial/controlflow.html#unpacking-argument-lists
+# [('a', 'b', 'c', 'c', 'd')]
