@@ -2,6 +2,11 @@
 
 """Create a list of tuple using zip and mixed with default dictionary.
 
+- given a list and a tuple
+- 1) use zip to create a tuple list with new corresponding mapping
+- 2) slicing/dicing
+- 3) use collection module to covert list of tuple to a dictionary with non-dumplicate tuple:
+[('a', 1), ('b', 2), ('c', 3), ('c', 3), ('d', 3)] --> [('a', {1}), ('b', {2}), ('c', {3}), ('d', {3})]
 reference:
 https://www.askpython.com/python/built-in-methods/python-zip-function
 https://www.askpython.com/python/list/python-list-of-tuples

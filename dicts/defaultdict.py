@@ -2,7 +2,8 @@
 
 """Free playground.
 
-Nothing needed to be commited
+Given a list of tuples.
+This use collections modules to play with tuple list to create a dictionary of list or set(e.g. eliminate the duplicates): tuple --> dictionary
 """
 
 from pprint import pprint
