@@ -12,6 +12,7 @@ VOWEL = "aeiou"
 
 def most_repeating_letters_in_word(word):
     """Return the sum of occurence of vowel in a word."""
+
     sum = 0
     for item in Counter(word).most_common():
         if item[0] in VOWEL:
