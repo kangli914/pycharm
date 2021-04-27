@@ -1,4 +1,4 @@
-#!/user/bin/env python3
+#!/usr/bin/env python3
 
 """Find the word from a list of words with the greatest number of repeated vowels"""
 
