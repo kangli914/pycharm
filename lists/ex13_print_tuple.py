@@ -16,6 +16,9 @@ for idx, (fname, lname, time) in enumerate(PEOPLE_SORT_LNAME, 0):
 def format_name_string(list_of_tuple):
     template = "{1:10} {0:10} {2:5.2f}"
     for person in sorted(list_of_tuple, key=itemgetter(1, 0)):
+        # person is a tuple
+        # *person , when passed to a function, becomes not a tuple, but the elements of that tuple.
+        # This means that we’re passing three separate arguments to str.format , which we can access via {0} , {1} , and {2} .
         print(template.format(*person))
 
 
