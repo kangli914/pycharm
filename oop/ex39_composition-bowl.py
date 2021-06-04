@@ -2,12 +2,13 @@
 
 """Simple composition where Bowl class contains a list of Scoops class."""
 
-# from ex38_scoop import Scoop
+from ex38_scoop import Scoop
 
-
+'''
 class Scoop():
     def __init__(self, flavor):
         self.flavor = flavor
+'''
 
 class Bowl:
     """Bowl class contains a list of Scoops classes."""
@@ -24,7 +25,7 @@ class Bowl:
     def __repr__(self):
         """Overwrite repr return scoop string."""
         # return '\n'.join(scoop.flavor for scoop in self.scoops)
-        
+
         flavors = None
         for scoop in self.scoops:
             flavors += scoop.flavor
@@ -36,6 +37,8 @@ class Bowl:
 bowl = Bowl()
 
 bowl.add_scoops([Scoop(flavor) for flavor in ("chocolate", "vanilla", "persimmon")])
-bowl.add_scoops(Scoop("strewberry"))
+# bowl.add_scoops(Scoop("strewberry"))
 
-print(bowl)
+
+for item in bowl.scoops:
+    print(item)
