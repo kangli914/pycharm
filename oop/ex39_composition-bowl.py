@@ -24,21 +24,16 @@ class Bowl:
 
     def __repr__(self):
         """Overwrite repr return scoop string."""
-        # return '\n'.join(scoop.flavor for scoop in self.scoops)
+        return '\n'.join(scoop.flavor for scoop in self.scoops)
 
-        flavors = None
-        for scoop in self.scoops:
-            flavors += scoop.flavor
-        return flavors
-
-# for idx, scoop in enumerate([Scoop(flavor) for flavor in ("chocolate", "vanilla", "persimmon")], 1):
-#     print("#{0:1} | {1:6}".format(idx, scoop.flavor))
+        # flavors = None
+        # for scoop in self.scoops:
+        #     flavors += scoop.flavor
+        # return flavors
 
 bowl = Bowl()
 
-bowl.add_scoops([Scoop(flavor) for flavor in ("chocolate", "vanilla", "persimmon")])
-# bowl.add_scoops(Scoop("strewberry"))
+bowl.add_scoops(*[Scoop(flavor) for flavor in ("chocolate", "vanilla", "persimmon")])
+bowl.add_scoops(Scoop("strewberry"), Scoop("banana"))
 
-
-for item in bowl.scoops:
-    print(item)
+print(bowl)
