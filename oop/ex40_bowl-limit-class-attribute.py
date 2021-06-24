@@ -25,6 +25,7 @@ class Bowl():
     def add_scoops(self, *args):
         """Add scoops to the bowl with max limit."""
         for scoop in args:
+            # note access the class attribute using Class Bowl instead of objects 
             if len(self.scoops) < Bowl.max_scoops:
                 self.scoops.append(scoop)
             else:
