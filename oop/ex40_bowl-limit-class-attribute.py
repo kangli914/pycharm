@@ -26,10 +26,14 @@ class Bowl():
         """Add scoops to the bowl with max limit."""
         for scoop in args:
             # note access the class attribute using Class Bowl instead of objects 
-            if len(self.scoops) < Bowl.max_scoops:
-                self.scoops.append(scoop)
-            else:
+            # if len(self.scoops) < Bowl.max_scoops:
+            #     self.scoops.append(scoop)
+            # else:
+            #     raise ValueError(f"sorry! excceeded max scoop of class attribute {Bowl.max_scoops}")
+            if len(self.scoops) >= Bowl.max_scoops:
+                #raise Exception("Too many elements")
                 raise ValueError(f"sorry! excceeded max scoop of class attribute {Bowl.max_scoops}")
+            self.scoops.append(scoop)
 
     def __repr__(self):
         """Overwrite the printout to list the scoop object."""
@@ -38,7 +42,7 @@ class Bowl():
 
 bowl = Bowl()
 bowl.add_scoops(*[Scoop(flavor) for flavor in ("cherry", "banana")])
-print(bowl)
+# print(bowl)
 
 bowl.add_scoops(Scoop("apple"))
 print(bowl)
