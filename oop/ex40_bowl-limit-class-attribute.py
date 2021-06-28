@@ -30,6 +30,8 @@ class Bowl():
             #     self.scoops.append(scoop)
             # else:
             #     raise ValueError(f"sorry! excceeded max scoop of class attribute {Bowl.max_scoops}")
+
+            ### check in in side of loop
             if len(self.scoops) >= Bowl.max_scoops:
                 #raise Exception("Too many elements")
                 raise ValueError(f"sorry! excceeded max scoop of class attribute {Bowl.max_scoops}")
