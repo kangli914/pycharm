@@ -16,6 +16,8 @@ class Book():
 class Shelf():
     """A shelf containing the books and grand price."""
 
+    # note 'width' here is a instance/object attribute not class attribute
+    # compare this to ex40 for the class attribute
     def __init__(self, width=10):
         """Initialize with empty book list."""
         self.width = width
@@ -24,13 +26,24 @@ class Shelf():
 
     def add_books(self, *books):
         """Add the books to list."""
-        if self.current_width < self.width:
-            for book in books:
+
+        '''
+        for book in books:
+            if self.current_width < self.width:
                 self.books.append(book)
                 self.current_width += book.width
-        else:
-            # print(f"sorry! excceeded max shelf width {self.width}")
-            raise ValueError(f"sorry! excceeded max shelf width {self.width}")
+            else:
+                # print(f"sorry! excceeded max shelf width {self.width}")
+                raise ValueError(f"sorry! excceeded max shelf width {self.width}")
+        '''
+
+        for book in books:
+
+            ### check in in side of loop!!!
+            if self.current_width + book.width > self.width:
+                raise ValueError(f"sorry! excceeded max shelf width {self.width}")
+            self.books.append(book)
+            self.current_width += book.width
 
     def total_prices(self):
         """Return the grand total prices of the books on the shelf."""
@@ -54,7 +67,7 @@ class Shelf():
 
 
 if __name__ == "__main__":
-    shelf = Shelf()
+    shelf = Shelf(width=3)
     shelf.add_books(Book("ABC_1", "author 1", 10.99, 2), Book("ABC_2", "author 2", 20.99, 8))
     print("Total price:", round(shelf.total_prices(), 2))
 
