@@ -25,3 +25,4 @@ if __name__ == "__main__":
 
     assert p3.population == Person.population
     print(p3.population)
+    print(Person.population)
