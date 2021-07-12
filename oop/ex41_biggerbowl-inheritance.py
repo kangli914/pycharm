@@ -16,10 +16,12 @@ class Bowl():
         for scoop in args:
             # if len(self.scoops) >= Bowl.max_scoops:  ### important difference (Bowl.max_scoops vs self.max_scoops) for inheritance to work!!!!! ###
             if len(self.scoops) >= self.max_scoops:
-                raise ValueError(f"sorry! excceed max scoop of class attribute {Bowl.max_scoops}")    
+                raise ValueError(f"sorry! excceed max scoop of class attribute {self.max_scoops}")    
             self.scoops.append(scoop)
 
     def __repr__(self):
+        # The join() method takes iterable – objects capable of returning its members one at a time. Some examples are List, Tuple, String, Dictionary and Set
+        # Creates a string via str.join and a generator expression
         return "\n".join(scoop.flavor for scoop in self.scoops)
 
 class BigBowl(Bowl):
