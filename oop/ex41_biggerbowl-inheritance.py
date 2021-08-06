@@ -32,13 +32,13 @@ class BigBowl(Bowl):
 
 
 if __name__ == "__main__":
-    bowl = Bowl()
-    bowl.add_scoops(*[Scoop(flavor) for flavor in ("cherry", "banana")])
+    # bowl = Bowl()
+    # bowl.add_scoops(*[Scoop(flavor) for flavor in ("cherry", "banana")])
     # print(bowl)
     # bowl.add_scoops(Scoop("apple"))
     # print(bowl)
 
     bigbowl = BigBowl()
     bigbowl.add_scoops(*[Scoop(flavor) for flavor in ("cherry", "banana")])
-    bigbowl.add_scoops(Scoop("apple"))
+    # bigbowl.add_scoops(Scoop("apple"))
     print(bigbowl)
