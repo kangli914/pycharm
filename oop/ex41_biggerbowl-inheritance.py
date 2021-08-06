@@ -39,6 +39,10 @@ if __name__ == "__main__":
     # print(bowl)
 
     bigbowl = BigBowl()
+
+    # https://stackoverflow.com/questions/57814195/what-does-for-x-y-in-list-mean-in-python
+    # a combination of tuple/list unpacking and *args iterable unpacking. Each iterable is getting unpacked on each iteration of the for loop.
+
     bigbowl.add_scoops(*[Scoop(flavor) for flavor in ("cherry", "banana")])
     # bigbowl.add_scoops(Scoop("apple"))
     print(bigbowl)
