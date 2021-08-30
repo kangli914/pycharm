@@ -14,6 +14,7 @@ class FlexDict(dict):
                 key = int(key)
         except ValueError as e:
             print(f"can't convert {key} to int: e")
+            raise
 
         return super().__getitem__(key)
         # return dict.__getitem__(self, key)
