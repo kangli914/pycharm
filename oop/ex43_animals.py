@@ -8,12 +8,23 @@ class Animal():
         self.legs = legs
 
     def __repr__(self):
-        print('%s %s, %d legs' % (self.color, self.species, self.legs))
+        return '%s %s, %d legs' % (self.color, self.species, self.legs)
+        
 
 class Sheep(Animal):
+    """Class for creating 4-legged sheep of any color"""
 
     def __init__(self, color):
         super().__init__(color, 4)
 
+class Snake(Animal):
+    """Class for creating 0-legged snakes of any color"""
+
+    def __init__(self, color):
+        super().__init__(color, 0)
+
 s = Sheep("white")
+print(s)
+
+s = Snake("black")
 print(s)
