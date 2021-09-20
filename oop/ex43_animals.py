@@ -23,8 +23,8 @@ class Snake(Animal):
     def __init__(self, color):
         super().__init__(color, 0)
 
-s = Sheep("white")
-print(s)
+# s = Sheep("white")
+# print(s)
 
-s = Snake("black")
-print(s)
+# s = Snake("black")
+# print(s)
