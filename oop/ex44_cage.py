@@ -10,7 +10,7 @@ class Animal():
         self.species = self.__class__.__name__
 
     def __repr__(self) -> str:
-        return "%s %s, %d" % (self.color, self.species, self.legs)
+        return "%s %s %d" % (self.color, self.species, self.legs)
 
 
 class Cage():
@@ -35,9 +35,27 @@ class Cage():
     '''
 
     def __repr__(self) -> str:
-        new_list = [(self.cage_id, animal.color, animal.legs) for animal in self.animals]
-        return " ".join(new_list)
+        # new_list = [(self.cage_id, animal.color, animal.legs) for animal in self.animals]
+        # return " ".join(new_list)
+        '''
+        - take each animal in self.animals and use a generator expression (i.e., a lazy form of list comprehension) to return a sequence of strings
+        - each string in that sequence will consist of a tab followed by the printed representation of the animal
+        - e.g. ['\twhile Animal 4', '\tbird Animal 2', '\twolf Animal 4']
+        - then feed the result of our generator expression to str.join , which puts newline characters between each animal
+        '''
+        output = f"Cage #{self.cage_id}\n"
+        """
+        output = ["\t" + str(animal) for animal in self.animals]
+        print(f"output type is: f{type(output)}")
+        print(output)
+        output type is: f<class 'list'>
+        ['\twhile Animal 4', '\tbird Animal 2', '\twolf Animal 4']
+        """
 
+        # here str(animal) automicallly calling __repr__ in Animal class
+        output += "\n".join("\t" + str(animal) for animal in self.animals)
+        return output
+        
 
 if __name__ == "__main__":
     c1 = Cage(1)
@@ -45,6 +63,10 @@ if __name__ == "__main__":
     c1.add_animals(sheep)
     c1.add_animals(Animal("bird", 2), Animal("wolf", 4))
 
+    c2 = Cage(2)
+    c2.add_animals(*[ Animal(animal[0], animal[1]) for animal in [("cat", 4), ("dog", 4)] ])
+
     print(c1)
+    print(c2)
 
 
