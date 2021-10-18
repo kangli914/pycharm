@@ -11,6 +11,7 @@ class BigCage(Cage):
     def __init__(self, cage_id):
         super().__init__(cage_id)
 
+    # we use the splat (*) operator to grab all arguments in a single tuple (animals)
     def add_animals(self, *animals_to_add):
         # for animal in animals_to_add:
         #     if len(self.animals) < BigCage.num_animals:

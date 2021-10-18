@@ -19,6 +19,7 @@ class Cage():
         self.animals = []
         self.cage_id = cage_id
 
+    # we use the splat (*) operator to grab all arguments in a single tuple (animals)
     def add_animals(self, *animals_to_add):
         for animal in animals_to_add:
             self.animals.append(animal)
