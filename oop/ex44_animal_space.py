@@ -11,6 +11,7 @@ class Animal():
 
     def __repr__(self) -> str:
         return "%s %s %d" % (self.color, self.species, self.legs)
+        # return f'{self.color} {self.species}, {self.number_of_legs} legs'
 
 
 # Base class
@@ -54,7 +55,7 @@ class SizedAnimal(Animal):
 
 
 if __name__ == "__main__":
-    sized_animals = [ SizedAnimal(*animal) for animal in (("red", 2, 4), ("white", 4, 6)) ]
+    sized_animals = [ SizedAnimal(*animal) for animal in (("red", 2, 4), ("white", 4, 17)) ]
     print(sized_animals)
 
     cage = Cage("1000")
