@@ -17,7 +17,7 @@ class Animal():
 # Base class
 class Cage():
     # num_animals = 1
-    dimensions = 10
+    dimensions = 10  # class attribute
 
     def __init__(self, cage_id):
         self.animals = []
