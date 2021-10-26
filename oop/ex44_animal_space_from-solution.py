@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-"""A class add animal to the cage based on its size.
+"""A class add animal to the cage based on its size AND cage capacity.
 provided from solutions - https://github.com/reuven/python-workout/blob/master/ch09-objects/e44b2_animal_space.py
 """
 
 class Animal():
     def __init__(self, color, legs):
-        self.spacies = self.__class__.__name__
+        self.species = self.__class__.__name__
         self.color = color
         self.legs = legs
 
@@ -14,11 +14,11 @@ class Animal():
         return f'{self.color} {self.species}, {self.legs} legs'
 
 
-class SizedAnimal(Animal):
+class FourLegsSizedAnimal(Animal):
     space_required = 4
 
-    def __init__(self, color, legs):
-        super().__init__(color, legs)
+    def __init__(self, color):
+        super().__init__(color, 4)
 
 
 class Cage():
@@ -44,10 +44,10 @@ class Cage():
         return output
 
 if __name__ == "__main__":
-    c1 = Cage(1, 10)
+    c1 = Cage(1, 12)
 
-    c1.add_animals(SizedAnimal("white", 4))
+    c1.add_animals(FourLegsSizedAnimal("white"))
     print(c1)
 
-    c1.add_animals(*[SizedAnimal(animal_tuple[0], animal_tuple[1]) for animal_tuple in [("red", 4), ("blue", 4)]])
+    c1.add_animals(*[FourLegsSizedAnimal(color) for color in ("red", "blue")])
     print(c1)
