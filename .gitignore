@@ -4,3 +4,6 @@
 course.ipynb_checkpoints/
 *.ipynb
 jupyter.sh
+*.png
+*.iml
+*.dot
