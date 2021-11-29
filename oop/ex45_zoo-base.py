@@ -35,6 +35,7 @@ class Cat(Animal):
     def __init__(self, color):
         super().__init__(color, 4)
 
+
 class Cage:
     def __init__(self, id):
         self.id = id
@@ -45,9 +46,13 @@ class Cage:
             self.animals_cage.append(animal)
 
     def __repr__(self) -> str:
-        output = f"Cage {self.id}\n"
+        output = "Cage %s\n" % self.id
         output += "\n".join(f"\t\t{animal}" for animal in self.animals_cage)
         return output
+
+
+class NoColorsPassedError(Exception):
+    pass
 
 
 class Zoo:
@@ -61,7 +66,7 @@ class Zoo:
     # Given a zoo z, we should be able to print all of the cages with their id numbers
     # and the animals inside simply by invoking print(zoo)
     def __repr__(self) -> str:
-        output = f"Zoom has cages:\n"
+        output = "Zoom has cages:\n"
         # str.join with a generator expression here, which is slightly more efficient than
         # a list comprehension
         output += "\n".join(f"\t{str(cage)}" for cage in self.cages)
@@ -79,6 +84,14 @@ class Zoo:
         return [animal for cage in self.cages
                 for animal in cage.animals_cage if animal.color == color]
 
+    # It takes any number of colors. Animals having any of the listed colors should be returned.
+    # The method should raise an exception if no colors are passed.
+    def animals_by_any_colors(self, *colors):
+        if not colors:
+            raise NoColorsPassedError
+        return [animal for cage in self.cages
+                for animal in cage.animals_cage if animal.color in colors]
+
     # Get the animals with a particular number of legs. The result should be a list of Animal objects
     def animals_by_legs(self, legs):
         # for cage in self.cages:
@@ -90,7 +103,7 @@ class Zoo:
                 for animal in cage.animals_cage if animal.legs == legs]
 
     # Get the total number of legs for all animals in the zoo
-    def total_animals_legs(self):
+    def total_animals_legs(self) -> int:
         # total_legs = 0
         # for cage in self.cages:
         #     for animal in cage.animals_cage:
@@ -121,6 +134,10 @@ if __name__ == "__main__":
     print(zoo)
     print()
 
-    print(zoo.animals_by_color("grey"))
+    # print(zoo.animals_by_color("grey"))
     print(zoo.animals_by_legs(0))
     print(f"Total legs: {zoo.total_animals_legs()}")
+    print()
+
+    print(f"Animals by colors:\n\t {zoo.animals_by_any_colors('grey', 'red', 'black')}")
+    # print(f"Animals by colors:\n\t {zoo.animals_by_any_colors()}")
