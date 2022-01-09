@@ -115,6 +115,35 @@ class Zoo:
         return sum(animal.legs for cage in self.cages
                    for animal in cage.animals_cage)
 
+    # Transfer animal from one Zoo to another Zoo.
+    # The first animal of the specified type is removed from the zoo on which we’ve called the method and
+    # inserted into the first cage in the target zoo.
+    def transfer_animal(self, target_zoo, animal_to_transfer):
+        # remove the animal from current Zoo
+        [cage.animals_cage.remove(animal_to_transfer) for cage in self.cages
+            for animal in cage.animals_cage if animal is animal_to_transfer]
+        # add the animal to target Zoo
+        target_zoo.cages[0].add_animals(animal_to_transfer)
+
+    # Use kwargs to get names and values. The only valid names would be color and legs.
+    # The method would then use one or both of these keywords to assemble a query that
+    # returns those animals that match the passed criteria.
+    def get_animals(self, **kwargs):
+        print()
+        # if 'color' in kwargs:
+        #     # for one_color in kwargs.values():
+        #     print(self.animals_by_color(one_color))
+        # if 'legs' in kwargs:
+        #     # for one_leg in kwargs.values():
+        #     print(self.animals_by_legs(one_leg))
+
+        print(f'{kwargs=}')
+        return [one_animal
+                for one_cage in self.cages
+                for one_animal in one_cage.animals
+                if (('color' in kwargs and one_animal.color == kwargs['color']) or
+                    ('legs' in kwargs and one_animal.number_of_legs == kwargs['legs']))]
+
 
 if __name__ == "__main__":
     bird = Bird("red")
@@ -125,19 +154,31 @@ if __name__ == "__main__":
 
     cage_1 = Cage("001")
     cage_2 = Cage("002")
+    # add bird to cage_1 which will be transferred/removed later from current Zoo
     cage_1.add_animals(bird, wolf)
     cage_2.add_animals(snake, cat)
     # print(cage_1)
 
-    zoo = Zoo()
-    zoo.add_cages(cage_1, cage_2)
-    print(zoo)
+    zoo_1 = Zoo()
+    zoo_1.add_cages(cage_1, cage_2)
+    print(zoo_1)
+    zoo_2 = Zoo()
+    zoo_2.add_cages(Cage("003"))
     print()
 
     # print(zoo.animals_by_color("grey"))
-    print(zoo.animals_by_legs(0))
-    print(f"Total legs: {zoo.total_animals_legs()}")
+    print(zoo_1.animals_by_legs(0))
+    print(f"Total legs: {zoo_1.total_animals_legs()}")
     print()
 
-    print(f"Animals by colors:\n\t {zoo.animals_by_any_colors('grey', 'red', 'black')}")
-    # print(f"Animals by colors:\n\t {zoo.animals_by_any_colors()}")
+    print(f"Animals by colors:\n\t {zoo_1.animals_by_any_colors('grey', 'red', 'black')}")
+    # print(f"Animals by colors:\n\t {zoo_1.animals_by_any_colors()}")
+    print()
+
+    zoo_1.transfer_animal(zoo_2, bird)
+    print("Transferred the animal bird from zoo1 to zoo2:")
+    print(zoo_2)
+    print(zoo_1)
+
+    print(zoo_1.get_animals(color="red", legs=4))
+

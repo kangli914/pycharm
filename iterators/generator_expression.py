@@ -18,11 +18,9 @@ as generator functions.
 like list comprehensions.
 '''
 
-
 def foo():
     things = ["a", "b", "c"]
     return (item for item in things)
-
 
 for one_item in foo():
     print(one_item)
@@ -30,9 +28,5 @@ for one_item in foo():
 print(type(foo()))
 
 '''
-# output
-a
-b
-c
-<class 'generator'>
+
 '''
