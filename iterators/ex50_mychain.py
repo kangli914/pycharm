@@ -3,6 +3,10 @@
 
 """ex 50 generator function can iterate a set of collections"""
 
+# One of my favorite objects in itertools is called chain. It takes any number of iterables as arguments and then returns each of their elements, one at a time,
+# as if they were all part of a single iterable
+
+
 ''' old
 def chain(*args):
     # print(type(args)) 

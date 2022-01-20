@@ -9,7 +9,7 @@ tested, until the function returns True.
 """
 
 def my_func(one):
-    return one
+    return True
 
 
 def yield_filter(data, func):
@@ -20,6 +20,17 @@ def yield_filter(data, func):
             yield one_item
 
 
+# Alternative: implement this as a regular function that returns a Generator Expression
+# - Generator expressions uses round parentheses "()" vs. list comprehensions uses  squares brackets "[]"
+# - Generator expressions returns one element at a time vs. list comprehension returns lists that comsume more memory
+def yield_filter_generator_expression(data, func):
+    return (one_item for one_item in data if func(one_item))
+
+
 if __name__ == "__main__":
     for item in yield_filter("abcde", my_func):
+        print(item)
+
+    print()
+    for item in yield_filter_generator_expression("abcde", my_func):
         print(item)
