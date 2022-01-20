@@ -27,6 +27,7 @@ def mychain(*data_sets):
     # *Generator Expression* implementation below:
     # - Generator expressions uses round parentheses "()" vs. list comprehensions uses  squares brackets "[]"
     # - Generator expressions returns one element at a time vs. list comprehension returns lists that comsume more memory
+    # also use better than double for loop
 
     return (item for one_set in data_sets
                  for item in one_set)
