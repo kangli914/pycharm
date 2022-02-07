@@ -6,6 +6,12 @@
 # One of my favorite objects in itertools is called chain. It takes any number of iterables as arguments and then returns each of their elements, one at a time,
 # as if they were all part of a single iterable
 
+# best way is to use itertools
+"""
+from itertools import chain
+for one_item in chain('abc', [1,2,3], {'a':1, 'b':2}):
+    print(one_item)
+"""
 
 ''' old
 def chain(*args):
