@@ -14,7 +14,7 @@ for one_item in chain('abc', [1,2,3], {'a':1, 'b':2}):
 """
 
 ''' old
-def chain(*args):
+def mychain(*args):
     # print(type(args)) 
     for arg in args:
         for item in arg:
