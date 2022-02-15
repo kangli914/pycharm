@@ -8,6 +8,8 @@ import os
 
 
 def mychain(*args):
+    # The function takes *args as a parameter, meaning that args will be a tuple when
+    # our function executes.
     for arg in args:
         print(f"**************** file name: {arg}")
         for item in arg:
@@ -24,6 +26,10 @@ def all_lines(path):
     #         pass
 
     files = [open(os.path.join(path, filename)) for filename in os.listdir(path) if filename.endswith(".conf") and os.path.isfile(os.path.join(path, filename))]
+
+    # mychain is expecting a tuple but file is a list so we will need to put star in front to make it become tuple
+    # or look at the exmaple in ex50_mychain.py how to pass as a tuple than a list:
+    #                                   for item in mychain('abc', [1,2,3], {'a':1, 'b':2}):
     return mychain(*files)
 
 
