@@ -6,6 +6,14 @@ Write a generator function that takes two elements: an iterable and a function.
 With each iteration, the function is invoked on the current element. If the
 result is True, then the element is returned as is. Otherwise, the next element is
 tested, until the function returns True.
+
+
+good refernece: generator fucntion vs generator expression:
+https://www.pythontutorial.net/advanced-python/python-generator-expressions/
+- Generator expression is an expression that returns a generator object.
+- Generator function is a function that contains a yield statement and returns a generator object
+- A list comprehension returns an iterable. It means that you can iterate over the result of a list comprehension again and again.
+- However, a generator expression returns an iterator, specifically a lazy iterator. It becomes exhausted when you complete iterating over it.
 """
 
 def my_func(one):

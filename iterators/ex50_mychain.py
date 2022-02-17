@@ -6,6 +6,14 @@
 # One of my favorite objects in itertools is called chain. It takes any number of iterables as arguments and then returns each of their elements, one at a time,
 # as if they were all part of a single iterable
 
+
+# good refernece: generator fucntion vs generator expression:
+# https://www.pythontutorial.net/advanced-python/python-generator-expressions/
+# - Generator expression is an expression that returns a generator object.
+# # - Generator function is a function that contains a yield statement and returns a generator object
+# - A list comprehension returns an iterable. It means that you can iterate over the result of a list comprehension again and again.
+# - However, a generator expression returns an iterator, specifically a lazy iterator. It becomes exhausted when you complete iterating over it.
+
 # best way is to use itertools
 """
 from itertools import chain
