@@ -4,8 +4,31 @@
 
 import os
 
+
+'''
+- the built-in open function can return a number of different objects, such as TextIOWrapper or BufferedReader
+- These objects all implement the same API for working with files, we call them "file-like object"
+- the file-like objects are all iterable so we use iterarate the elememnts
+
+>>> f=open('/etc/passwd')
+>>> print(type(f))
+<class '_io.TextIOWrapper'>
+
+
+# word 'with' is called context managers
+'''
+
 file = "apache.log"
+#  returns current working directory of a process
 path = os.getcwd()
+
+# Open a specific file in a directory vs. open a list of files-like objects (e.g. from ex50_all_lines.py):  
+# os.getcwd() vs.
+# os.listdir() & os.path.job()
+'''
+files = [open(os.path.join(path, filename)) for filename in os.listdir(path)]
+'''
+
 
 
 # 1) read from lines
@@ -39,3 +62,21 @@ with open(f"{path}/dicts/{file}", "r") as f1:
 
 with open(f"{path}/dicts/{file}", "r") as f2:
     print(f"last line:\n {list(f2)[-1]}")
+
+
+
+# code for read from binary file:
+'''
+when u open a nontext file, such as a PDF or a JPEG, python expects the contents of
+a file to be valid UTF-8 formatted Unicode strings. Binary files, by definition, don’t use
+Unicode. When Python tries to read a non-Unicode string, it’ll raise an exception, com-
+plaining that it can’t define a string with such conten
+
+'''
+with open(filename, 'rb') as f:
+    while True:
+        # Reads up 1000 bytes and returns them as a bytes object
+        one_chunk = f.read(1000)
+        if not one_chunk:
+            break
+        print(f'This chunk contains {len(one_chunk)} bytes')
