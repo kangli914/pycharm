@@ -17,7 +17,8 @@ if __name__ == "__main__":
     cwd = os.getcwd()
     # print(__file__ + "\n")
 
-    total = sum(int(words) for line in open_file_safe(os.path.join(cwd, "files", "ex18_input.txt")) \
-                           for words in line.split() if words.isnumeric())
+    with open_file_safe(os.path.join(cwd, "files", "ex18_input.txt")) as f:
+        total = sum(int(words) for line in f
+                               for words in line.split() if words.isnumeric())
 
     print(total)

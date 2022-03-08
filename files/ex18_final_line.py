@@ -23,8 +23,9 @@ file = "apache.log"
 path = os.getcwd()
 
 # Open a specific file in a directory vs. open a list of files-like objects (e.g. from ex50_all_lines.py):  
-# os.getcwd() vs.
-# os.listdir() & os.path.job()
+# os.getcwd() & os.path.join()
+# vs.
+# os.listdir() & os.path.join()
 '''
 files = [open(os.path.join(path, filename)) for filename in os.listdir(path)]
 '''
