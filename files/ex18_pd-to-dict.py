@@ -27,9 +27,11 @@ if __name__ == "__main__":
             # start with can take a tuple ()
             if not line.strip().startswith(('#', '\n')):
                 first, second, third, *others = line.strip().split(":")
-                user_dict[first] = third
+                ## not:
+                # user_dict[first] = third
+                user_dict[first].append(third)
 
-    # for k, v in user_dict.items():
-    #     print(k, v)
+    for k, v in user_dict.items():
+        print(k, v[0])
 
-    print(user_dict.items())
+    # print(user_dict.items())
