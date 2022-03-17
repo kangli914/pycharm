@@ -20,6 +20,7 @@ if __name__ == "__main__":
     total = 0
     with open_file_safe(os.path.join(cwd_path, "files", "ex18_2-cols-numbers.txt")) as f:
         for line in f:
+            # str.strip removes the whitespace—the space character, as well as \n, \r, \t
             first_words, second_words, *extra = line.strip().split("\t")
             if not extra:
                 if first_words.isnumeric() and second_words.isnumeric():

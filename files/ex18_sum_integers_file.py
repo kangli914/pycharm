@@ -17,8 +17,9 @@ if __name__ == "__main__":
     cwd = os.getcwd()
     # print(__file__ + "\n")
 
+    # str.strip removes the whitespace—the space character, as well as \n, \r, \t
     with open_file_safe(os.path.join(cwd, "files", "ex18_input.txt")) as f:
         total = sum(int(words) for line in f
-                               for words in line.split() if words.isnumeric())
+                               for words in line.strip().split() if words.isnumeric())
 
     print(total)
