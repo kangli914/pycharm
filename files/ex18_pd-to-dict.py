@@ -24,9 +24,18 @@ if __name__ == "__main__":
     with open_file_safe(os.path.join(cwd_path, "files", "ex18_faked_pd.txt")) as f:
 
         for line in f:
-            # start with can take a tuple ()
+
+            # or continue
+            # if one_line.startswith(('#', '\n')):
+            #     continue
+
+            # start() with can take a tuple ()
             if not line.strip().startswith(('#', '\n')):
                 first, second, third, *others = line.strip().split(":")
+                # str.strip() removes the whitespace—the space character, as well as \n, \r, \t
+
+                # str.split() without any arguments, which causes it to use all whitespace—spaces, tabs, and newlines as delimiters. e.g. the default separator is any whitespace.
+
                 ## not:
                 # user_dict[first] = third
                 user_dict[first].append(third)

@@ -19,6 +19,7 @@ if __name__ == "__main__":
 
     # str.strip removes the whitespace—the space character, as well as \n, \r, \t
     with open_file_safe(os.path.join(cwd, "files", "ex18_input.txt")) as f:
+        # split without any arguments, which causes it to use all whitespace—spaces, tabs, and newlines as delimiters. e.g. the default separator is any whitespace.
         total = sum(int(words) for line in f
                                for words in line.strip().split() if words.isnumeric())
 

@@ -21,6 +21,8 @@ if __name__ == "__main__":
     with open_file_safe(os.path.join(cwd_path, "files", "ex18_2-cols-numbers.txt")) as f:
         for line in f:
             # str.strip removes the whitespace—the space character, as well as \n, \r, \t
+            # split without any arguments, which causes it to use all whitespace—spaces, tabs, and newlines
+            # as delimiters.  e.g. the default separator is any whitespace.
             first_words, second_words, *extra = line.strip().split("\t")
             if not extra:
                 if first_words.isnumeric() and second_words.isnumeric():
