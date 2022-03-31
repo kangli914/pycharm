@@ -25,7 +25,7 @@ if __name__ == "__main__":
     with open_file_safe(os.path.join(cwd, "files", "ex18_vowel.txt")) as f:
 
         for line in f:
-            # str.strip removes the whitespace—the space character, as well as \n, \r, \t
+            # str.strip removes the whitespace chars (witesapce = spaces, tabs, and newlines.), as well as \n, \r, \t
             for words in line.lower().strip().split():
                 for char in words:
                     if char in vowel:
