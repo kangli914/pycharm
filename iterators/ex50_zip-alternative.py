@@ -19,9 +19,11 @@ def my_zip(*data_sets):
 
     print(f"sets minimal length is: {min_length}")
     for i in range(min_length):
-        #  bundle the nth elements into a tuple, then pass them out with a generator function
+        #  bundle the nth elements into a tuple, then pass them out with a generator function (yeild tuple)
+        #  Note - this is not generator expression (but it looks like)
         yield tuple(one_dataset[i] for one_dataset in data_sets)
 
+    #  https://www.teclado.com/30-days-of-python/python-30-day-23-generators-yield
 
 if __name__ == "__main__":
     for item in my_zip('abcd', [10, 20, 30]):
