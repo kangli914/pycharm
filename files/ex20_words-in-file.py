@@ -23,11 +23,17 @@ def open_file_saftly(file):
 
 def words_count(file, words_tuple):
     """Coun the words."""
+    collections = defaultdict(int)
+    # or
+    # collections = dict.fromkeys(words, 0)
+
     with open_file_saftly(os.path.join(curr_dir, "files", file)) as f:
         for line in f:
             for a_words in line.strip().split():
                 if a_words in words_tuple:
                     collections[a_words] += 1
+
+    return collections
 
 
 if __name__ == "__main__":
@@ -37,9 +43,4 @@ if __name__ == "__main__":
     curr_dir = os.getcwd()
     # print(__file__ + "\n")
 
-    collections = defaultdict(int)
-    # or
-    # collections = dict.fromkeys(words, 0) 
-    words_count(file, words_tuple)
-
-    print(collections)
+    print(words_count(file, words_tuple))
