@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """Use custome my_chain( another itertools module chain() ) function to iterate all the lines of files in a directory.
-Reimplement the all_lines function from exercise 48 using mychain.
+Reimplement the all_lines function from exercise 48 (ex48_directory_generator.py) using mychain.
 """
 
 import os
