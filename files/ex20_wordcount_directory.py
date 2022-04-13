@@ -27,12 +27,45 @@ def all_files(path):
     files_obj_list = (open_file_safely(os.path.join(path, filename)) for filename in os.listdir(path) if filename.endswith(".txt") and os.path.isfile(os.path.join(path, filename)))
 
     print(type(files_obj_list))  # <class 'generator'>
+    """
+    <_io.TextIOWrapper name='/home/kangli/repo/personal/pycharm/files/ex18_2-cols-numbers.txt' mode='r' encoding='UTF-8'>
+    <_io.TextIOWrapper name='/home/kangli/repo/personal/pycharm/files/ex18_faked_pd.txt' mode='r' encoding='UTF-8'>
+    <_io.TextIOWrapper name='/home/kangli/repo/personal/pycharm/files/ex18_input.txt' mode='r' encoding='UTF-8'>
+    <_io.TextIOWrapper name='/home/kangli/repo/personal/pycharm/files/ex18_vowel.txt' mode='r' encoding='UTF-8'>
+    <_io.TextIOWrapper name='/home/kangli/repo/personal/pycharm/files/ex20_wordcounts_input.txt' mode='r' encoding='UTF-8'>
+    """
 
     return files_obj_list
 
 
+def all_lines(files):
+    """Yeild one line at a time from a generator fucntion."""
+    for f in files:
+        print(f'------------------- file name: {f} -------------------')
+        for line in f:
+            yield line
+
+
+def words_in_line(line, collections):
+    """Return a collections of words given a line."""
+    for a_words in line.strip().split():
+        collections[a_words] += 1
+
+    return collections
+
+
 if __name__ == "__main__":
     path = os.getcwd()
+    collections = defaultdict(int)
 
-    for line in all_files(os.path.join(path, "files")):
-        print(line)
+    files = all_files(os.path.join(path, "files"))
+    for line in all_lines(files):
+        # print(line)
+        words_in_line(line, collections)
+
+    # for k, v in collections.items():
+    #     print(f"{k, v}")
+    top_five = sorted(collections, key=collections.get, reverse=True)[:5]
+    print("- top 5 -")
+    for key in top_five:
+        print(f"key: {key}, occurrence: {collections.get(key)}")
