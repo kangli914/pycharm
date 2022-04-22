@@ -7,7 +7,6 @@ across all of these files.
 """
 
 import os
-from re import L
 import sys
 from collections import defaultdict
 
