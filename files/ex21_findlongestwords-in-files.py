@@ -48,7 +48,7 @@ def find_all_longest_words(files_objs):
         longest_words_dict[file_name] = longest_word
 
     return longest_words_dict
-
+    # another good implementation
 
 if __name__ == "__main__":
     path = os.getcwd()
