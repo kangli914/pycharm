@@ -2,6 +2,7 @@
 
 """Print the last line of the file."""
 
+from glob import glob
 import os
 
 
@@ -23,9 +24,20 @@ file = "apache.log"
 path = os.getcwd()
 
 # Open a specific file in a directory vs. open a list of files-like objects (e.g. from ex50_all_lines.py):  
-# os.getcwd() & os.path.join()
+# os.getcwd() & os.path.join()       --> a file
 # vs.
-# os.listdir(path) & os.path.join()
+# os.listdir(path) & os.path.join()  --> a list of files-like 
+
+## 3 ways to open files in list: page 87 (also look at ex17_manyway_openFile_directory.py)
+# 1. os.listdir
+    # - The bad news is that it returns a list of filenames without the directory name, which means that to open
+    #   or work with the files, you’ll need to add the directory name at the beginning—ideally with os.path.join
+    # - os.listdir is that you can’t filter the filenames by a pattern
+
+# 2. glob.glob
+    # - allow you to use filter the filenames by a pattern
+
+# 3. pathlib
 '''
 files = [open(os.path.join(path, filename)) for filename in os.listdir(path)]
 '''
