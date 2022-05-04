@@ -1,14 +1,19 @@
 #!/usr/bin/env python3
 
 """Note down the different ways to open files in directory.
-
+The 3 most common ways: (p 87)
+ - os.listdir
+ - glob.glob
+ - pathlib.Path
 Serve as a standard template.
+ - The downside of os.listdir is it returns a list of filenames without the direcotry name so you will need os.path.join to give the full path
+ - also os.listdir does not allow you to filter the filnames by a pattern
 """
 
-from fileinput import filename
 import os
 import pathlib
 import sys
+from glob import glob
 
 
 def open_file_safe(file):
@@ -23,8 +28,13 @@ def open_file_safe(file):
 
 
 def open_directory_1(dir):
-    # os.listdir returns a list of filenames without the directory name,
-    return [open_file_safe(os.path.join(dir, file_name)) for file_name in os.listdir(dir)]
+    # os.listdir Only returns a list of filenames without the directory name,
+    return [open_file_safe(os.path.join(dir, file_name)) for file_name in os.listdir(dir) if file_name.endswith(".txt") and os.path.isfile(os.path.join(dir, file_name))]
+
+
+def open_directory_2(dir):
+    # glob.glob to returns a list of filenames
+    return [open_file_safe(file) for file in glob(f"{dir}/*.txt", recursive=True)]
 
 
 def open_directory_3(dir):
@@ -52,6 +62,10 @@ def open_directory_3(dir):
 if __name__ == "__main__":
     print(" --- pathlib.Path() ---")
     for one in open_directory_3("files"):
+        print(one)
+
+    print(" --- lob.glob() ---")
+    for one in open_directory_2("files"):
         print(one)
 
     print(" --- os.listdir() ---")
