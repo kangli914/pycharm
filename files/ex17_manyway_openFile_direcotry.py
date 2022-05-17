@@ -56,7 +56,9 @@ def open_directory_3(dir):
 
     # path.glob(patten) Glob the given relative pattern in the directory represented by this path, 
     # yielding all matching *files* (return)
-    return [open_file_safe(one_file) for one_file in p.glob("*.txt")]
+    # https://docs.python.org/3/library/pathlib.html#pathlib.Path
+    # with the addition of “**” which means “this directory and all subdirectories, recursively”
+    return [open_file_safe(one_file) for one_file in p.glob("**/*.txt")]
 
 
 if __name__ == "__main__":
