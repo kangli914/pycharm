@@ -3,6 +3,8 @@
 """Use the hashlib module in the Python standard library, and the md5 function
 within it, to calculate the MD5 hash for the contents of every file in a user
 specified directory. Then print all of the filenames and their MD5 hashes.
+
+The 3 most common ways to list files in a directory: (p 87)
 """
 
 
@@ -26,6 +28,7 @@ def open_file_safe(file):
 def open_files_directory(dir):
     """Open the file from a given directory.
     """
+    # creating a pathlib.Path object, which represents a file or directory
     p = pathlib.Path(dir)
 
     # print(p.glob("**/*.txt"))
