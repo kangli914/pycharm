@@ -35,6 +35,8 @@ def open_directory_1(dir):
 def open_directory_2(dir):
     # glob.glob to returns a list of filenames
     return [open_file_safe(file) for file in glob(f"{dir}/*.txt", recursive=True)]
+    # open all the files and sub-directory
+    # for one_filename in glob.glob(f"{dir}/*", recursive=True):
 
 
 def open_directory_3(dir):

@@ -5,6 +5,7 @@ as how long ago the directory was modified. You will probably want to use a comb
 of os.stat and the Arrow package
 """
 
+import glob
 import os
 import pathlib
 import sys
@@ -41,3 +42,10 @@ if __name__ == "__main__":
 
     for child in p.iterdir():
         print(f"file: {child.name}, last modified time: {arrow.get(os.stat(child)[-1]).format('YYYY-MM-DD HH:mm:ss')}")
+
+    output = {}
+    for child_file in glob.glob(f"{dir}/*", recursive=True):
+        mod_time = os.stat(child_file).st_mtime
+        output[child_file] = (arrow.now() - arrow.get(1503636889)).days
+    for k, v in output.items():
+        print(k, v)
