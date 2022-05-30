@@ -25,6 +25,8 @@ path = os.getcwd()
 
 # Open a specific file in a directory vs. open a list of files-like objects (e.g. from ex50_all_lines.py):  
 # os.getcwd() & os.path.join()       --> a file
+# https://stackoverflow.com/questions/32470543/open-file-in-another-directory-python
+
 # vs.
 # os.listdir(path) & os.path.join()  --> a list of files-like 
 
@@ -40,6 +42,7 @@ path = os.getcwd()
 # 3. pathlib
 '''
 files = [open(os.path.join(path, filename)) for filename in os.listdir(path)]
+# o = [os.path.join(d,o) for o in os.listdir(d) if os.path.isdir(os.path.join(d,o))] # Gets all directories in the folder as a tuple
 '''
 
 

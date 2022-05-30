@@ -8,6 +8,9 @@ The 3 most common ways: (p 87)
 Serve as a standard template.
  - The downside of os.listdir is it returns a list of filenames without the direcotry name so you will need os.path.join to give the full path
  - also os.listdir does not allow you to filter the filnames by a pattern
+
+ open file:
+ # https://stackoverflow.com/questions/32470543/open-file-in-another-directory-python
 """
 
 import os

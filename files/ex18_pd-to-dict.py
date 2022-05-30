@@ -18,6 +18,7 @@ def open_file_safe(file):
 if __name__ == "__main__":
     cwd_path = os.getcwd()
     print(__file__ + "\n")
+    print(os.path.dirname(__file__))
     user_dict = defaultdict(list)
 
     # str.strip() removes the whitespace—the space character(=such as spaces, tabs, and newlines.), as well as \n, \r, \t,
