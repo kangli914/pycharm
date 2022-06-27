@@ -6,10 +6,18 @@ The 3 most common ways: (p 87)
  - glob.glob
  - pathlib.Path
 Serve as a standard template.
- - The downside of os.listdir is it returns a list of filenames without the direcotry name so you will need os.path.join to give the full path
+
+os.listdir:
+ - The downside of os.listdir is it returns a list of filenames WITHOUT the direcotry name so you will need os.path.join to give the full path
  - also os.listdir does not allow you to filter the filnames by a pattern
 
- open file:
+glob.glob:
+- it returns a list of strings with each string containing the complete path to the file.
+
+pathlib.Path:
+ - provides us with an object-oriented API to the filesystem
+
+open file:
  # https://stackoverflow.com/questions/32470543/open-file-in-another-directory-python
 """
 
@@ -45,7 +53,7 @@ def open_directory_2(dir):
 def open_directory_3(dir):
     """Open the direcotry using pathlib.
 
-    Good reference about pathlib: 
+    Good reference about pathlib:
     - https://realpython.com/python-pathlib/
     - https://docs.python.org/3/library/pathlib.html#pathlib.Path.glob
     """
@@ -54,6 +62,12 @@ def open_directory_3(dir):
 
     # path.iterdir() when the path points to a directory, yield path objects of the directory contents:
     # following list out the cotents of given directory
+    '''
+    # If you want to get a list of files matching a pattern,using p.glob():
+    for one_filename in p.glob('*.conf'):
+        print(one_filename)
+    '''
+
     print(" --- path.iterdir(): ---")
     for child in p.iterdir():
         # <class 'pathlib.PosixPath'> object than a string
