@@ -35,7 +35,8 @@ def passwd_to_csv_1(rfile, wfile):
             # row are list/sequence, so use .join() to turn : into , seperated
             # print(f'Column are: {", ".join(row)}')
 
-            if not row[0].strip().startswith("#"):
+            if not row[0].strip().startswith(("#", "\n")):
+            # if not row.startswith(("#", "\n")):
                 writer.writerow((row[0], row[2]))
 
 
@@ -57,7 +58,8 @@ def passwd_to_csv_2(rfile, wfile):
 
         try:
             for row in reader:
-                if not row["name"].strip().startswith("#"):
+                # startwith() can take tuples so here we skip the comments and blank lines
+                if not row["name"].strip().startswith(("#", "\n")):
                     # note csv.DictWriter takes in a dictionary to write
                     writer.writerow({"user_name": row["name"], "user_id": row["user"]})
         except csv.Error as e:
