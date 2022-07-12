@@ -7,8 +7,11 @@ file in which to write the output.
 """
 
 
-import sys
 import csv
+import sys
+from unicodedata import name
+
+import pandas
 
 
 def open_file_safely(file, MODE="r"):
@@ -27,17 +30,23 @@ def passwd_to_csv_1(rfile, wfile):
     with open_file_safely(rfile) as f_reader, open_file_safely(wfile, MODE="w") as f_writer:
         reader = csv.reader(f_reader, dialect="unix", delimiter=":")
         # 'Dialect.quoting' and 'Dialect.quotechar' are mostly good for write out csv data.
-        #  For example, the following will quote all the write out data with ? instead of double quote when writing to the file and the default for Dialect.quoting is defaults to QUOTE_MINIMAL.
-        writer = csv.writer(f_writer, dialect="unix", delimiter="\t", quoting=csv.QUOTE_NONNUMERIC, quotechar="?")
+        #  For example, the following will quote all the write out data with single quote instead of double quote when writing to the file and the default for Dialect.quoting is defaults to QUOTE_MINIMAL.
+        # more rules here https://realpython.com/python-csv/
+        writer = csv.writer(f_writer, dialect="unix", delimiter="\t", quoting=csv.QUOTE_ALL, quotechar="'")
 
-        # Each row read from the csv file is returned as a list of strings
-        for row in reader:
-            # row are list/sequence, so use .join() to turn : into , seperated
-            # print(f'Column are: {", ".join(row)}')
+        try:
+            # Each row read from the csv file is returned as a list of strings
+            for row in reader:
+                # row are list/sequence, so use .join() to turn : into , seperated
+                # print(f'Column are: {", ".join(row)}')
 
-            if not row[0].strip().startswith(("#", "\n")):
-            # if not row.startswith(("#", "\n")):
-                writer.writerow((row[0], row[2]))
+                # reader can have line_num() instead of using the inedex
+                # print(reader.line_num)
+
+                if not row[0].strip().startswith(("#", "\n")):
+                    writer.writerow((row[0], row[2]))
+        except csv.Error as e:
+            sys.exit('file {}, line {}: {}'.format(rfile, reader.line_num, e))
 
 
 # use csv.DictReader
@@ -66,5 +75,41 @@ def passwd_to_csv_2(rfile, wfile):
             sys.exit('file {}, line {}: {}'.format(rfile, reader.line_num, e))
 
 
+# use pandas
+# https://realpython.com/python-csv/
+def passwd_to_csv_3(rfile, wfile):
+    # header=0 tells pandas to ignore the existing column
+    df = pandas.read_csv(rfile,
+                         sep=":",
+                         index_col="name",
+                         names=["name", "x", "user_id", "others_1", "others_2", "others_3", "others_4"],
+                         header=0)
+    # print(df)
+
+    # In any case we should not provide indexed column (e.g. name) to the write_columns,
+    # it would result key error
+
+    # index=False will not write any column index 'name'
+    write_columns = ["user_id"]
+    df.to_csv(wfile, index=False, columns=write_columns, sep=",")
+
+    # index=True (Default) will write the column index 'name'
+    write_columns = ["user_id"]
+    df.to_csv(wfile, index=True, index_label="new name", columns=write_columns, sep=",")
+
+    '''
+    # index=False
+    user_id
+    1
+    2
+
+    # index=True
+    new name,user_id
+    daemon,1
+    bin,2
+    sys,3
+    '''
+
+
 if __name__ == "__main__":
-    passwd_to_csv_2("/etc/passwd", "dummy.txt")
+    passwd_to_csv_3("/etc/passwd", "dummy.txt")
