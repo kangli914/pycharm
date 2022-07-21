@@ -9,7 +9,6 @@ file in which to write the output.
 
 import csv
 import sys
-from unicodedata import name
 
 import pandas
 
@@ -18,6 +17,9 @@ def open_file_safely(file, MODE="r"):
     """Open the file safely.
 
     Accep a filename as an argument and exits if having the issue."""
+    # alway better include newline='' when reading csv
+    # If newline='' is not specified, newlines embedded inside quoted fields will not be interpreted correc
+    # https://docs.python.org/3/library/csv.html
     try:
         return open(file, MODE, newline='')
     except OSError:
