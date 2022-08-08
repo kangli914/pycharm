@@ -30,11 +30,22 @@ def dict_to_csv(data, file):
         writer = csv.DictWriter(f_writer, fieldnames=feild_names, dialect="unix", delimiter=":", quoting=csv.QUOTE_NONE, quotechar=",")
         writer.writeheader()
 
-        for k, v in data.items():
-            try:
-                writer.writerow({"key": k, "value": v, "type": type(v)})
-            except csv.Error as e:
-                sys.exit(f"Error encountered when writing the file {e}!")
+        # option #1 - writerow() - write individual row
+        # for k, v in data.items():
+        #     try:
+        #         writer.writerow({"key": k, "value": v, "type": type(v)})
+        #     except csv.Error as e:
+        #         sys.exit(f"Error encountered when writing the file {e}!")
+
+        # option #2 - writerows() - use list componhension to reform the rows first
+        rows = [{feild_names[0]: k,
+                 feild_names[1]: v,
+                 feild_names[2]: str(type(v))
+                 } for (k, v) in data.items()]
+        try:
+            writer.writerows(rows)
+        except csv.Error as e:
+            sys.exit(f"Error encountered when writing the file {e}!")
 
 
 if __name__ == "__main__":
