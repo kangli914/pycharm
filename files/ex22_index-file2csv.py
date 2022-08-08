@@ -19,8 +19,11 @@ def open_file_saftly(file, MODE="r"):
     except OSError as e:
         sys.exit(f"Error encountered when opening the file {file}: {e}!")
 
+
 def passwd_to_csv_dict(rfile, wfile, col_list):
-    """read rfile as a passwd style file and write the output to wfile with TAB separted."""
+    """read rfile as a passwd style file and write the output to wfile with TAB separted.
+
+    It uses csv.reader and csv.writer from csv module"""
     with open_file_saftly(rfile) as f_reader, open_file_saftly(wfile, MODE="w") as f_writer:
 
         reader = csv.reader(f_reader, dialect="unix", delimiter=":")
@@ -42,7 +45,7 @@ def passwd_to_csv_dict(rfile, wfile, col_list):
                                     for index, item in enumerate(row)
                                     if str(index) in col_list]
                     print(select_items)
-                    writer.writerows(select_items)
+                    writer.writerow(select_items)
 
         except csv.Error as e:
             sys.exit('file {}, line {}: {}'.format(rfile, reader.line_num, e))
