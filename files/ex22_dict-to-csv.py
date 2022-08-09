@@ -42,6 +42,13 @@ def dict_to_csv(data, file):
                  feild_names[1]: v,
                  feild_names[2]: str(type(v))
                  } for (k, v) in data.items()]
+
+        print(rows)
+        # rows is a list of dictionary
+        # [{'key': 'key1', 'value': 'first', 'type': "<class 'str'>"},
+        #  {'key': 'key2', 'value': 2, 'type': "<class 'int'>"},
+        #  {'key': 'key3', 'value': 'third', 'type': "<class 'str'>"}]
+
         try:
             writer.writerows(rows)
         except csv.Error as e:
