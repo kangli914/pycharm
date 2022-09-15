@@ -1,0 +1,4 @@
+key:value:type
+key1:first:<class 'str'>
+key2:2:<class 'int'>
+key3:third:<class 'str'>
