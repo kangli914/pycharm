@@ -44,20 +44,54 @@ def sort_user_collections(data):
     return sorted(data.items(), key=lambda item: item[1], reverse=True)
 
 
+def get_maximum_complete(data):
+    """Given a sorted list of user and complete tuple and return the max complete in the list."""
+
+    return data[0][1]
+
+
 if __name__ == "__main__":
     source = "https://jsonplaceholder.typicode.com/todos"
     res = requests.get(source)
 
-    # to deserialization/decode: json.loads(res.text) == res.json()
-    # print(type(json.loads(res.text)))
-    # print(type(res.json()))
-    # assert json.loads(res.text) == res.json(), "not equal"  # they are equal and type is <class 'list'>
+    # to deserialization/decode string into Python dictonary: json.loads(res.text) == res.json()
+    print(type(json.loads(res.text)))
+    print(type(res.json()))
+    assert json.loads(res.text) == res.json(), "not equal"                # they are equal and type is <class 'list'>
 
     # get a collections where has user and counts for book completion
     users = users_completed_collections(res.json())
     # sort the list from hightest to lowest
-    top_users = sort_user_collections(users)
-    print(type(top_users))
-    print("\n ".join( [ f"user id: {k}, completed books: {v}" for k,v in top_users] ))
-    # for k,v in top_users:
+    sorted_users = sort_user_collections(users)
+
+    # sorted_users is a list
+    # print(type(sorted_users))
+
+    # sorted_users is a list of tuple: join() same as for-loop to iterate the elements
+    # for (k, v) in sorted_users:
     #     print(k, v)
+    print(f"users list sorted by top to bottom:")
+    print("\n".join([f"user id: {k}, completed books: {v}"
+                    for k, v in sorted_users]))
+
+    max_count = get_maximum_complete(sorted_users)
+
+    # create a list of all users who have completed the maximum number of books
+    max_users_list = []
+    for user_id, num_complete in sorted_users:
+        if num_complete == max_count:
+            max_users_list.append((user_id, num_complete))
+
+    print()
+
+    # https://stackoverflow.com/questions/497765/python-string-joinlist-on-object-array-rather-than-string-array
+    # https://www.geeksforgeeks.org/python-list-comprehensions-vs-generator-expressions/#:~:text=So%20what's%20the%20difference%20between,memory%20efficient%20than%20the%20lists.
+    '''
+    So what’s the difference between Generator Expressions and List Comprehensions?
+    The generator yields one item at a time and generates item only when in demand. Whereas, in a list comprehension, Python reserves memory for the whole list. Thus we can say that the generator expressions are memory efficient than the lists.
+    '''
+    list_comprehension = ", ".join([str(item[0]) for item in max_users_list])        # list comprehension
+    generator_expression = ", ".join(str(item[0]) for item in max_users_list)        # generator expression
+
+    print(list_comprehension)
+    print(generator_expression)
