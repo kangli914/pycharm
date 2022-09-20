@@ -3,12 +3,13 @@
 """
 Find the users have completed the most tasks.
 
-Read in from an endpint in a array of objects with unique user ids and determine which users
+Read in from an endpiont in a array of objects with unique user ids and determine which users
 have completed (completed = true) the most tasks. The user could be one or multiple.
 """
 
 import json
 import sys
+from collections import defaultdict
 
 import requests
 
@@ -17,9 +18,12 @@ def users_completed_collections(data):
     """Find the users who finishes reading the books given a list.
 
     Given data is list and return a dictionary containing a list of users and the number/count of books they finished."""
+
+    # option 1: use get() to avoid key erorr
     users_collections = {}
-    try:
-        for item in data:
+
+    for item in data:
+        try:
             # get user id and default to None if not exists
             user_id = item.get("userId", None)
             if item.get("completed", None):
@@ -29,8 +33,26 @@ def users_completed_collections(data):
                     users_collections[user_id] = 1
                 else:
                     users_collections[user_id] += 1
-    except Exception as e:
-        sys.exit(f"Some thing went wrong to create the user collections: {e}!")
+        except Exception as e:
+            sys.exit(f"Some thing went wrong to create the user collections: {e}!")
+
+    # option 2: try key error
+    for item in data:
+        if item["completed"]:
+            try:
+                user_id = item["userId"]
+                # try to increment the existing user's count
+                users_collections[user_id] += 1
+            except KeyError:
+                # This user has not been seen. Set their count to 1
+                users_collections[user_id] = 1
+
+    # option 3: use defaultdict
+    users_collections = defaultdict(int)
+    for item in data:
+        if item["completed"]:
+            user_id = item["userId"]
+            users_collections[user_id] += 1
 
     return users_collections
 
@@ -90,8 +112,14 @@ if __name__ == "__main__":
     So what’s the difference between Generator Expressions and List Comprehensions?
     The generator yields one item at a time and generates item only when in demand. Whereas, in a list comprehension, Python reserves memory for the whole list. Thus we can say that the generator expressions are memory efficient than the lists.
     '''
-    list_comprehension = ", ".join([str(item[0]) for item in max_users_list])        # list comprehension
-    generator_expression = ", ".join(str(item[0]) for item in max_users_list)        # generator expression
+    list_comprehension = " and ".join([str(item[0]) for item in max_users_list])        # list comprehension
+    generator_expression = " and ".join(str(item[0]) for item in max_users_list)        # generator expression
 
     print(list_comprehension)
     print(generator_expression)
+
+    print()
+    # one statement if and else
+    s = "s" if len(max_users_list) > 1 else ""
+
+    print(f"user{s} {list_comprehension} completed {max_count} books!")
