@@ -28,8 +28,8 @@ def users_completed_collections(data):
             user_id = item.get("userId", None)
             if item.get("completed", None):
                 # if user is None so it has not added to the collections yet to avoid key error
-                user_id_exist = users_collections.get(user_id, None)
-                if not user_id_exist:
+                # user_id_exist = users_collections.get(user_id, None)
+                if not users_collections.get(user_id):
                     users_collections[user_id] = 1
                 else:
                     users_collections[user_id] += 1
