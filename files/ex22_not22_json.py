@@ -72,6 +72,17 @@ def get_maximum_complete(data):
     return data[0][1]
 
 
+# def func_keep(one_user, max_user_list):
+#     is_complete = one_user["completed"]
+#     has_max_count = str(one_user["userId"]) in [item[0] for item in max_user_list]
+#     return is_complete and has_max_count
+
+def function_filter(user):
+    is_completed = user["completed"]
+    has_max_count = str(user["userId"]) in [str(user[0]) for user in max_users_list]
+    return is_completed and has_max_count
+
+
 if __name__ == "__main__":
     source = "https://jsonplaceholder.typicode.com/todos"
     res = requests.get(source)
@@ -92,7 +103,7 @@ if __name__ == "__main__":
     # sorted_users is a list of tuple: join() same as for-loop to iterate the elements
     # for (k, v) in sorted_users:
     #     print(k, v)
-    print(f"users list sorted by top to bottom:")
+    print("users list sorted by top to bottom:")
     print("\n".join([f"user id: {k}, completed books: {v}"
                     for k, v in sorted_users]))
 
@@ -123,3 +134,11 @@ if __name__ == "__main__":
     s = "s" if len(max_users_list) > 1 else ""
 
     print(f"user{s} {list_comprehension} completed {max_count} books!")
+
+    # Python filter() list, set, tuple and etc:
+    # https://www.pythontutorial.net/python-basics/python-filter-list/
+    # https://www.programiz.com/python-programming/methods/built-in/filter
+    # Note The filter() function returns an iterator so you can easily convert iterators
+    # to sequences like lists, tuples, strings etc.
+    filtered_users = list(filter(function_filter, res.json()))
+    print(json.dumps(filtered_users, indent=2))
