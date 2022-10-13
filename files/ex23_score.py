@@ -43,6 +43,7 @@ def find_class_score(class_data, class_tag=""):
             try:
                 class_stats_1[k].append(v)
             except KeyError:
+                # here [v] would make a list on the first element
                 class_stats_1[k] = [v]
     # print(class_stats_1)
     # {'math': [95, 80, 68, 100, 85], 'literature': [92, 85, 90, 78, 75], 'science': [93, 79, 90, 100, 90]}
@@ -64,8 +65,10 @@ if __name__ == "__main__":
     for one_file in open_directory_files("files"):
         # de-serialize/decode: reads a JSON-encoded string from a file (e.g. json.load())
         # and returns a combination of Python objects (e.g. a list of dictionary per class/file)
-        one_class = json.load(one_file)
-        # serialize/encode: from Python object to a JSON string
-        # print(json.dumps(one_class, indent=2))
 
-        find_class_score(one_class, class_tag=one_file.name)
+        with one_file as f:
+            one_class = json.load(f)
+            # serialize/encode: from Python object to a JSON string
+            # print(json.dumps(one_class, indent=2))
+
+            find_class_score(one_class, class_tag=one_file.name)
