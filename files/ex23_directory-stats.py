@@ -8,18 +8,19 @@ were modified most and least recently, and which files are largest and smallest,
 """
 
 
+import json
 import os
 import pathlib
 import sys
 
 
-def open_file_safe(file, mode="r"):
-    """Open file safely otherwise raise the error."""
+def open_file_safely(file, mode="r"):
+    """Open file safely and return the file wrapper when no error."""
 
     try:
-        open(file, mode)
+        return open(file, mode)
     except OSError:
-        os.error(f"Had the error when openning the file {file}!")
+        os.error("Error encountered when openning the file {file}!")
 
 
 if __name__ == "__main__":
@@ -37,12 +38,15 @@ if __name__ == "__main__":
     # For recusive iteration using https://stackoverflow.com/questions/50714469/recursively-iterate-through-all-subdirectories-using-pathlib
     # e.g. for i in p.glob('**/*'):
     for child in root.iterdir():
-        try:
-            files_dict[child.name].append(os.stat(child)["st_size="])
-        except KeyError:
-            files_dict[child.name] = []
-
-        # print(os.stat(child))
-
+        # try:
+        #     files_dict[child.name].append(os.stat(child)["st_size="])
+        # except KeyError:
+        #     files_dict[child.name] = []
+        files_dict[child.name] = [os.stat(child).st_size, os.stat(child).st_mtime]
     print(files_dict)
-    pass
+
+    out_file = root / "ex23_out.json"
+    with open_file_safely(out_file, mode="w") as wfile:
+        # json.dump(out_file)
+        json.dump(files_dict, wfile, sort_keys=True, separators=(",", ": "), indent=4)
+
