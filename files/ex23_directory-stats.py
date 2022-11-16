@@ -52,6 +52,7 @@ if __name__ == "__main__":
         files_dict[child.name] = [os.stat(child).st_size, os.stat(child).st_mtime]
     # print(files_dict)
 
+    # The slash operator helps create child paths, similarly to os.path.join()
     out_file = root / "ex23_out.json"
     with open_file_safely(out_file, mode="w") as wfile:
         json.dump(files_dict, wfile, sort_keys=True, separators=(",", ": "), indent=4)
