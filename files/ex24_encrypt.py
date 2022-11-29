@@ -15,18 +15,37 @@ def open_file_safely(file, mode="r"):
         os.error(f"having issue openning the file {file}!")
 
 
+def encrypt(rfile, wfile):
+    """encrypt the text in given file."""
+
+    if rfile.exists():
+        with open_file_safely(rfile) as reader, open_file_safely(wfile, mode="w") as writer:
+            for line in reader:
+                for words in line.split():
+                    for char in words:
+                        writer.write(f"{ord(char)}")
+                    writer.write(" ")
+                writer.write("\n")
+
+
+def decrypt(rfile):
+    """decrypt the text in given file."""
+
+    if rfile.exists():
+        with open_file_safely(rfile) as reader:
+
+
+    characters = [chr(int(one_character))
+                  for one_character in open(filename)
+                  if one_character.strip().isdigit()]
+    return ''.join(characters)
+
+
 if __name__ == "__main__":
     # root = Path.cwd()
     path = Path("files")
     rfile = path / "ex18_vowel.txt"
     wfile = path / "ex24_encript.txt"
 
-    if rfile.exists():
-        with open_file_safely(rfile) as reader, open_file_safely(wfile, mode="w") as writer:
-            for line in reader:
-                newline = None
-                for words in line.split():
-                    for char in words:
-                        # newline += str(ord(char))
-                        # writer.write(line)
-                        writer.write(f'{ord(char)}')
+    encrypt(rfile, wfile)
+    decrypt(wfile)
