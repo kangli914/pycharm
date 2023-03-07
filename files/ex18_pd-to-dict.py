@@ -5,6 +5,7 @@
 import os
 import sys
 from collections import defaultdict
+from pathlib import Path
 
 
 def open_file_safe(file):
@@ -45,3 +46,20 @@ if __name__ == "__main__":
         print(k, v[0])
 
     # print(user_dict.items())
+
+
+
+    # another solution
+    root_path = Path("/etc")
+    file = root_path / "passwd"
+
+    user_dict = dict()
+
+    with open_file_safe(file) as f:
+        for line in f:
+            if not line.startswith(("#", "\n")):
+                # print(line, end="")
+                key, second, value, *rest = line.strip().split(":")
+                user_dict[key] = value
+
+    print(user_dict)
