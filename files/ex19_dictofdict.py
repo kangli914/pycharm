@@ -7,7 +7,7 @@ values) for user ID, home directory, and shell."""
 
 import os
 from pathlib import Path
-from collections import defaultdict
+# from collections import defaultdict
 
 
 def open_file_safely(file, mode="r"):
@@ -20,7 +20,19 @@ def open_file_safely(file, mode="r"):
 
 def shell_dict(file):
     """Read from a file and return a dict to dict"""
+
+    '''
     collections = defaultdict(dict)
+    The argument passed to defaultdict() specifies the default value that will be returned. In this case, dict() is passed as the default value, which means that a new dictionary will be created as the default value for any non-existing key
+    >>> default_dict['key1']
+    {}
+    >>> d['key1']
+    Traceback (most recent call last):
+    File "<stdin>", line 1, in <module>
+    KeyError: 'key1'
+    '''
+    # collections = defaultdict(dict)
+    collections = dict()
     with open_file_safely(file) as f:
         for line in f:
             if not line.startswith(("#", "\n")):
