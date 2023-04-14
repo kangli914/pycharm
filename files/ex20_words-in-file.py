@@ -1,46 +1,57 @@
 #!/usr/bin/env python3
 
-"""A prompt for user to count words apperaiance.
-
-User is asked to give file and many words separated by spaces in one line.
+"""Ask the user to enter the name of a text file and then (on one line, separated by
+spaces) words whose frequencies should be counted in that file. Count how
+many times those words appear in a dict, using the user-entered words as the
+keys and the counts as the values.
 """
 
-import os
-import sys
-from collections import defaultdict
+from collections import Counter, defaultdict
+from pathlib import Path
 
 
-def open_file_saftly(file):
-    """Open the file saftly.
+def open_file_safely(file, mode="r"):
+    """Open file safely."""
 
-    Accept a filename as an arugment. It throws the rrors and exits if having error.
-    """
     try:
-        return open(file)
-    except OSError:
-        sys.exit(f"error encountered in open the file {file}")
+        return open(file, mode=mode)
+    except FileNotFoundError:
+        '''The issue is with the open_file_safely function. The function is not raising an exception when the file does not exist. Instead, it is returning None, and then the with statement is trying to call the __enter__ method on None, which raises the AttributeError: __enter__ error.
+        '''
+        # os.error(f"something wrong opening the file {file}!")
+
+        '''With this modification, if the file does not exist, the open function will raise a FileNotFoundError exception, which will be caught by the except block and raised as an OSError exception with a custom error message. This will ensure that the with statement is not called with a None object.
+        '''
+        raise OSError(f"File not found: {file}")
 
 
-def words_count(file, words_tuple):
-    """Coun the words."""
-    collections = defaultdict(int)
-    # or
-    # collections = dict.fromkeys(words, 0)
+def count_words(file, input_words):
+    """Return a dictionary with word and their count"""
 
-    with open_file_saftly(os.path.join(curr_dir, "files", file)) as f:
+    count = defaultdict(int)
+    with open_file_safely(file) as f:
         for line in f:
-            for a_words in line.strip().split():
-                if a_words in words_tuple:
-                    collections[a_words] += 1
+            list_words_per_line = line.strip().split()
+            for word in input_words:
+                if word in list_words_per_line:
+                    count[word] += 1
+    return count
 
-    return collections
+
+def count_words_2(file, input_words):
+    """Instead of looping through the input words and checking if each word is in the list of words per line, you can use a list comprehension to create a list of all the words in the file that match the input words, and then count the frequency of each word in that list using the collections.Counter class."""
+    count = defaultdict(int)
+    with open_file_safely(file) as f:
+        words_in_file = [word for line in f
+                              for word in line.strip().split() if word in input_words]
+        count.update(Counter(words_in_file))
+    return count
 
 
 if __name__ == "__main__":
-
-    given = input("Please entry file and words in the following format:\n  filename words1 words2...\n").strip()
-    file, *words_tuple = given.strip().split()
-    curr_dir = os.getcwd()
-    # print(__file__ + "\n")
-
-    print(words_count(file, words_tuple))
+    file, *words = input("file[space]word[space]words...\n").strip().split(" ")
+    dir = Path.cwd()
+    full_path_file = dir / file
+    dict = count_words_2(full_path_file, words)
+    for k, v in dict.items():
+        print(k, v)
