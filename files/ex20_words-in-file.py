@@ -21,6 +21,8 @@ def open_file_safely(file, mode="r"):
         # os.error(f"something wrong opening the file {file}!")
 
         '''With this modification, if the file does not exist, the open function will raise a FileNotFoundError exception, which will be caught by the except block and raised as an OSError exception with a custom error message. This will ensure that the with statement is not called with a None object.
+
+        Note that catching an exception with an except block is a way to handle errors gracefully and continue program execution, rather than having the program crash with an unhandled exception.
         '''
         raise OSError(f"File not found: {file}")
 
@@ -44,6 +46,8 @@ def count_words_2(file, input_words):
     with open_file_safely(file) as f:
         words_in_file = [word for line in f
                               for word in line.strip().split() if word in input_words]
+
+        print(words_in_file)
         count.update(Counter(words_in_file))
     return count
 
