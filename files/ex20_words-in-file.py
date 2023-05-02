@@ -44,6 +44,14 @@ def count_words_2(file, input_words):
     with open_file_safely(file) as f:
         words_in_file = [word for line in f
                               for word in line.strip().split() if word in input_words]
+
+        # here Counter returned a class 'collections.Counter' object looks like a dictionary
+        # e.g.  Counter(["a", "b", "c", "a"])
+        # Counter({'a': 2, 'b': 1, 'c': 1})
+        #
+        # The update() method takes either a dictionary or an iterable object of key/value pairs # (generally tuples). The update() method adds element(s) to the dictionary if the key 
+        # not in the dictionary. If the key is in the dictionary, it updates the key with the
+        # new value.
         count.update(Counter(words_in_file))
     return count
 
