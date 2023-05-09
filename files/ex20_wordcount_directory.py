@@ -14,20 +14,20 @@ from collections import Counter
 import glob
 
 
-def open_file_safely(file):
+def open_file_safely(file, mode="r"):
     """Open the file saftly.
 
     Accept a filename as an arugment. It throws the errors and exits if having error.
     """
     try:
-        return open(file)
-    except OSError:
-        sys.exit(f"error encoutnered in open the file {file}")
+        return open(file, mode=mode)
+    except FileNotFoundError:
+        raise OSError(f"file {file} was not found!")
 
 
 def all_files(path):
     """Return a generator of a list of file TextIO objects in the given directory."""
-    files_obj_list = (open_file_safely(os.path.join(path, filename)) for filename in os.listdir(path) if filename.endswith(".txt") and os.path.isfile(os.path.join(path, filename)))
+    files_obj_list = (open_file_safely(os.path.join(path, filename)) for filename in os.listdir(path) if filename.endswith(".json") and os.path.isfile(os.path.join(path, filename)))
 
     print(type(files_obj_list))  # <class 'generator'>
     """
@@ -77,9 +77,11 @@ def most_common_letters(dirname):
 
 
 if __name__ == "__main__":
-    path = os.getcwd()
+    path = input("Eneter a directory: ")
     collections = defaultdict(int)
-    files = all_files(os.path.join(path, "files"))
+
+    files = all_files(path)
+
     for line in all_lines(files):
         # print(line)
         words_in_line(line, collections)
