@@ -18,8 +18,8 @@ def open_file_safe(file):
     """
     try:
         return open(file)
-    except OSError:
-        sys.exit(f"error encountered when opening the file {file}")
+    except FileNotFoundError:
+        raise OSError(f"file {file} was not found!")
 
 
 def find_longest_word(file_obj):
