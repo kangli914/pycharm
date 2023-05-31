@@ -29,5 +29,29 @@ def get_md5(file):
 if __name__ == "__main__":
     dir_path = Path.cwd() / "files/tmp"
 
+    # use iterdir()
     if dir_path.is_dir():
         print({item.name: get_md5(dir_path / item) for item in dir_path.iterdir() if item.is_file()})
+
+    #  use rglob("*") to recursive the iterate
+    if dir_path.is_dir():
+        print({item.name: get_md5(dir_path / item) for item in dir_path.rglob("*") if item.is_file()})
+
+
+    """
+    from pathlib import Path
+
+    def iterate_files_recursively(directory):
+        # Create a Path object for the specified directory
+        path = Path(directory)
+
+        # Use rglob to recursively iterate over json files
+        for file_path in path.rglob("*.json"):
+            if file_path.is_file():
+                # Process the file as needed
+                print(file_path)
+
+    # Example usage
+    directory_path = "/path/to/directory"
+    iterate_files_recursively(directory_path)
+    """
