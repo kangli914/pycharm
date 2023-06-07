@@ -1,51 +1,39 @@
 #!/usr/bin/env python3
 
-"""Ask the user for a directory name. Show all of the files in the directory, as well
-as how long ago the directory was modified. You will probably want to use a combination 
-of os.stat and the Arrow package
+"""
+Ask the user for a directory name. Show all of the files in the directory, as well as how long ago the directory was modified. You will probably want to use combination of os.stat and the Arrow package on PyPI (http://mng.bz/nPPK) to do this easily.
 """
 
-import glob
+
 import os
-import pathlib
-import sys
+from pathlib import Path
 
 import arrow
+import pprint
 
 
-def open_file_safe(file):
-    """Open the file safely.
+# more referece about arrow:
+# https://analyticsindiamag.com/complete-guide-to-arrow-a-python-library-for-user-friendly-handling-of-dates-time-and-timestamps/
 
-    Accept a file name as an argument and exits if having the issue.
-    """
+def open_file_safely(file, mode="r"):
+    """Open file saftly otherwise raise exception."""
+
     try:
-        return open(file)
-    except OSError:
-        sys.exit(f"error encountered when opening the file {file}")
+        return open(file, mode=mode)
+    except FileNotFoundError:
+        raise OSError(f"{file} not found!")
 
 
-def open_files_directory(dir):
-    """Return the files from a given directory."""
+def get_stats(item):
+    """Show all of the files in the directory, as well as how long ago the directory was modified."""
 
-    p = pathlib.Path(dir)
-    # print(p.glob("**/*.txt"))
-    # for child in p.iterdir():
-    #     print(child)
-
-    return (open_file_safe(one_file) for one_file in p.iterdir())
+    # raw is a float
+    raw = os.stat(item).st_mtime
+    return arrow.get(raw).format('YYYY-MM-DD HH:mm:ss')
 
 
 if __name__ == "__main__":
-    dir = input("give a directory:")
-    # creating a pathlib.Path object, which represents a file or directory
-    p = pathlib.Path(dir)
-
-    for child in p.iterdir():
-        print(f"file: {child.name}, last modified time: {arrow.get(os.stat(child)[-1]).format('YYYY-MM-DD HH:mm:ss')}")
-
-    output = {}
-    for child_file in glob.glob(f"{dir}/*", recursive=True):
-        mod_time = os.stat(child_file).st_mtime
-        output[child_file] = (arrow.now() - arrow.get(1503636889)).days
-    for k, v in output.items():
-        print(k, v)
+    dir = input("Enter a directory name: \n")
+    dir_path = Path(dir)
+    if dir_path.is_dir():
+        pprint.pprint({item.name: get_stats(item) for item in dir_path.rglob("*")})
