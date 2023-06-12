@@ -7,6 +7,6 @@ jupyter.sh
 *.png
 *.iml
 *.dot
-**/pratice.py
+**/practice.py
 **/.python-version
 **/.venv/
