@@ -8,3 +8,5 @@ jupyter.sh
 *.iml
 *.dot
 **/pratice.py
+**/.python-version
+**/.venv/
