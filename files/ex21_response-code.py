@@ -29,7 +29,7 @@ if __name__ == "__main__":
     response_codes = defaultdict(int)
     with open_file_safely(os.path.join(os.getcwd(), "mini-access-log.txt")) as f:
         for one_line in f:
-            response_codes[one_line.split()[8]] += 1
+            response_codes[one_line.strip().split()[8]] += 1
 
     for k, v in response_codes.items():
         print(k, v)
