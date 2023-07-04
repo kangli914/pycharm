@@ -18,8 +18,8 @@ def open_file_safely(file):
     """
     try:
         return open(file, "r")
-    except OSError:
-        sys.exit(f"error encountered when opening the file {file}")
+    except FileNotFoundError:
+        raise OSError(f"{file} not found!")
 
 
 if __name__ == "__main__":
