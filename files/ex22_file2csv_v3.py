@@ -29,7 +29,8 @@ def passwd_to_csv(input_file, output_file):
     """Return username (index 0) and the user ID (index 2) from input."""
     with open_file_safely(input_file, mode="r") as freader, open_file_safely(output_file, mode="w") as fwriter:
         reader = csv.reader(freader, delimiter=":")
-        writer = csv.writer(fwriter, delimiter="\t")
+        # The 'quotechar' parameter specifies the character used for quoting fields. It is set to " by default and it combined used with 'quoating'
+        writer = csv.writer(fwriter, delimiter="\t", quotechar="'", quoting=csv.QUOTE_NONNUMERIC)
         users = (get_user(row) for row in reader if not row[0].startswith(("#", "\n")))
         writer.writerows(users)
 
