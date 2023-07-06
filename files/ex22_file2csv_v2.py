@@ -11,9 +11,14 @@ from pathlib import Path
 
 
 def open_file_safely(file, mode="r"):
-    """Open file safely."""
+    """Open file safely
+    Accept a filename as an argument and exits if having the issue."""
+
+    # alway better include newline='' when reading csv
+    # If newline='' is not specified, newlines embedded inside quoted fields will not be interpreted correc
+    # https://docs.python.org/3/library/csv.html
     try:
-        return open(file, mode=mode)
+        return open(file, mode, newline='')
     except FileNotFoundError:
         raise OSError("{file} was not found!")
 

@@ -22,8 +22,8 @@ def open_file_safely(file, MODE="r"):
     # https://docs.python.org/3/library/csv.html
     try:
         return open(file, MODE, newline='')
-    except OSError:
-        sys.exit(f"Error encountered when opening the file {file}!")
+    except FileNotFoundError:
+        raise OSError("{file} was not found!")
 
 
 # use csv.reader
