@@ -51,7 +51,7 @@ six==1.16.0
 tomlkit==0.11.8
 trove-classifiers==2023.5.24
 tzdata==2023.3
-urllib3==1.26.16
+urllib3==1.26.18
 virtualenv==20.23.0
 webencodings==0.5.1
 xattr==0.10.1
