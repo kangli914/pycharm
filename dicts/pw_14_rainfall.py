@@ -1,47 +1,28 @@
 #!/usr/bin/env python3
 
+"""A rainfall programe to track rainfall."""
+
 from collections import defaultdict
-
-""" print out city rainfall """
-
-
-city_rainfall = dict()
-city_rainfall_default = defaultdict(int)
 
 
 def get_rainfall():
-    """Use reguler dictionary."""
+    city_rain = defaultdict(int)
+
     while True:
-        city = input("Enter City>: ").strip().capitalize()
-
-        # given empty city print out all 
-        if not city:
-            for k, v in city_rainfall.items():
-                print(f"{k}: {v} millimeters")
-            break
-
-        else:
-            rain = int(input("Entry Rainfall>: "))
-            city_rainfall[city] = city_rainfall.get(city, 0) + rain
-
-
-def get_rainfall_default():
-    """Use defaultdict dictionary from the collection."""
-    while True:
-        city = input("Enter City>: ").strip().capitalize()
-
+        city = input("Enter city: ").strip()
         if not city:
             break
+        try:
+            rain = int(input("Amount: ").strip())
+        except ValueError:
+            print("Amount entered is not an integer!")
+            # continue
         else:
-            rain = int(input("Entry Rainfall>: "))
-            # city_rainfall_default[city] = city_rainfall_default[city] + rain
-            city_rainfall_default[city] += rain
+            city_rain[city] += rain
 
-    for k, v in city_rainfall_default.items():
-        print(f"{k}: {v} millimeters")
+    for k, v in city_rain.items():
+        print(f"city: {k}, amount: {v}")
 
 
-# get_rainfall()
-
-
-get_rainfall_default()
+if __name__ == "__main__":
+    get_rainfall()
