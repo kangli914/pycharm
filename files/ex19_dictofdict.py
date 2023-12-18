@@ -10,10 +10,10 @@ from pathlib import Path
 # from collections import defaultdict
 
 
-def open_file_safely(file, mode="r"):
+def open_file_safely(file, file_mode="r"):
     """Open file safely."""
     try:
-        return open(file, mode=mode)
+        return open(file, mode=file_mode)
     except OSError:
         os.error("Erorr in open {file}")
 
