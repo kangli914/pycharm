@@ -11,7 +11,6 @@ database = defaultdict(list)
 # database = dict()
 
 while True:
-
     city = input("Entry city: ").strip()
     if not city:
         break
